@@ -1,0 +1,28 @@
+@import 'tailwindcss';
+
+:root {
+  --clay-orange: oklch(0.56 0.1832 36.78);
+  --sunlit-gold: oklch(0.67 0.1192 75.16);
+  --sage-green: oklch(0.45 0.0292 130.3);
+  --river-blue: oklch(0.38 0.1043 259.05);
+  --soil-brown: oklch(0.28 0.0115 55.86);
+  --cloud-mist: oklch(0.96 0 0);
+}
+
+@theme {
+  /* Backgrounds */
+  --color-orange-background: var(--clay-orange);
+  --color-blue-background: var(--river-blue);
+}
+
+@theme inline {
+}
+
+@layer base {
+  html {
+    @apply text-[16px];
+  }
+}
+
+@layer components {
+}

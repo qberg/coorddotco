@@ -1,0 +1,62 @@
+@import 'tailwindcss';
+
+:root {
+  --clay-orange: oklch(0.56 0.1832 36.78);
+  --sunlit-gold: oklch(0.67 0.1192 75.16);
+  --sage-green: oklch(0.45 0.0292 130.3);
+  --river-blue: oklch(0.38 0.1043 259.05);
+  --soil-brown: oklch(0.28 0.0115 55.86);
+  --cloud-mist: oklch(0.96 0 0);
+
+  --navbar-height: clamp(3.75rem, 2.6483rem + 4.5198vw, 8.75rem);
+}
+
+@theme {
+  --text-m: clamp(1rem, 0.8898rem + 0.452vw, 1.5rem);
+  --text-3xl: clamp(1.5rem, 0.7353rem + 3.1373vw, 4.5rem);
+  --text-4xl: clamp(2.25rem, 1.5172rem + 3.0065vw, 5.125rem);
+
+  --breakpoint-3xl: 120rem;
+  --breakpoint-4xl: 135rem;
+  --breakpoint-5xl: 160rem;
+}
+
+@theme inline {
+  /* Backgrounds */
+  --color-orange-background: var(--clay-orange);
+  --color-blue-background: var(--river-blue);
+
+  /* Fonts */
+  --font-roc: var(--font-roc-grotesk);
+  --font-hanken: var(--font-hanken-grotesk);
+  --font-playfair: var(--font-playfair-display);
+
+  /* Navbar */
+}
+
+@layer base {
+  html {
+    @apply text-[16px];
+  }
+  h1 {
+    @apply text-4xl font-roc font-normal;
+  }
+  h2 {
+    @apply text-3xl font-roc font-normal;
+  }
+  h3 {
+    @apply text-3xl font-roc font-normal;
+  }
+  h4 {
+    @apply text-3xl font-roc font-normal;
+  }
+  h5 {
+    @apply text-3xl font-roc font-normal;
+  }
+  p {
+    @apply text-m font-hanken font-light;
+  }
+}
+
+@layer components {
+}

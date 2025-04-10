@@ -23,10 +23,10 @@ const CoordLogo = React.forwardRef<HTMLDivElement, CoordLogoProps>(
             <span
               className="absolute bg-current mx-auto"
               style={{
-                width: 'clamp(2.375rem, 0.2267rem + 8.8136vw, 12.125rem)',
-                height: 'clamp(0.5625rem, 0.1081rem + 1.8644vw, 2.625rem)',
+                width: 'clamp(2.375rem, -0.0513rem + 9.9539vw, 15.875rem)',
+                height: 'clamp(0.5625rem, 0.057rem + 2.0737vw, 3.375rem)',
                 top: '-0.06em',
-                left: '0.17em',
+                left: '0.18em',
               }}
               aria-hidden="true"
             ></span>

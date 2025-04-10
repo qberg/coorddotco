@@ -9,7 +9,7 @@ const Header = () => {
       className="sticky top-0 px-2 md:px-8"
       style={{
         height: 'var(--navbar-height)',
-        paddingBlock: 'clamp(1rem, 0.6144rem + 1.5819vw, 2.75rem)',
+        paddingBlock: 'clamp(1rem, 0.5058rem + 2.0276vw, 3.75rem)',
       }}
     >
       <nav className="flex items-center justify-between">

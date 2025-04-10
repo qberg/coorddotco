@@ -20,7 +20,15 @@ const MainHero = () => {
           fill
           priority
           sizes="100vw"
-          style={{ objectFit: 'cover' }}
+          className="object-cover 2xl:hidden"
+        />
+        <Image
+          src="/main-hero/bg-big-4896x1664.png"
+          alt="Hero backround image"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover hidden 2xl:block"
         />
       </div>
     </section>

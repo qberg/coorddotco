@@ -8,7 +8,7 @@
   --soil-brown: oklch(0.28 0.0115 55.86);
   --cloud-mist: oklch(0.96 0 0);
 
-  --navbar-height: clamp(3.75rem, 2.6483rem + 4.5198vw, 8.75rem);
+  --navbar-height: clamp(3.75rem, 2.3347rem + 5.8065vw, 11.625rem);
 }
 
 @theme {

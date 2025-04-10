@@ -11,7 +11,7 @@ const MainHero = () => {
       <div
         className="flex-1 relative"
         style={{
-          marginTop: 'calc(-1 * clamp(2rem, 0.2924rem + 7.0056vw, 9.75rem))',
+          marginTop: 'calc(-1 * clamp(2rem, 0.3376rem + 6.8203vw, 11.25rem))',
         }}
       >
         <Image

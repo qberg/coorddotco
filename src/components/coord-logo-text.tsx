@@ -15,7 +15,7 @@ const CoordLogo = React.forwardRef<HTMLDivElement, CoordLogoProps>(
       >
         <span
           className="font-roc font-normal uppercase whitespace-nowrap"
-          style={{ fontSize: 'clamp(6rem, 0.7119rem + 21.6949vw, 30rem)' }}
+          style={{ fontSize: 'clamp(6rem, -0.5599rem + 26.9124vw, 42.5rem)' }}
           //style={{ fontSize: 'clamp(5rem, -0.536rem + 22.7119vw, 30rem)' }}
         >
           CO

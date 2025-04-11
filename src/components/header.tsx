@@ -9,14 +9,14 @@ const Header = () => {
       className="sticky top-0 px-2 md:px-8"
       style={{
         height: 'var(--navbar-height)',
-        paddingBlock: 'clamp(1rem, 0.5058rem + 2.0276vw, 3.75rem)',
+        paddingBlock: 'clamp(1rem, 0.6406rem + 1.4747vw, 3rem)',
       }}
     >
       <nav className="flex items-center justify-between">
         <div
           className="relative h-full aspect-square"
           style={{
-            height: 'clamp(1.5rem, 1.1419rem + 1.4689vw, 3.125rem)',
+            height: 'clamp(1.5rem, 1.0282rem + 1.9355vw, 4.125rem)',
           }}
         >
           <Image

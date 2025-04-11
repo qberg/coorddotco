@@ -8,11 +8,12 @@
   --soil-brown: oklch(0.28 0.0115 55.86);
   --cloud-mist: oklch(0.96 0 0);
 
-  --navbar-height: clamp(3.75rem, 2.3347rem + 5.8065vw, 11.625rem);
+  --navbar-height: clamp(3.75rem, 2.6267rem + 4.6083vw, 10rem);
 }
 
 @theme {
   --text-m: clamp(1rem, 0.8898rem + 0.452vw, 1.5rem);
+  --text-2xl: clamp(0.875rem, 0.6728rem + 0.8295vw, 2rem);
   --text-3xl: clamp(1.5rem, 0.7353rem + 3.1373vw, 4.5rem);
   --text-4xl: clamp(2.25rem, 1.5172rem + 3.0065vw, 5.125rem);
 
@@ -30,8 +31,6 @@
   --font-roc: var(--font-roc-grotesk);
   --font-hanken: var(--font-hanken-grotesk);
   --font-playfair: var(--font-playfair-display);
-
-  /* Navbar */
 }
 
 @layer base {
@@ -45,7 +44,7 @@
     @apply text-3xl font-roc font-normal;
   }
   h3 {
-    @apply text-3xl font-roc font-normal;
+    @apply text-2xl font-hanken font-normal;
   }
   h4 {
     @apply text-3xl font-roc font-normal;

@@ -6,13 +6,13 @@ import { ArrowRight } from 'lucide-react'
 const Header = () => {
   return (
     <header
-      className="sticky top-0 px-2 md:px-8"
+      className="sticky top-0 px-4 md:px-10"
       style={{
         height: 'var(--navbar-height)',
         paddingBlock: 'clamp(1rem, 0.6406rem + 1.4747vw, 3rem)',
       }}
     >
-      <nav className="flex items-center justify-between">
+      <nav className="flex items-center justify-between relative">
         <div
           className="relative h-full aspect-square"
           style={{
@@ -28,11 +28,17 @@ const Header = () => {
           />
         </div>
 
-        <p>/Menu</p>
+        <p className="cta-text lg:absolute lg:left-1/2 lg:-translate-x-1/2">/Menu</p>
 
-        <Link href="/" className="underline hidden sm:flex sm:gap-1 font-semibold">
-          <div>Contact Us</div>
-          <ArrowRight />
+        <Link href="/" className="hidden lg:block">
+          <h5 className="inline-flex relative">
+            <span className="">Contact</span>
+            <span>
+              <ArrowRight className="ml-1" size="1em" />
+            </span>
+
+            <span className="absolute bottom-1 left-0 w-[98%] h-[0.1em] bg-black"></span>
+          </h5>
         </Link>
       </nav>
     </header>

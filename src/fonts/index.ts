@@ -20,8 +20,8 @@ export const rocGrotesk = localFont({
   src: [
     {
       path: '../../public/fonts/roc-medium-regular.woff2',
-      weight: '400',
-      style: 'regular',
+      weight: '500',
+      style: 'medium',
     },
     {
       path: '../../public/fonts/roc-light-regular.woff2',

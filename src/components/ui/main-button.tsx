@@ -15,7 +15,7 @@ const MainButton = ({ href }: MainButtonProps) => {
         paddingBlock: 'clamp(0.5625rem, 0.3041rem + 1.0599vw, 2rem)',
       }}
     >
-      <h3>Contact Us</h3>
+      <p className="cta-text">Contact Us</p>
       <ArrowRight />
     </Link>
   )

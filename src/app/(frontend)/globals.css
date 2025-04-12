@@ -12,10 +12,15 @@
 }
 
 @theme {
-  --text-m: clamp(1rem, 0.8898rem + 0.452vw, 1.5rem);
+  --text-base: clamp(0.875rem, 0.6728rem + 0.8295vw, 2rem);
+  --text-m: clamp(0.875rem, 0.6728rem + 0.8295vw, 2rem);
+
+  --text-xl: clamp(1rem, 0.8203rem + 0.7373vw, 2rem);
   --text-2xl: clamp(0.875rem, 0.6728rem + 0.8295vw, 2rem);
   --text-3xl: clamp(1.5rem, 0.7353rem + 3.1373vw, 4.5rem);
   --text-4xl: clamp(2.25rem, 1.5172rem + 3.0065vw, 5.125rem);
+
+  --text-5xl: clamp(2.25rem, 1.4188rem + 3.4101vw, 6.875rem);
 
   --breakpoint-3xl: 120rem;
   --breakpoint-4xl: 135rem;
@@ -26,6 +31,10 @@
   /* Backgrounds */
   --color-orange-background: var(--clay-orange);
   --color-blue-background: var(--river-blue);
+
+  /* Button */
+  --color-button-background: '#ffffff';
+  --color-button-background-secondary: var(--sunlit-gold);
 
   /* Fonts */
   --font-roc: var(--font-roc-grotesk);
@@ -38,7 +47,7 @@
     @apply text-[16px];
   }
   h1 {
-    @apply text-4xl font-roc font-normal;
+    @apply text-5xl font-roc font-medium leading-[1.2] tracking-[-0.02em];
   }
   h2 {
     @apply text-3xl font-roc font-normal;
@@ -50,12 +59,19 @@
     @apply text-3xl font-roc font-normal;
   }
   h5 {
-    @apply text-3xl font-roc font-normal;
+    @apply text-xl font-roc font-medium leading-[1.2] tracking-[-0.02em];
   }
   p {
-    @apply text-m font-hanken font-light;
+    @apply text-base font-hanken font-extralight;
   }
 }
 
 @layer components {
+  .cta-text {
+    font-size: var(--text-base);
+    font-weight: 400;
+    font-family: var(--font-hanken);
+    line-height: 120%;
+    letter-spacing: -0.02em;
+  }
 }

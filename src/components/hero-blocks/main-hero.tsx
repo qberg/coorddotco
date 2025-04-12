@@ -1,6 +1,6 @@
+import BlurImage from '@/components/blur-image'
 import CoordLogo from '@/components/coord-logo-text'
 import CoordButton from '@/components/ui/coord-button'
-import Image from 'next/image'
 
 const MainHero = () => {
   return (
@@ -15,20 +15,18 @@ const MainHero = () => {
           marginTop: 'calc(-1 * clamp(2rem, 0.1578rem + 7.5576vw, 12.25rem))',
         }}
       >
-        <Image
+        <BlurImage
           src="/main-hero/bg-922x1200.png"
           alt="Hero backround image"
           fill
           priority
-          sizes="100vw"
           className="object-cover block lg:hidden"
         />
-        <Image
+        <BlurImage
           src="/main-hero/bg-big-4896x1664.png"
           alt="Hero backround image"
           fill
           priority
-          sizes="100vw"
           className="object-cover hidden lg:block"
         />
 

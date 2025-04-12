@@ -36,6 +36,8 @@
   --color-button-background: '#ffffff';
   --color-button-background-secondary: var(--sunlit-gold);
 
+  --color-highlight: var(--clay-orange);
+
   /* Fonts */
   --font-roc: var(--font-roc-grotesk);
   --font-hanken: var(--font-hanken-grotesk);

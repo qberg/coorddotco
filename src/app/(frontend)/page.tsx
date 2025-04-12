@@ -1,6 +1,7 @@
-import MainHero from '@/components/hero-blocks/main-hero'
 import React from 'react'
 
-export default async function HomePage() {
-  return <MainHero />
+import StartPage from '@/components/pages/start-page'
+
+export default function HomePage() {
+  return <StartPage />
 }

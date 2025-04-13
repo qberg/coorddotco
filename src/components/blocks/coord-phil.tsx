@@ -33,8 +33,8 @@ const CoordPhil = () => {
         <Paragraphs paragraphs={parasTwo} />
       </div>
 
-      <div className="mt-16 md:mt-auto flex gap-4 md:gap-8 4xl:gap-12 w-full md:w-[40%]">
-        <div className="relative w-full aspect-[3/4]">
+      <div className="mt-16 md:mt-auto flex gap-4 md:gap-8 4xl:gap-12 w-full">
+        <div className="relative w-full md:max-w-[20%] aspect-[3/4]">
           <BlurImage
             src="/coord-phil/image1.png"
             alt="Hero backround image"
@@ -43,7 +43,7 @@ const CoordPhil = () => {
             className="object-cover"
           />
         </div>
-        <div className="relative w-full aspect-[3/4]">
+        <div className="relative w-full md:max-w-[20%] aspect-[3/4]">
           <BlurImage
             src="/coord-phil/image2.png"
             alt="Hero backround image"

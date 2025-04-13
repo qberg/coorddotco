@@ -19,7 +19,7 @@ const NavMenu = () => {
       <motion.h1
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.6, delay: 0.4 }}
+        transition={{ duration: 0.6, delay: 0.3 }}
         exit={{ opacity: 0, transition: { duration: 0 } }}
       >
         Menu

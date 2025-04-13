@@ -10,7 +10,7 @@ export const hankenGrotesk = Hanken_Grotesk({
 
 export const playfairDisplay = Playfair_Display({
   weight: ['400', '500'],
-  style: ['italic'],
+  style: ['normal', 'italic'],
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-playfair-display',

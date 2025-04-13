@@ -14,7 +14,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html
       lang="en"
-      className={`${rocGrotesk.variable} ${hankenGrotesk.variable} ${playfairDisplay} antialiased`}
+      className={`${rocGrotesk.variable} ${hankenGrotesk.variable} ${playfairDisplay.variable} antialiased`}
     >
       <body>
         <Header />

@@ -1,4 +1,5 @@
 import CoordPhil from '@/components/blocks/coord-phil'
+import DiscoverArtisans from '@/components/blocks/discover-artisan'
 import Services from '@/components/blocks/services'
 import MainHero from '@/components/hero-blocks/main-hero'
 
@@ -8,6 +9,7 @@ const StartPage = () => {
       <MainHero />
       <CoordPhil />
       <Services />
+      <DiscoverArtisans />
     </>
   )
 }

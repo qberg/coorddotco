@@ -75,6 +75,9 @@ const Services = () => {
         <div className="hidden md:flex flex-col justify-end w-[20%]">
           <ServiceImage imageSrc="/services/image2.png" className="" />
         </div>
+        <div className="font-playfair font-medium text-m italic">
+          Cards-need content confirmation
+        </div>
       </div>
     </section>
   )

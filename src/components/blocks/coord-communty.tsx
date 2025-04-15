@@ -1,6 +1,6 @@
 import BlurImage from '@/components/blur-image'
 import CoordButton from '@/components/ui/coord-button'
-import { Calendar, ChevronDown, ChevronUp } from 'lucide-react'
+import { Calendar, ChevronDown, ChevronUp, Clock } from 'lucide-react'
 import Image from 'next/image'
 
 const imageStyle = {
@@ -55,7 +55,7 @@ const CoordCommunity = () => {
         />
       </div>
 
-      <div className="flex justify-between items-stretch">
+      <div className="flex justify-between gap-2 items-stretch">
         <div className="flex flex-col justify-between items-start gap-28">
           <h2 className="pt-8">Coord Community</h2>
 
@@ -64,16 +64,18 @@ const CoordCommunity = () => {
           </div>
         </div>
 
-        <div className=" flex justify-between items-start">
+        <div className="flex justify-end items-start md:gap-12 lg:gap-16 xl:gap-20 2xl:gap-40 3xl:gap-56">
           <div>
             <EventContent />
           </div>
 
-          <div className="hidden md:block">Thumbnails</div>
+          <div className="hidden md:block md:mt-16 2xl:mt-24 3xl:mt-32">
+            <EventThumbnail />
+          </div>
         </div>
       </div>
 
-      <div className="absolute bottom-0  pb-6 2xl:pb-11 3xl:pb-16 max-w-2xs lg:max-w-xl 3xl:max-w-2xl">
+      <div className="absolute bottom-0  pb-6 2xl:pb-11 3xl:pb-16 max-w-2xs md:max-w-lg xl:max-w-xl 3xl:max-w-2xl">
         <p className="mb-2">
           Join a thriving network of artisans, designers, and craft enthusiasts. Exchange ideas,
           co-create, and be part of a movement that champions craft excellence.
@@ -91,10 +93,13 @@ const EventThumbnail = () => {
   return (
     <div className="flex flex-col gap-4 items-center">
       <button
-        className="flex items-center justify-center rounded-none h-6 w-6 bg-accent-primary"
+        className="flex items-center justify-center rounded-none aspect-square bg-accent-primary"
         aria-label="Previous Event"
+        style={{
+          width: ' clamp(1.5rem, 1.1826rem + 1.2921vw, 3.25rem)',
+        }}
       >
-        <ChevronUp className="w-4 h-4" />
+        <ChevronUp className="w-4 h-4 md:h-8 md:w-8 text-white" />
       </button>
 
       {thumbnails.map((thumbnail, index) => (
@@ -110,10 +115,13 @@ const EventThumbnail = () => {
       ))}
 
       <button
-        className="flex items-center justify-center h-6 w-6 rounded-none bg-accent-primary"
+        className="flex items-center justify-center aspect-square rounded-none bg-accent-primary"
         aria-label="Previous Event"
+        style={{
+          width: ' clamp(1.5rem, 1.1826rem + 1.2921vw, 3.25rem)',
+        }}
       >
-        <ChevronDown className="w-4 h-4" />
+        <ChevronDown className="w-4 h-4 md:w-8 md:h-8 text-white" />
       </button>
     </div>
   )
@@ -121,8 +129,8 @@ const EventThumbnail = () => {
 
 const EventContent = () => {
   return (
-    <div className="flex flex-col gap-4">
-      <div className="relative w-full aspect-[3/5] md:aspect-square" style={imageStyle}>
+    <div className="flex flex-col gap-4 w-full" style={imageStyle}>
+      <div className="relative w-full aspect-[3/5] md:aspect-square">
         <BlurImage
           src="/coord-community/im1.png"
           alt="Coord Community Event"
@@ -137,11 +145,22 @@ const EventContent = () => {
           Handmade Creations: A Community Craft Fair And Workshop
         </div>
 
-        <div>
+        <div className="md:space-y-1">
           <div className="flex items-center text-sm">
-            <Calendar className="w-4 mr-2 text-accent-primary" />
+            <Calendar className="w-4 md:w-8 mr-2 text-accent-primary" />
             <span>June 9, 2025</span>
           </div>
+
+          <div className="flex items-center text-sm">
+            <Clock className="w-4 md:w-8 mr-2 text-accent-primary" />
+            <span>10:00 AM – 4:00 PM</span>
+          </div>
+          {/*
+          <div className="flex items-center text-sm">
+            <MapPin className="w-4 md:w-8 mr-2 text-accent-primary" />
+            <span>Central Park Community Hall, New York, NY</span>
+          </div>
+          */}
         </div>
 
         <p className="w-full">

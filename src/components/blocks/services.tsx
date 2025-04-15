@@ -56,7 +56,7 @@ const servicesData: ServicesData = {
 
 const Services = () => {
   return (
-    <section className="flex flex-col py-8 min-h-screen">
+    <section className="flex flex-col py-8  px-4 md:px-10 4xl:px-14 min-h-screen">
       <h2>Services</h2>
       <div className="flex flex-col md:flex-row md:justify-between md:items-center">
         <div className="w-full md:max-w-[33%]">

@@ -10,7 +10,7 @@ const DiscoverArtisans = () => {
   }
 
   return (
-    <section className="flex flex-col lg:flex-row py-8 min-h-screen lg:justify-between">
+    <section className="flex flex-col lg:flex-row py-8  px-4 md:px-10 4xl:px-14 min-h-screen lg:justify-between">
       <div className="w-full md:max-w-[70%] xl:max-w-[50%] 2xl:max-w-[45%]">
         <h2 className="mb-4 lg:mb-8 2xl:mb-14 3xl:mb-16">
           Connecting you to the Roots of Craftsmanship.

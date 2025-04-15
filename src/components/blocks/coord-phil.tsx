@@ -13,7 +13,7 @@ const parasTwo = [
 
 const CoordPhil = () => {
   return (
-    <section className="flex flex-col min-h-screen py-8">
+    <section className="flex flex-col min-h-screen py-8  px-4 md:px-10 4xl:px-14">
       <div className="flex items-start justify-between gap-4 lg:gap-9 2xl:gap-40 4xl:gap-64">
         <h2 className="whitespace-nowrap">Coord Philosophy</h2>
 

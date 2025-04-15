@@ -4,7 +4,7 @@ import CoordButton from '@/components/ui/coord-button'
 
 const MainHero = () => {
   return (
-    <section className="flex flex-col min-h-[calc(100svh-var(--navbar-height))]">
+    <section className="flex flex-col  px-4 md:px-10 4xl:px-14 min-h-[calc(100svh-var(--navbar-height))]">
       <div className="flex justify-center sm:mt-6 mt-2 z-10">
         <CoordLogo />
       </div>

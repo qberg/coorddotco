@@ -30,9 +30,12 @@
 }
 
 @theme inline {
+  --color-accent-primary: var(--sunlit-gold);
+  --color-highlight: var(--clay-orange);
   /* Backgrounds */
   --color-orange-background: var(--clay-orange);
   --color-blue-background: var(--river-blue);
+  --color-mist-background: var(--cloud-mist);
 
   /* Button */
   --color-button-background: '#ffffff';
@@ -45,8 +48,6 @@
   /* service card */
   --color-service-background: var(--cloud-mist);
   --color-service-secondary: var(--sunlit-gold);
-
-  --color-highlight: var(--clay-orange);
 
   /* Fonts */
   --font-roc: var(--font-roc-grotesk);

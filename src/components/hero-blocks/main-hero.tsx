@@ -1,26 +1,8 @@
-'use client'
+import BlurImage from '@/components/blur-image'
 import CoordLogo from '@/components/coord-logo-text'
 import CoordButton from '@/components/ui/coord-button'
-import Image from 'next/image'
-import { useEffect, useState } from 'react'
 
 const MainHero = () => {
-  const [aspectRatio, setAspectRatio] = useState(0)
-
-  useEffect(() => {
-    const updateAspectRatio = () => {
-      const ratio = window.innerWidth / window.innerHeight
-      setAspectRatio(ratio)
-    }
-
-    updateAspectRatio()
-
-    window.addEventListener('resize', updateAspectRatio)
-    return () => window.removeEventListener('resize', updateAspectRatio)
-  }, [])
-
-  const isWideShort = aspectRatio !== null && aspectRatio > 2 && aspectRatio < 2.5
-
   return (
     <section className="flex flex-col min-h-[calc(100svh-var(--navbar-height))]">
       <div className="flex justify-center sm:mt-6 mt-2 z-10">
@@ -32,14 +14,14 @@ const MainHero = () => {
           marginTop: 'calc(-1 * clamp(2rem, 0.1578rem + 7.5576vw, 12.25rem))',
         }}
       >
-        <Image
+        <BlurImage
           src="/main-hero/bg-922x1200.png"
           alt="Hero backround image"
           fill
           priority
           className="object-cover block lg:hidden"
         />
-        <Image
+        <BlurImage
           src="/main-hero/bg-big-4896x1664.png"
           alt="Hero backround image"
           fill
@@ -57,7 +39,7 @@ const MainHero = () => {
             </div>
           </div>
           <div
-            className={`px-4 md:px-10 text-white w-full ${isWideShort ? 'absolute bottom-0 pb-4' : 'mt-auto mb-4 sm:mb-6 md:mb-8 lg:mb-10 xl:mb-12 2xl:mb-12'}`}
+            className="px-4 md:px-10 text-white w-full absolute bottom-0 pb-4"
             style={{
               maxWidth: 'clamp(48rem, 32rem + 25vw, 72rem)',
             }}

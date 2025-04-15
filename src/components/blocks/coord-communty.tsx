@@ -1,4 +1,5 @@
 import BlurImage from '@/components/blur-image'
+import HorseBg from '@/components/horse-bg'
 import CoordButton from '@/components/ui/coord-button'
 import { Calendar, ChevronDown, ChevronUp, Clock } from 'lucide-react'
 import Image from 'next/image'
@@ -33,27 +34,7 @@ const thumbnails = [
 const CoordCommunity = () => {
   return (
     <section className="px-4 md:px-10 4xl:px-14 min-h-screen relative overflow-hidden">
-      <div className="absolute inset-0 w-screen h-full -z-100 bg-mist-background">
-        <Image
-          src="/horse.svg"
-          alt="COORD Horse background"
-          fill
-          sizes="100vw"
-          priority
-          quality={85}
-          className="object-cover hidden md:block"
-        />
-
-        <Image
-          src="/horse-mob.svg"
-          alt="COORD Horse background"
-          fill
-          sizes="100vw"
-          priority
-          quality={85}
-          className="object-cover block md:hidden"
-        />
-      </div>
+      <HorseBg />
 
       <div className="flex justify-between gap-2 items-stretch">
         <div className="flex flex-col justify-between items-start gap-28">

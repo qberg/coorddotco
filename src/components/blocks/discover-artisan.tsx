@@ -23,12 +23,12 @@ const DiscoverArtisans = () => {
         </p>
       </div>
 
-      <div className="flex justify-between mt-auto lg:mt-24">
+      <div className="flex justify-between lg:gap-6 2xl:gap-12 3xl:gap-16 mt-auto lg:mt-24">
         <div className="flex flex-col justify-end items-start" style={imageOneStyle}>
           <div className="font-playfair font-medium italic" style={playfair}>
             Hands Behind Heritage
           </div>
-          <div className="relative border w-full aspect-[3/5] mb-2">
+          <div className="relative border w-full aspect-[3/5] md:aspect-[4/5] mb-2">
             <BlurImage
               src="/artisans/im1.png"
               alt="Artisans image 1"

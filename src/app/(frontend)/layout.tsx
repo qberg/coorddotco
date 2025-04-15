@@ -2,6 +2,7 @@ import React from 'react'
 import './globals.css'
 import { hankenGrotesk, playfairDisplay, rocGrotesk } from '@/fonts'
 import Header from '@/components/header'
+import Footer from '@/components/footer'
 
 export const metadata = {
   description: 'A blank template using Payload in a Next.js app.',
@@ -19,6 +20,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
       <body>
         <Header />
         <main className="mx-auto overflow-hidden md:overflow-visible">{children}</main>
+        <Footer />
       </body>
     </html>
   )

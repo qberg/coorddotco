@@ -2,6 +2,7 @@ import React from 'react'
 import './globals.css'
 import { hankenGrotesk, playfairDisplay, rocGrotesk } from '@/fonts'
 import Header from '@/components/header'
+import LenisProvider from '@/components/LenisProvider'
 
 export const metadata = {
   description:
@@ -19,7 +20,9 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
     >
       <body>
         <Header />
-        <main className="mx-auto overflow-hidden md:overflow-visible">{children}</main>
+        <LenisProvider>
+          <main className="mx-auto overflow-hidden md:overflow-visible">{children}</main>
+        </LenisProvider>
       </body>
     </html>
   )

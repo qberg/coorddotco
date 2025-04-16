@@ -1,4 +1,4 @@
-import BlurImage from '@/components/blur-image'
+import Image from 'next/image'
 
 const IMAGE_STYLE = {
   maxWidth: 'clamp(11.9375rem, 10.994rem + 3.871vw, 17.1875rem)',
@@ -11,7 +11,7 @@ interface ServiceImageProps {
 
 const ServiceImage: React.FC<ServiceImageProps> = ({ imageSrc, className }) => (
   <div className={`${className} relative w-full aspect-[1.42/1]`} style={IMAGE_STYLE}>
-    <BlurImage
+    <Image
       src={imageSrc}
       alt="Service section decorative image"
       fill

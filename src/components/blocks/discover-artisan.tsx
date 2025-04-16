@@ -1,4 +1,4 @@
-import BlurImage from '@/components/blur-image'
+import Image from 'next/image'
 
 const playfair = {
   fontSize: 'clamp(1.125rem, 0.8329rem + 1.1982vw, 2.75rem)',
@@ -29,7 +29,7 @@ const DiscoverArtisans = () => {
             Hands Behind Heritage
           </div>
           <div className="relative border w-full aspect-[3/5] md:aspect-[4/5] mb-2">
-            <BlurImage
+            <Image
               src="/artisans/im1.png"
               alt="Artisans image 1"
               fill
@@ -48,12 +48,7 @@ const DiscoverArtisans = () => {
             </div>
 
             <div className="relative w-full aspect-[1.75/1] mb-4">
-              <BlurImage
-                src="/artisans/im2.png"
-                alt="Artisans image 2"
-                fill
-                className="object-cover"
-              />
+              <Image src="/artisans/im2.png" alt="Artisans image 2" fill className="object-cover" />
             </div>
 
             <p>See tradition unfold — one thoughtful gesture at a time.</p>
@@ -64,12 +59,7 @@ const DiscoverArtisans = () => {
               Objects That Speak
             </div>
             <div className="relative w-full aspect-[1.75/1]">
-              <BlurImage
-                src="/artisans/im3.png"
-                alt="Artisans image 3"
-                fill
-                className="object-cover"
-              />
+              <Image src="/artisans/im3.png" alt="Artisans image 3" fill className="object-cover" />
             </div>
 
             <p>Each piece holds a journey — of skill, soul, and centuries of culture.</p>

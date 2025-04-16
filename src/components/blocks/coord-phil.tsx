@@ -1,4 +1,4 @@
-import BlurImage from '@/components/blur-image'
+import Image from 'next/image'
 import React from 'react'
 
 const parasOne = [
@@ -35,7 +35,7 @@ const CoordPhil = () => {
 
       <div className="mt-16 md:mt-auto flex gap-4 md:gap-8 4xl:gap-12 w-full">
         <div className="relative w-full md:max-w-[20%] aspect-[3/4]">
-          <BlurImage
+          <Image
             src="/coord-phil/image1.png"
             alt="Hero backround image"
             fill
@@ -44,7 +44,7 @@ const CoordPhil = () => {
           />
         </div>
         <div className="relative w-full md:max-w-[20%] aspect-[3/4]">
-          <BlurImage
+          <Image
             src="/coord-phil/image2.png"
             alt="Hero backround image"
             fill

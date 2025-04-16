@@ -1,4 +1,3 @@
-import BlurImage from '@/components/blur-image'
 import HorseBg from '@/components/horse-bg'
 import CoordButton from '@/components/ui/coord-button'
 import { Calendar, ChevronDown, ChevronUp, Clock } from 'lucide-react'
@@ -85,13 +84,7 @@ const EventThumbnail = () => {
 
       {thumbnails.map((thumbnail, index) => (
         <div key={index} className="relative aspect-[64/100]" style={thumbnailStyle}>
-          <BlurImage
-            src={thumbnail.src}
-            alt={thumbnail.alt}
-            fill
-            priority
-            className="object-cover"
-          />
+          <Image src={thumbnail.src} alt={thumbnail.alt} fill priority className="object-cover" />
         </div>
       ))}
 
@@ -112,7 +105,7 @@ const EventContent = () => {
   return (
     <div className="flex flex-col gap-4 w-full" style={imageStyle}>
       <div className="relative w-full aspect-[3/5] md:aspect-square">
-        <BlurImage
+        <Image
           src="/coord-community/im1.png"
           alt="Coord Community Event"
           fill

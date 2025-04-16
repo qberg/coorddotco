@@ -30,23 +30,23 @@ const Library = () => {
   return (
     <section className="pt-8 px-4 md:px-10 4xl:px-14 min-h-screen relative overflow-hidden">
       <HorseBg />
-      <h2 className="mb-16">Library</h2>
+      <h2 className="mb-16 md:mb-12">Library</h2>
 
-      <div className="hidden md:block absolute top-8 right-4 md:right-10 4xl:right-14 bg-blue-400">
+      <div className="hidden absolute top-8 right-4 md:right-10 4xl:right-14 bg-blue-400">
         Thumbnails
       </div>
 
-      <div className="flex flex-col md:flex-row justify-center items-center gap-10">
-        <div className="w-full flex">
+      <div className="flex flex-col md:flex-row justify-center items-center md:items-start gap-10 md:gap-16 w-full max-w-5xl mx-auto">
+        <div className="w-full flex md:justify-end md:items-start bg-red-500">
           <LibCard {...cardOne} />
         </div>
 
-        <div className="w-full flex justify-end items-end">
+        <div className="w-full flex justify-end items-end md:justify-start md:pt-56 bg-green-500">
           <LibCard {...cardTwo} />
         </div>
       </div>
 
-      <div className="absolute bottom-0 pb-6 hidden md:block">
+      <div className="absolute bottom-0 pb-6 hidden">
         <div className="relative w-full aspect-[3/4]" style={imageStyle}>
           <Image
             src="/coord-community/im1.png"
@@ -71,7 +71,7 @@ const LibCard: React.FC<LibCardProps> = ({ title, href, desc }) => {
   return (
     <Link
       href={href}
-      className="bg-blue-background p-5 flex flex-col justify-between items-start gap-14 aspect-[7/8]"
+      className="bg-blue-background p-5 flex flex-col justify-between items-start gap-14 aspect-[7/8] md:aspect-[69/100]"
       style={cardStyle}
     >
       <h3 className="text-white">{title}</h3>

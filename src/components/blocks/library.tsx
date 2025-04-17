@@ -92,9 +92,9 @@ const Library = () => {
             <motion.div
               key={`previous-${previousSlideIndex}`}
               initial={{ opacity: 1 }}
-              animate={{ opacity: 0 }}
+              animate={{ opacity: 0.2 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.8, ease: 'easeOut' }}
+              transition={{ duration: 2, ease: 'easeOut' }}
               className="absolute inset-0 w-full h-full"
             >
               <Image
@@ -108,9 +108,15 @@ const Library = () => {
           )}
           <motion.div
             key={`current-${currentSlideIndex}`}
-            initial={previousSlideIndex !== null ? { opacity: 0 } : { opacity: 1 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, ease: 'easeIn' }}
+            initial={previousSlideIndex !== null ? { opacity: 1, scale: 0.25 } : { opacity: 1 }}
+            animate={{ opacity: 1, scale: 1.0 }}
+            transition={{
+              duration: 0.7,
+              type: 'spring',
+              stiffness: 200,
+              damping: 100,
+              restDelta: 0.01,
+            }}
             className="absolute inset-0 w-full h-full"
           >
             <Image
@@ -165,13 +171,29 @@ interface ThumbnailsProps {
 
 const Thumbnails: React.FC<ThumbnailsProps> = ({ slides, activeIndex, onThumbnailClick }) => {
   return (
-    <div className="flex flex-col gap-2 justify-start">
+    <div className="flex flex-col gap-2 justify-start z-20">
       {slides.map((slide, index) => (
-        <button
+        <motion.button
           key={index}
           type="button"
-          className={`relative w-14 2xl:w-20 3xl:w-28 aspect-[3/4] cursor-pointer transition-all duration-300 overflow-hidden border-0 p-0 ${
-            activeIndex === index ? 'ring-2 ring-white' : 'hover:opacity-90'
+          initial={{ opacity: 0.7, y: 10 }}
+          animate={{
+            opacity: activeIndex === index ? 1 : 1,
+            y: 0,
+            scale: activeIndex === index ? 1.05 : 1,
+          }}
+          whileHover={{
+            opacity: 1,
+            scale: 1.05,
+            transition: { duration: 0.2 },
+          }}
+          transition={{
+            duration: 0.4,
+            ease: 'easeOut',
+            delay: index * 0.1,
+          }}
+          className={`relative w-14 2xl:w-20 3xl:w-28 aspect-[3/4] cursor-pointer overflow-hidden border-0 p-0 ${
+            activeIndex === index ? 'ring-2 ring-white' : ''
           }`}
           onClick={() => {
             console.log('Clicking thumbnail:', index)
@@ -179,6 +201,17 @@ const Thumbnails: React.FC<ThumbnailsProps> = ({ slides, activeIndex, onThumbnai
           }}
           aria-label={`View slide ${index + 1}`}
         >
+          {/* Animated overlay for active state */}
+          <motion.div
+            className="absolute inset-0 bg-white z-10"
+            initial={{ opacity: 0 }}
+            animate={{
+              opacity: activeIndex === index ? 0.2 : 0,
+            }}
+            transition={{ duration: 0.3 }}
+          />
+
+          {/* Image */}
           <Image
             src={slide.smSrc}
             alt={slide.alt}
@@ -186,7 +219,16 @@ const Thumbnails: React.FC<ThumbnailsProps> = ({ slides, activeIndex, onThumbnai
             priority
             className="object-cover pointer-events-none"
           />
-        </button>
+
+          <motion.div
+            className="absolute bottom-0 left-0 h-1 bg-highlight"
+            initial={{ width: '0%' }}
+            animate={{
+              width: activeIndex === index ? '100%' : '0%',
+            }}
+            transition={{ duration: 0.5, ease: 'easeInOut' }}
+          />
+        </motion.button>
       ))}
     </div>
   )

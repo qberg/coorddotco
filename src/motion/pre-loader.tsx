@@ -12,7 +12,7 @@ const PreLoader: React.FC<PreLoaderProps> = ({ setIsLoading }) => {
       className="flex flex-col bg-orange-background items-center justify-center h-screen"
       initial={{ opacity: 1 }}
       exit={{
-        opacity: 0,
+        opacity: 0.5,
         y: '-100%',
         transition: { duration: 1.0 },
       }}
@@ -36,7 +36,6 @@ const PreLoader: React.FC<PreLoaderProps> = ({ setIsLoading }) => {
           y: 0,
           transition: { delay: 0.3, duration: 0.5 },
         }}
-        // When the text animation completes, trigger the exit
         onAnimationComplete={() => setIsLoading(false)}
       >
         COORD

@@ -1,18 +1,47 @@
-import HorseBg from '@/components/horse-bg'
+'use client'
+
+import { motion, AnimatePresence } from 'motion/react'
 import Image from 'next/image'
 import Link from 'next/link'
-
-const imageStyle = {
-  width: 'clamp(7.1875rem, 3.8437rem + 13.6133vw, 25.625rem)',
-}
+import { useEffect, useState, useCallback } from 'react'
+import useIsMobile from '@/hooks/useIsMobile'
 
 const cardStyle = {
-  width: 'clamp(17.5rem, 14.7796rem + 11.0752vw, 32.5rem)',
+  width: 'clamp(14.25rem, 10.9402rem + 13.4749vw, 32.5rem)',
 }
 
 const fontStyle = {
   fontSize: 'clamp(0.75rem, 0.614rem + 0.5538vw, 1.5rem)',
 }
+
+interface Slide {
+  smSrc: string
+  lgSrc: string
+  alt: string
+}
+
+const slides: Slide[] = [
+  {
+    smSrc: '/library/slides/smim1.png',
+    lgSrc: '/library/slides/lgim1.png',
+    alt: 'Library Showcase Image',
+  },
+  {
+    smSrc: '/library/slides/smim2.png',
+    lgSrc: '/library/slides/lgim2.png',
+    alt: 'Library Showcase Image',
+  },
+  {
+    smSrc: '/library/slides/smim3.png',
+    lgSrc: '/library/slides/lgim3.png',
+    alt: 'Library Showcase Image',
+  },
+  {
+    smSrc: '/library/slides/smim4.png',
+    lgSrc: '/library/slides/lgim4.png',
+    alt: 'Library Showcase Image',
+  },
+]
 
 const cardOne = {
   title: 'Search by Location',
@@ -27,35 +56,144 @@ const cardTwo = {
 }
 
 const Library = () => {
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0)
+  const [transitSlideIndex, setTransitSlideIndex] = useState<number>(0)
+  const [isTransitioning, setIsTransitioning] = useState<boolean>(false)
+  const isMobile = useIsMobile()
+
+  const nextSlide = useCallback(() => {
+    setTransitSlideIndex(currentSlideIndex)
+    setIsTransitioning(true)
+    setCurrentSlideIndex((prevIndex) => (prevIndex + 1) % slides.length)
+  }, [currentSlideIndex])
+
+  const handleThumbnailClick = useCallback(
+    (index: number) => {
+      if (index === currentSlideIndex) return
+      console.log('Thumbnail clicked:', index) // Debug log
+      setTransitSlideIndex(currentSlideIndex)
+      setIsTransitioning(true)
+      setCurrentSlideIndex(index)
+    },
+    [currentSlideIndex],
+  )
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextSlide()
+    }, 5000)
+
+    return () => clearInterval(interval)
+  }, [nextSlide])
+
   return (
-    <section className="pt-8 px-4 md:px-10 4xl:px-14 h-screen relative overflow-hidden">
-      <HorseBg />
-      <h2 className="mb-16 md:mb-12">Library</h2>
-
-      <div className="hidden absolute top-8 right-4 md:right-10 4xl:right-14">Thumbnails</div>
-
-      <div className="flex flex-col md:flex-row justify-center items-center md:items-start gap-10 md:gap-16 w-full max-w-5xl mx-auto">
-        <div className="w-full flex md:justify-end md:items-start">
-          <LibCard {...cardOne} />
-        </div>
-
-        <div className="w-full flex justify-end items-start md:justify-start md:pt-24 3xl:pt-56">
-          <LibCard {...cardTwo} />
-        </div>
+    <section className="py-4 2xl:py-8 px-4 md:px-10 4xl:px-14 h-screen overflow-hidden relative">
+      {/*Background Image */}
+      <div className="absolute inset-0 h-full w-full -z-10 overflow-hidden">
+        <AnimatePresence onExitComplete={() => setIsTransitioning(false)}>
+          {isTransitioning && (
+            <motion.div
+              key={`transition-${transitSlideIndex}`}
+              layoutId={`slide-${transitSlideIndex}`}
+              initial={{ opacity: 1 }}
+              animate={{ opacity: 0 }}
+              exit={{ opacity: 0 }}
+              transition={{
+                opacity: { ease: 'linear' },
+                layout: { duration: 0.6 },
+              }}
+              className="absolute inset-0 w-full h-full"
+            >
+              <Image
+                src={isMobile ? slides[transitSlideIndex].smSrc : slides[transitSlideIndex].lgSrc}
+                alt={slides[transitSlideIndex].alt}
+                fill
+                priority
+                className="object-cover"
+              />
+            </motion.div>
+          )}
+          <motion.div
+            key={`current-${currentSlideIndex}`}
+            layoutId={`slide-${currentSlideIndex}`}
+            className="absolute inset-0 w-full h-full"
+          >
+            <Image
+              src={isMobile ? slides[currentSlideIndex].smSrc : slides[currentSlideIndex].lgSrc}
+              alt={slides[currentSlideIndex].alt}
+              fill
+              priority
+              className="object-cover"
+            />
+          </motion.div>
+        </AnimatePresence>
       </div>
 
-      <div className="absolute bottom-0 pb-6 hidden">
-        <div className="relative w-full aspect-[3/4]" style={imageStyle}>
-          <Image
-            src="/coord-community/im1.png"
-            alt="Coord Community Event"
-            fill
-            priority
-            className="object-cover"
+      <div className="relative flex flex-col h-full justify-between gap-48 md:gap-24 2xl:gap-28 3xl:gap-32">
+        <h2 className="">Library</h2>
+
+        <div className="block md:hidden absolute top-0 right-0">
+          <Thumbnails
+            slides={slides}
+            activeIndex={currentSlideIndex}
+            onThumbnailClick={handleThumbnailClick}
           />
+        </div>
+
+        <div className="flex-1 flex flex-col justify-between md:flex-row md:justify-end md:items-stretch relative md:gap-14 3xl:gap-20 xl:mr-16 2xl:mr-24">
+          <div className="hidden md:block absolute top-0 left-0">
+            <Thumbnails
+              slides={slides}
+              activeIndex={currentSlideIndex}
+              onThumbnailClick={handleThumbnailClick}
+            />
+          </div>
+
+          <div className="">
+            <LibCard {...cardOne} />
+          </div>
+
+          <div className="flex justify-end md:items-end 2xl:pb-4 3xl:pb-16">
+            <LibCard {...cardTwo} />
+          </div>
         </div>
       </div>
     </section>
+  )
+}
+
+interface ThumbnailsProps {
+  slides: Slide[]
+  activeIndex: number
+  onThumbnailClick: (index: number) => void
+}
+
+const Thumbnails: React.FC<ThumbnailsProps> = ({ slides, activeIndex, onThumbnailClick }) => {
+  return (
+    <div className="flex flex-col gap-2 justify-start">
+      {slides.map((slide, index) => (
+        <button
+          key={index}
+          type="button"
+          className={`relative w-14 2xl:w-20 3xl:w-28 aspect-[3/4] cursor-pointer transition-all duration-300 overflow-hidden border-0 p-0 ${
+            activeIndex === index ? 'ring-2 ring-white' : 'opacity-70 hover:opacity-90'
+          }`}
+          onClick={() => {
+            console.log('Clicking thumbnail:', index)
+            onThumbnailClick(index)
+          }}
+          aria-label={`View slide ${index + 1}`}
+        >
+          <Image
+            src={slide.smSrc}
+            alt={slide.alt}
+            fill
+            priority
+            className="object-cover pointer-events-none"
+          />
+        </button>
+      ))}
+    </div>
   )
 }
 
@@ -69,7 +207,7 @@ const LibCard: React.FC<LibCardProps> = ({ title, href, desc }) => {
   return (
     <Link
       href={href}
-      className="bg-blue-background p-5 flex flex-col justify-between items-start gap-14 aspect-[7/8] md:aspect-[69/100] md:max-h-[60vh]"
+      className="bg-blue-background relative p-5 flex flex-col justify-between items-start gap-14 aspect-[7/8] md:aspect-[69/100] md:max-h-[60vh]"
       style={cardStyle}
     >
       <h3 className="text-white">{title}</h3>

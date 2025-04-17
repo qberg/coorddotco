@@ -188,7 +188,7 @@ const Thumbnails: React.FC<ThumbnailsProps> = ({ slides, activeIndex, onThumbnai
             transition: { duration: 0.2 },
           }}
           transition={{
-            duration: 0.4,
+            duration: 0.6,
             ease: 'easeOut',
             delay: index * 0.1,
           }}
@@ -208,7 +208,7 @@ const Thumbnails: React.FC<ThumbnailsProps> = ({ slides, activeIndex, onThumbnai
             animate={{
               opacity: activeIndex === index ? 0.2 : 0,
             }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.8, type: 'spring', stiffness: 200, damping: 100 }}
           />
 
           {/* Image */}
@@ -226,7 +226,7 @@ const Thumbnails: React.FC<ThumbnailsProps> = ({ slides, activeIndex, onThumbnai
             animate={{
               width: activeIndex === index ? '100%' : '0%',
             }}
-            transition={{ duration: 0.5, ease: 'easeInOut' }}
+            transition={{ duration: 1, type: 'spring', stiffness: 200, damping: 100 }}
           />
         </motion.button>
       ))}

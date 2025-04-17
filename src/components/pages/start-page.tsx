@@ -6,10 +6,12 @@ import Library from '@/components/blocks/library'
 import Services from '@/components/blocks/services'
 import MainHero from '@/components/hero-blocks/main-hero'
 import Footer from '@/components/footer'
+import Header from '@/components/header'
 
 const StartPage = () => {
   return (
     <>
+      <Header />
       <MainHero />
       <CoordPhil />
       <Library />

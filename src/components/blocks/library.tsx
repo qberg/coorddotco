@@ -28,7 +28,7 @@ const cardTwo = {
 
 const Library = () => {
   return (
-    <section className="pt-8 px-4 md:px-10 4xl:px-14 min-h-screen relative overflow-hidden">
+    <section className="pt-8 px-4 md:px-10 4xl:px-14 h-screen relative overflow-hidden">
       <HorseBg />
       <h2 className="mb-16 md:mb-12">Library</h2>
 
@@ -39,7 +39,7 @@ const Library = () => {
           <LibCard {...cardOne} />
         </div>
 
-        <div className="w-full flex justify-end items-end md:justify-start md:pt-32 2xl:pt-56">
+        <div className="w-full flex justify-end items-start md:justify-start md:pt-24 3xl:pt-56">
           <LibCard {...cardTwo} />
         </div>
       </div>
@@ -69,7 +69,7 @@ const LibCard: React.FC<LibCardProps> = ({ title, href, desc }) => {
   return (
     <Link
       href={href}
-      className="bg-blue-background p-5 flex flex-col justify-between items-start gap-14 aspect-[7/8] md:aspect-[69/100]"
+      className="bg-blue-background p-5 flex flex-col justify-between items-start gap-14 aspect-[7/8] md:aspect-[69/100] md:max-h-[60vh]"
       style={cardStyle}
     >
       <h3 className="text-white">{title}</h3>

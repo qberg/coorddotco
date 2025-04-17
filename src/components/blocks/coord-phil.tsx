@@ -1,8 +1,10 @@
+'use client'
+import { motion, useScroll, useTransform } from 'motion/react'
 import Image from 'next/image'
-import React from 'react'
+import React, { useRef } from 'react'
 
 const parasOne = [
-  'COORD is more than a platform; it’s a movement to ensure that no craft dies unseen, no artisan works in isolation, and no story goes untold.',
+  "COORD is more than a platform; it's a movement to ensure that no craft dies unseen, no artisan works in isolation, and no story goes untold.",
   'Rooted in deep respect for heritage, we provide artisans with the tools, visibility, and opportunities to connect with a global audience while ensuring their craft continues to evolve. ',
 ]
 
@@ -12,56 +14,74 @@ const parasTwo = [
 ]
 
 const CoordPhil = () => {
+  const sectionRef = useRef(null)
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start end', 'end start'],
+  })
+
+  const imageOneY = useTransform(scrollYProgress, [0.05, 1], ['0%', '-35%'])
+  const imageTwoY = useTransform(scrollYProgress, [0.1, 1], ['0%', '-25%'])
+
   return (
-    <section className="flex flex-col min-h-screen py-8  px-4 md:px-10 4xl:px-14">
+    <section ref={sectionRef} className="flex flex-col min-h-screen py-8 px-4 md:px-10 4xl:px-14">
       <div className="flex items-start justify-between gap-4 lg:gap-9 2xl:gap-40 4xl:gap-64">
         <h2 className="whitespace-nowrap">Coord Philosophy</h2>
-
         <div className="hidden ml-auto md:flex gap-2 lg:gap-4 xl:gap-10 2xl:gap-14 4xl:gap-16">
           <div className="flex-1">
             <Paragraphs paragraphs={parasOne} />
           </div>
-
           <div className="flex-1">
             <Paragraphs paragraphs={parasTwo} />
           </div>
         </div>
       </div>
 
-      <div className="flex flex-col gap-4 md:hidden mt-16 pl-[35%]">
+      <motion.div className="flex flex-col gap-4 md:hidden mt-16 pl-[35%]">
         <Paragraphs paragraphs={parasOne} />
         <Paragraphs paragraphs={parasTwo} />
-      </div>
+      </motion.div>
 
       <div className="mt-16 md:mt-auto flex gap-4 md:gap-8 4xl:gap-12 w-full">
-        <div className="relative w-full md:max-w-[20%] aspect-[3/4]">
+        <motion.div
+          className="relative w-full md:max-w-[20%] aspect-[3/4] overflow-hidden"
+          style={{ y: imageOneY }}
+          // Add willChange to optimize performance
+          initial={{ willChange: 'transform' }}
+        >
           <Image
             src="/coord-phil/image1.png"
-            alt="Hero backround image"
+            alt="Artisan craftwork showcase"
             fill
             priority
             className="object-cover"
+            loading="eager"
           />
-        </div>
-        <div className="relative w-full md:max-w-[20%] aspect-[3/4]">
+        </motion.div>
+
+        <motion.div
+          className="relative w-full md:max-w-[20%] aspect-[3/4] overflow-hidden"
+          style={{ y: imageTwoY }}
+          // Add willChange to optimize performance
+          initial={{ willChange: 'transform' }}
+        >
           <Image
             src="/coord-phil/image2.png"
-            alt="Hero backround image"
+            alt="Artisan craftwork showcase"
             fill
             priority
             className="object-cover"
+            loading="eager"
           />
-        </div>
+        </motion.div>
       </div>
     </section>
   )
 }
 
-interface ParagraphsProps {
-  paragraphs: string[]
-}
-
-const Paragraphs: React.FC<ParagraphsProps> = ({ paragraphs }) => {
+// Memoize the Paragraphs component to prevent unnecessary re-renders
+const Paragraphs = React.memo(({ paragraphs }: { paragraphs: string[] }) => {
   return (
     <div className="flex flex-col gap-4">
       {paragraphs.map((para, index) => (
@@ -69,6 +89,8 @@ const Paragraphs: React.FC<ParagraphsProps> = ({ paragraphs }) => {
       ))}
     </div>
   )
-}
+})
+
+Paragraphs.displayName = 'Paragraphs'
 
 export default CoordPhil

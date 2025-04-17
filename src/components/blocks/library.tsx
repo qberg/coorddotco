@@ -57,22 +57,19 @@ const cardTwo = {
 
 const Library = () => {
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0)
-  const [transitSlideIndex, setTransitSlideIndex] = useState<number>(0)
-  const [isTransitioning, setIsTransitioning] = useState<boolean>(false)
+  const [previousSlideIndex, setPreviousSlideIndex] = useState<number | null>(null)
   const isMobile = useIsMobile()
 
   const nextSlide = useCallback(() => {
-    setTransitSlideIndex(currentSlideIndex)
-    setIsTransitioning(true)
+    setPreviousSlideIndex(currentSlideIndex)
     setCurrentSlideIndex((prevIndex) => (prevIndex + 1) % slides.length)
   }, [currentSlideIndex])
 
   const handleThumbnailClick = useCallback(
     (index: number) => {
       if (index === currentSlideIndex) return
-      console.log('Thumbnail clicked:', index) // Debug log
-      setTransitSlideIndex(currentSlideIndex)
-      setIsTransitioning(true)
+      console.log('Thumbnail clicked:', index)
+      setPreviousSlideIndex(currentSlideIndex)
       setCurrentSlideIndex(index)
     },
     [currentSlideIndex],
@@ -88,25 +85,21 @@ const Library = () => {
 
   return (
     <section className="py-4 2xl:py-8 px-4 md:px-10 4xl:px-14 h-screen overflow-hidden relative">
-      {/*Background Image */}
+      {/* Background Image */}
       <div className="absolute inset-0 h-full w-full -z-10 overflow-hidden">
-        <AnimatePresence onExitComplete={() => setIsTransitioning(false)}>
-          {isTransitioning && (
+        <AnimatePresence mode="sync">
+          {previousSlideIndex !== null && (
             <motion.div
-              key={`transition-${transitSlideIndex}`}
-              layoutId={`slide-${transitSlideIndex}`}
+              key={`previous-${previousSlideIndex}`}
               initial={{ opacity: 1 }}
               animate={{ opacity: 0 }}
               exit={{ opacity: 0 }}
-              transition={{
-                opacity: { ease: 'linear' },
-                layout: { duration: 0.6 },
-              }}
+              transition={{ duration: 0.8, ease: 'easeOut' }}
               className="absolute inset-0 w-full h-full"
             >
               <Image
-                src={isMobile ? slides[transitSlideIndex].smSrc : slides[transitSlideIndex].lgSrc}
-                alt={slides[transitSlideIndex].alt}
+                src={isMobile ? slides[previousSlideIndex].smSrc : slides[previousSlideIndex].lgSrc}
+                alt={slides[previousSlideIndex].alt}
                 fill
                 priority
                 className="object-cover"
@@ -115,7 +108,9 @@ const Library = () => {
           )}
           <motion.div
             key={`current-${currentSlideIndex}`}
-            layoutId={`slide-${currentSlideIndex}`}
+            initial={previousSlideIndex !== null ? { opacity: 0 } : { opacity: 1 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, ease: 'easeIn' }}
             className="absolute inset-0 w-full h-full"
           >
             <Image
@@ -176,7 +171,7 @@ const Thumbnails: React.FC<ThumbnailsProps> = ({ slides, activeIndex, onThumbnai
           key={index}
           type="button"
           className={`relative w-14 2xl:w-20 3xl:w-28 aspect-[3/4] cursor-pointer transition-all duration-300 overflow-hidden border-0 p-0 ${
-            activeIndex === index ? 'ring-2 ring-white' : 'opacity-70 hover:opacity-90'
+            activeIndex === index ? 'ring-2 ring-white' : 'hover:opacity-90'
           }`}
           onClick={() => {
             console.log('Clicking thumbnail:', index)

@@ -6,6 +6,7 @@ import React from 'react'
 
 const headerStyles = {
   fontSize: ' clamp(6rem, 3.6877rem + 9.4139vw, 18.75rem)',
+  lineHeight: '0.93',
 }
 
 const imageOneStyle = {
@@ -13,7 +14,7 @@ const imageOneStyle = {
 }
 
 const coverImgStyle = {
-  width: 'clamp(33.75rem, 20.3571rem + 27.9018vw, 65rem)',
+  width: 'clamp(20rem, 1.7857rem + 37.9464vw, 62.5rem)',
 }
 
 interface Service {
@@ -39,7 +40,7 @@ const servicesList: Service[] = [
 const ServicesHero = () => {
   const isMobile = useIsMobile()
   return (
-    <section className="h-[calc(100svh-var(--navbar-height))] pb-2 flex flex-col">
+    <section className="min-h-[calc(100svh-var(--navbar-height))] pb-2 flex flex-col">
       <div className="pl-4 md:pl-16 2xl:pl-24 3xl:pl-32 relative">
         <h1 className="text-highlight" style={headerStyles}>
           Service
@@ -74,7 +75,7 @@ interface HeroCoverProps {
 const HeroCover: React.FC<HeroCoverProps> = ({ isMobile }) => {
   return (
     <div
-      className="relative w-full aspect-[1.65/1] md:aspect-[1.4/1] 2xl:aspect-[1.25/1] md:max-h-[45vh] 2xl:max-h-[55vh]"
+      className="relative w-full aspect-[1.65/1] md:aspect-[1.65/1] xl:aspect-[1.77] 2xl:aspect-[1.25/1]"
       style={!isMobile ? coverImgStyle : {}}
     >
       <Image
@@ -105,7 +106,7 @@ const HeroListicles = () => {
         {servicesList.map((service, index) => (
           <div key={index} className="flex flex-col gap-2">
             <h4 className="services-title">{service.name}</h4>
-            <p className="xl:max-w-[20ch] 2xl:max-w-[28ch]">{service.desc}</p>
+            <p className="xl:max-w-[25ch] ">{service.desc}</p>
           </div>
         ))}
       </div>
@@ -133,7 +134,7 @@ const HeroDeco: React.FC<HeroDecoProps> = ({ isMobile }) => {
       </div>
 
       <div className="flex">
-        <h5 className="max-w-[20ch] md:max-w-[22ch] xl:max-w-[15ch] 2xl:max-w-[22ch]">
+        <h5 className="max-w-[20ch] md:max-w-[22ch] xl:max-w-[22ch] 2xl:max-w-[22ch]">
           Open to anyone who wants handcrafted art and traditional crafts
         </h5>
       </div>

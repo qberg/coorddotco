@@ -141,7 +141,7 @@ const Library = () => {
           />
         </div>
 
-        <div className="flex-1 flex flex-col justify-between md:flex-row md:justify-end md:items-stretch relative md:gap-14 3xl:gap-20 xl:mr-16 2xl:mr-24">
+        <div className="flex-1 flex flex-col gap-3 justify-between md:flex-row md:justify-end md:items-stretch relative md:gap-14 3xl:gap-20 xl:mr-16 2xl:mr-24">
           <div className="hidden md:block absolute top-0 left-0">
             <Thumbnails
               slides={slides}

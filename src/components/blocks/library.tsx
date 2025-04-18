@@ -201,7 +201,6 @@ const Thumbnails: React.FC<ThumbnailsProps> = ({ slides, activeIndex, onThumbnai
           }}
           aria-label={`View slide ${index + 1}`}
         >
-          {/* Animated overlay for active state */}
           <motion.div
             className="absolute inset-0 bg-white z-10"
             initial={{ opacity: 0 }}
@@ -211,7 +210,6 @@ const Thumbnails: React.FC<ThumbnailsProps> = ({ slides, activeIndex, onThumbnai
             transition={{ duration: 0.8, type: 'spring', stiffness: 200, damping: 100 }}
           />
 
-          {/* Image */}
           <Image
             src={slide.smSrc}
             alt={slide.alt}

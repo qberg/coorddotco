@@ -13,6 +13,7 @@
 }
 
 @theme {
+  --text-st: clamp(1.5rem, 1.3186rem + 0.7383vw, 2.5rem);
   --text-base: clamp(0.875rem, 0.7177rem + 0.6452vw, 1.75rem);
   --text-sm: clamp(0.75rem, 0.6489rem + 0.4147vw, 1.3125rem);
 
@@ -38,7 +39,6 @@
   --color-mist-background: var(--cloud-mist);
 
   /* Button */
-  --color-button-background: '#ffffff';
   --color-button-background-secondary: var(--sunlit-gold);
 
   /* Menu */
@@ -72,7 +72,7 @@
     @apply text-2xl font-roc font-normal leading-[1.2] tracking-[-0.02em];
   }
   h5 {
-    @apply text-xl font-roc font-medium leading-[1.2] tracking-[-0.02em];
+    @apply text-xl font-roc font-normal leading-[1.2] tracking-[-0.02em];
   }
   p {
     @apply text-base font-hanken font-extralight leading-[1.2];
@@ -84,6 +84,13 @@
     font-size: var(--text-base);
     font-weight: 400;
     font-family: var(--font-hanken);
+    line-height: 120%;
+    letter-spacing: -0.02em;
+  }
+  .services-title {
+    font-size: var(--text-st);
+    font-weight: 400;
+    font-family: var(--font-roc);
     line-height: 120%;
     letter-spacing: -0.02em;
   }

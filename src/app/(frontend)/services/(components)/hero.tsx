@@ -40,7 +40,7 @@ const servicesList: Service[] = [
 const ServicesHero = () => {
   const isMobile = useIsMobile()
   return (
-    <section className="min-h-[calc(100svh-var(--navbar-height))] pb-2 flex flex-col">
+    <section className="min-h-[calc(100svh-var(--navbar-height))] pb-2 flex flex-col xl:gap-4 2xl:gap-8 3xl:gap-12">
       <div className="pl-4 md:pl-16 2xl:pl-24 3xl:pl-32 relative">
         <h1 className="text-highlight" style={headerStyles}>
           Service
@@ -51,7 +51,7 @@ const ServicesHero = () => {
         </div>
       </div>
 
-      <div className="flex flex-col justify-between xl:flex-row xl:justify-start gap-14 px-4 md:px-0 xl:gap-8 2xl:gap-14 3xl:gap-20 mt-auto xl:pb-14">
+      <div className="flex flex-col justify-between xl:flex-row xl:justify-start gap-14 px-4 md:px-0 xl:gap-8 2xl:gap-14 3xl:gap-20 xl:pb-8">
         <div>
           <HeroCover isMobile={isMobile} />
         </div>
@@ -91,7 +91,7 @@ const HeroCover: React.FC<HeroCoverProps> = ({ isMobile }) => {
 
 const HeroListicles = () => {
   return (
-    <div className="flex h-full md:pl-[50%] xl:pl-0 xl:gap-8 2xl:gap-14 3xl:gap-20">
+    <div className="flex h-full md:pl-[40%] xl:pl-0 xl:gap-8 2xl:gap-14 3xl:gap-20">
       <div className="hidden md:block relative w-20 h-20 3xl:w-32 3xl:h-32">
         <Image
           src="/services/hero/thumb.png"

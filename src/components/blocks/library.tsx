@@ -130,7 +130,7 @@ const Library = () => {
         </AnimatePresence>
       </div>
 
-      <div className="relative flex flex-col h-full justify-between gap-48 md:gap-24 2xl:gap-28 3xl:gap-32">
+      <div className="relative flex flex-col h-full gap-28 md:gap-24 2xl:gap-28 3xl:gap-32 pb-8 md:pb-0">
         <h2 className="">Library</h2>
 
         <div className="block md:hidden absolute top-0 right-0">

@@ -33,7 +33,7 @@ const CoordPhil: React.FC<CoordPhilProps> = ({ scrollYProgress }) => {
       style={{ scale: springScale, transformOrigin: 'top' }}
     >
       <div className="flex flex-col md:flex-row gap-16">
-        <div className="flex items-start justify-between w-full gap-8 xl:gap-36  4xl:gap-64">
+        <div className="flex items-start justify-between w-full gap-8 xl:gap-24  4xl:gap-64">
           <h2 className="whitespace-nowrap">Coord Philosophy</h2>
 
           <div className="hidden md:flex gap-4 xl:gap-10 2xl:gap-12 3xl:gap-16">

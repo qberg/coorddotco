@@ -25,7 +25,7 @@ const StartPage = () => {
       <main ref={mainContainerRef} className="relative h-[700vh]">
         <MainHero scrollYProgress={scrollYProgress} />
         <CoordPhil scrollYProgress={scrollYProgress} />
-        <Library />
+        <Library scrollYProgress={scrollYProgress} />
         <Services />
         <FabLab />
         <DiscoverArtisans />

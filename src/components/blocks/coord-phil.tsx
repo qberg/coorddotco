@@ -18,7 +18,7 @@ interface CoordPhilProps {
 }
 
 const CoordPhil: React.FC<CoordPhilProps> = ({ scrollYProgress }) => {
-  const scale = useTransform(scrollYProgress, [0.1, 0.15, 0.2, 0.235], [0.8, 0.87, 0.94, 1])
+  const scale = useTransform(scrollYProgress, [0.1, 0.15, 0.2, 0.22], [0.8, 0.87, 0.94, 1])
 
   const springScale = useSpring(scale, {
     stiffness: 200,
@@ -29,7 +29,7 @@ const CoordPhil: React.FC<CoordPhilProps> = ({ scrollYProgress }) => {
 
   return (
     <motion.section
-      className="sticky top-0 bg-white flex flex-col min-h-screen py-8 px-4 md:px-10 4xl:px-14 overflow-hidden"
+      className="sticky top-0 bg-mist-background flex flex-col min-h-screen py-8 px-4 md:px-10 4xl:px-14 overflow-hidden"
       style={{ scale: springScale, transformOrigin: 'top' }}
     >
       <div className="flex flex-col h-full">

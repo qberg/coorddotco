@@ -1,9 +1,9 @@
 'use client'
 
-import { motion, AnimatePresence } from 'motion/react'
+import { motion, AnimatePresence, MotionValue, useTransform, useSpring } from 'motion/react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useEffect, useState, useCallback } from 'react'
+import React, { useState, useCallback } from 'react'
 import useIsMobile from '@/hooks/useIsMobile'
 
 const cardStyle = {
@@ -55,15 +55,22 @@ const cardTwo = {
   desc: "Materials tell stories of the land and its people. Whether it's the richness of handwoven textiles, the resilience of terracotta, the finesse of metalwork, or the artistry of lacquered wood, find crafts defined by the elements they are born from.",
 }
 
-const Library = () => {
+interface LibraryProps {
+  scrollYProgress: MotionValue<number>
+}
+
+const Library: React.FC<LibraryProps> = ({ scrollYProgress }) => {
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0)
   const [previousSlideIndex, setPreviousSlideIndex] = useState<number | null>(null)
   const isMobile = useIsMobile()
 
-  const nextSlide = useCallback(() => {
-    setPreviousSlideIndex(currentSlideIndex)
-    setCurrentSlideIndex((prevIndex) => (prevIndex + 1) % slides.length)
-  }, [currentSlideIndex])
+  const scale = useTransform(scrollYProgress, [0.24, 0.29, 0.34, 0.36], [0.8, 0.87, 0.94, 1])
+  const springScale = useSpring(scale, {
+    stiffness: 200,
+    damping: 50,
+    mass: 1.5,
+    restDelta: 0.01,
+  })
 
   const handleThumbnailClick = useCallback(
     (index: number) => {
@@ -75,16 +82,13 @@ const Library = () => {
     [currentSlideIndex],
   )
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      nextSlide()
-    }, 5000)
-
-    return () => clearInterval(interval)
-  }, [nextSlide])
-
   return (
-    <section className="sticky top-0 py-4 2xl:py-8 px-4 md:px-10 4xl:px-14 h-screen overflow-hidden">
+    <motion.section
+      className="sticky top-0 py-4 2xl:py-8 px-4 md:px-10 4xl:px-14 h-screen overflow-hidden"
+      style={{
+        scale: springScale,
+      }}
+    >
       {/* Background Image */}
       <div className="absolute inset-0 h-full w-full overflow-hidden">
         <AnimatePresence mode="sync">
@@ -159,7 +163,7 @@ const Library = () => {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   )
 }
 

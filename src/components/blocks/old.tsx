@@ -1,87 +1,101 @@
-import HorseBg from '@/components/horse-bg'
+'use client'
+import { motion, MotionValue, useSpring, useTransform } from 'motion/react'
 import Image from 'next/image'
-import Link from 'next/link'
+import React from 'react'
 
-const imageStyle = {
-  width: 'clamp(7.1875rem, 3.8437rem + 13.6133vw, 25.625rem)',
+const parasOne = [
+  "COORD is more than a platform; it's a movement to ensure that no craft dies unseen, no artisan works in isolation, and no story goes untold.",
+  'Rooted in deep respect for heritage, we provide artisans with the tools, visibility, and opportunities to connect with a global audience while ensuring their craft continues to evolve. ',
+]
+
+const parasTwo = [
+  'Our journey began with a simple yet profound realization: traditional craftsmanship is not just an art form but a way of life, deeply interwoven with culture, identity, and community. Yet, countless artisans face the risk of losing their craft due to a lack of access, opportunities, and fair compensation. Many go unrecognized as their work is often overlooked in contemporary design aesthetics. COORD exists to change this narrative.',
+  'By bridging tradition with contemporary design, we create an ecosystem where craftsmanship is not just preserved but thrives—where artisans are recognized as creators, not just producers. We foster collaborations that are ethical, transparent, and mutually enriching, ensuring that every craft has a future and every artisan has a voice.',
+]
+
+interface CoordPhilProps {
+  scrollYProgress: MotionValue<number>
 }
 
-const cardStyle = {
-  width: 'clamp(17.5rem, 14.7796rem + 11.0752vw, 32.5rem)',
-}
+const CoordPhil: React.FC<CoordPhilProps> = ({ scrollYProgress }) => {
+  const scale = useTransform(scrollYProgress, [0.1, 0.15, 0.2, 0.22], [0.8, 0.87, 0.94, 1])
 
-const fontStyle = {
-  fontSize: 'clamp(0.75rem, 0.614rem + 0.5538vw, 1.5rem)',
-}
+  const springScale = useSpring(scale, {
+    stiffness: 200,
+    damping: 50,
+    mass: 1.5,
+    restDelta: 0.01,
+  })
 
-const cardOne = {
-  title: 'Search by Location',
-  href: '/library',
-  desc: 'Every region carries its own craft legacy. Explore artisans and time-honored traditions rooted in the landscapes of India, from the intricate weaves of Kutch to the delicate woodwork of Kashmir, the finesse of Pathamadai Pai in Tamil Nadu to the timeless glow of Pembarthi brass in Telangana.',
-}
-
-const cardTwo = {
-  title: 'Search by Composition',
-  href: '/library',
-  desc: "Materials tell stories of the land and its people. Whether it's the richness of handwoven textiles, the resilience of terracotta, the finesse of metalwork, or the artistry of lacquered wood, find crafts defined by the elements they are born from.",
-}
-
-const Library = () => {
   return (
-    <section className="pt-8 px-4 md:px-10 4xl:px-14 h-screen relative overflow-hidden">
-      <HorseBg />
-      <h2 className="mb-16 md:mb-12">Library</h2>
-
-      <div className="hidden absolute top-8 right-4 md:right-10 4xl:right-14">Thumbnails</div>
-
-      <div className="flex flex-col md:flex-row justify-end items-center md:items-start gap-10 md:gap-16 w-full max-w-5xl ml-auto 2xl:mr-24">
-        <div className="w-full flex md:justify-end md:items-start">
-          <LibCard {...cardOne} />
-        </div>
-
-        <div className="w-full flex justify-end items-start md:justify-start md:pt-24 3xl:pt-56">
-          <LibCard {...cardTwo} />
-        </div>
-      </div>
-
-      <div className="absolute bottom-0 pb-6 hidden">
-        <div className="relative w-full aspect-[3/4]" style={imageStyle}>
-          <Image
-            src="/coord-community/im1.png"
-            alt="Coord Community Event"
-            fill
-            priority
-            className="object-cover"
-          />
-        </div>
-      </div>
-    </section>
-  )
-}
-
-interface LibCardProps {
-  title: string
-  href: string
-  desc: string
-}
-
-const LibCard: React.FC<LibCardProps> = ({ title, href, desc }) => {
-  return (
-    <Link
-      href={href}
-      className="bg-blue-background p-5 flex flex-col justify-between items-start gap-14 aspect-[7/8] md:aspect-[69/100] md:max-h-[60vh]"
-      style={cardStyle}
+    <motion.section
+      className="sticky top-0 bg-mist-background flex flex-col min-h-screen py-8 px-4 md:px-10 4xl:px-14 overflow-hidden"
+      style={{ scale: springScale, transformOrigin: 'top' }}
     >
-      <h3 className="text-white">{title}</h3>
+      <div className="flex flex-col h-full">
+        <div className="flex items-start justify-between gap-4 lg:gap-9 2xl:gap-40 4xl:gap-64">
+          <motion.h2 className="whitespace-nowrap">Coord Philosophy</motion.h2>
 
-      <div
-        className="text-mist-background font-hanken font-extralight leading-[1.2]"
-        style={fontStyle}
-      >
-        {desc}
+          <div className="hidden ml-auto md:flex gap-2 lg:gap-4 xl:gap-10 2xl:gap-14 4xl:gap-16">
+            <div className="flex-1">
+              <Paragraphs paragraphs={parasOne} className="paragraph" />
+            </div>
+            <div className="flex-1">
+              <Paragraphs paragraphs={parasTwo} className="paragraph" />
+            </div>
+          </div>
+        </div>
+
+        <motion.div className="flex flex-col gap-4 md:hidden mt-16 pl-[35%]">
+          <Paragraphs paragraphs={parasOne} className="paragraph" />
+          <Paragraphs paragraphs={parasTwo} className="paragraph" />
+        </motion.div>
+
+        <div className="mt-16 md:mt-auto flex gap-4 md:gap-8 4xl:gap-12 w-full">
+          <motion.div className="relative w-full md:max-w-[20%] aspect-[3/4] overflow-hidden">
+            <Image
+              src="/coord-phil/image1.png"
+              alt="Artisan craftwork showcase"
+              fill
+              priority
+              className="object-cover"
+              loading="eager"
+            />
+          </motion.div>
+
+          <motion.div className="relative w-full md:max-w-[20%] aspect-[3/4] overflow-hidden">
+            <Image
+              src="/coord-phil/image2.png"
+              alt="Artisan craftwork showcase"
+              fill
+              priority
+              className="object-cover"
+              loading="eager"
+            />
+          </motion.div>
+        </div>
       </div>
-    </Link>
+    </motion.section>
   )
 }
 
-export default Library
+interface ParagraphsProps {
+  paragraphs: string[]
+  className?: string
+}
+
+const Paragraphs = React.memo(({ paragraphs, className }: ParagraphsProps) => {
+  return (
+    <div className="flex flex-col gap-4">
+      {paragraphs.map((para, index) => (
+        <motion.p key={index} className={className}>
+          {para}
+        </motion.p>
+      ))}
+    </div>
+  )
+})
+
+Paragraphs.displayName = 'Paragraphs'
+
+export default CoordPhil

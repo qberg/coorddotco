@@ -29,50 +29,51 @@ const CoordPhil: React.FC<CoordPhilProps> = ({ scrollYProgress }) => {
 
   return (
     <motion.section
-      className="sticky top-0 bg-mist-background flex flex-col min-h-screen py-8 px-4 md:px-10 4xl:px-14 overflow-hidden"
+      className="sticky top-0 bg-mist-background min-h-screen md:h-screen p-4 md:p-10 3xl:p-14 md:overflow-hidden"
       style={{ scale: springScale, transformOrigin: 'top' }}
     >
-      <div className="flex flex-col h-full">
-        <div className="flex items-start justify-between gap-4 lg:gap-9 2xl:gap-40 4xl:gap-64">
-          <motion.h2 className="whitespace-nowrap">Coord Philosophy</motion.h2>
+      <div className="flex flex-col md:flex-row gap-16">
+        <div className="flex items-start justify-between w-full gap-8 xl:gap-36  4xl:gap-64">
+          <h2 className="whitespace-nowrap">Coord Philosophy</h2>
 
-          <div className="hidden ml-auto md:flex gap-2 lg:gap-4 xl:gap-10 2xl:gap-14 4xl:gap-16">
-            <div className="flex-1">
+          <div className="hidden md:flex gap-4 xl:gap-10 2xl:gap-12 3xl:gap-16">
+            <div className="w-1/2">
               <Paragraphs paragraphs={parasOne} className="paragraph" />
             </div>
-            <div className="flex-1">
+
+            <div className="w-1/2">
               <Paragraphs paragraphs={parasTwo} className="paragraph" />
             </div>
           </div>
         </div>
 
-        <motion.div className="flex flex-col gap-4 md:hidden mt-16 pl-[35%]">
+        <div className="flex flex-col gap-4 md:hidden pl-[35%] pb-8 md:pb-0">
           <Paragraphs paragraphs={parasOne} className="paragraph" />
           <Paragraphs paragraphs={parasTwo} className="paragraph" />
-        </motion.div>
+        </div>
+      </div>
 
-        <div className="mt-16 md:mt-auto flex gap-4 md:gap-8 4xl:gap-12 w-full">
-          <motion.div className="relative w-full md:max-w-[20%] aspect-[3/4] overflow-hidden">
-            <Image
-              src="/coord-phil/image1.png"
-              alt="Artisan craftwork showcase"
-              fill
-              priority
-              className="object-cover"
-              loading="eager"
-            />
-          </motion.div>
+      <div className="md:absolute bottom-0 left-0 p-4 md:p-10 3xl:p-14 flex flex-row gap-5 xl:gap-8 2xl:gap-11 w-full">
+        <div className="bg-mist-background/10 aspect-[0.76/1] w-1/2 md:max-w-[15%] 2xl:max-w-[20%] relative">
+          <Image
+            src="/coord-phil/image1.png"
+            alt="Artisan craftwork showcase"
+            fill
+            priority
+            className="object-cover"
+            loading="eager"
+          />
+        </div>
 
-          <motion.div className="relative w-full md:max-w-[20%] aspect-[3/4] overflow-hidden">
-            <Image
-              src="/coord-phil/image2.png"
-              alt="Artisan craftwork showcase"
-              fill
-              priority
-              className="object-cover"
-              loading="eager"
-            />
-          </motion.div>
+        <div className="bg-mist-background/10 aspect-[0.76/1] w-1/2 md:max-w-[15%] 2xl:max-w-[20%] relative">
+          <Image
+            src="/coord-phil/image2.png"
+            alt="Artisan craftwork showcase"
+            fill
+            priority
+            className="object-cover"
+            loading="eager"
+          />
         </div>
       </div>
     </motion.section>

@@ -6,7 +6,7 @@
   --sage-green: oklch(0.45 0.0292 130.3);
   --river-blue: oklch(0.38 0.1043 259.05);
   --soil-brown: oklch(0.28 0.0115 55.86);
-  --cloud-mist: oklch(0.96 0 0);
+  --cloud-mist: #f3f3f3;
   --dull-color: oklch(0.76 0 0);
 
   --navbar-height: clamp(3.75rem, 2.6267rem + 4.6083vw, 10rem);
@@ -14,7 +14,7 @@
 
 @theme {
   --text-st: clamp(1.5rem, 1.3186rem + 0.7383vw, 2.5rem);
-  --text-base: clamp(0.875rem, 0.7177rem + 0.6452vw, 1.75rem);
+  --text-base: clamp(0.875rem, 0.7163rem + 0.6461vw, 1.75rem);
   --text-sm: clamp(0.75rem, 0.6489rem + 0.4147vw, 1.3125rem);
 
   --text-m: clamp(0.875rem, 0.7065rem + 0.6912vw, 1.8125rem);
@@ -22,7 +22,7 @@
   --text-xl: clamp(1rem, 0.8203rem + 0.7373vw, 2rem);
   --text-2xl: clamp(0.875rem, 0.5156rem + 1.4747vw, 2.875rem);
   --text-3xl: clamp(1.75rem, 1.4243rem + 1.3364vw, 3.5625rem);
-  --text-4xl: clamp(2.25rem, 1.6771rem + 2.3502vw, 5.4375rem);
+  --text-4xl: clamp(2.0625rem, 1.4618rem + 2.4458vw, 5.375rem);
   --text-5xl: clamp(2.25rem, 1.5086rem + 3.0415vw, 6.375rem);
 
   --breakpoint-3xl: 120rem;

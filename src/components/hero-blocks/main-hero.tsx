@@ -1,10 +1,39 @@
 import CoordLogo from '@/components/coord-logo-text'
 import CoordButton from '@/components/ui/coord-button'
 import Image from 'next/image'
+import { motion, MotionValue, useSpring, useTransform } from 'motion/react'
+import React from 'react'
 
-const MainHero = () => {
+interface MainHeroProps {
+  scrollYProgress: MotionValue<number>
+}
+
+const MainHero: React.FC<MainHeroProps> = ({ scrollYProgress }) => {
+  const scale = useTransform(scrollYProgress, [0.1, 0.22], [1, 0.8])
+  const opacity = useTransform(scrollYProgress, [0.15, 0.2, 0.22, 0.24], [1, 0.75, 0.6, 0.5])
+  const y = useTransform(
+    scrollYProgress,
+    [0.13, 0.22, 0.23, 0.24, 0.25],
+    [0, -100, -110, -120, -125],
+  )
+
+  const springScale = useSpring(scale, {
+    stiffness: 300,
+    damping: 50,
+    mass: 1,
+    restDelta: 0.01,
+  })
+
   return (
-    <section className="flex flex-col  px-4 md:px-10 4xl:px-14 min-h-[calc(100svh-var(--navbar-height))]">
+    <motion.section
+      className="sticky top-[var(--navbar-height)] flex flex-col  px-4 md:px-10 4xl:px-14 min-h-[calc(100svh-var(--navbar-height))]"
+      style={{
+        scale: springScale,
+        opacity: opacity,
+        y: y,
+        transformOrigin: 'top',
+      }}
+    >
       <div className="flex justify-center sm:mt-6 mt-2 z-10">
         <CoordLogo />
       </div>
@@ -50,7 +79,7 @@ const MainHero = () => {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   )
 }
 

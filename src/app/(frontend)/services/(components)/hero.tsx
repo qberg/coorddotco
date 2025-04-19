@@ -51,7 +51,7 @@ const ServicesHero = () => {
         </div>
       </div>
 
-      <div className="flex flex-col justify-between xl:flex-row xl:justify-start gap-14 px-4 md:px-0 xl:gap-8 2xl:gap-14 3xl:gap-20 xl:pb-8">
+      <div className="flex flex-col justify-between xl:flex-row xl:justify-start gap-12 px-4 md:px-0 xl:gap-8 2xl:gap-14 3xl:gap-20 pb-4 xl:pb-8">
         <div>
           <HeroCover isMobile={isMobile} />
         </div>

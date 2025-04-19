@@ -57,7 +57,7 @@
 
 @layer base {
   html {
-    @apply text-[16px];
+    @apply text-[16px] bg-white;
   }
   h1 {
     @apply text-5xl font-roc font-medium leading-[1.2] tracking-[-0.02em];

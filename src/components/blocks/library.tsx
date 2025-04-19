@@ -84,9 +84,9 @@ const Library = () => {
   }, [nextSlide])
 
   return (
-    <section className="py-4 2xl:py-8 px-4 md:px-10 4xl:px-14 h-screen overflow-hidden relative">
+    <section className="sticky top-0 py-4 2xl:py-8 px-4 md:px-10 4xl:px-14 h-screen overflow-hidden">
       {/* Background Image */}
-      <div className="absolute inset-0 h-full w-full -z-10 overflow-hidden">
+      <div className="absolute inset-0 h-full w-full overflow-hidden">
         <AnimatePresence mode="sync">
           {previousSlideIndex !== null && (
             <motion.div

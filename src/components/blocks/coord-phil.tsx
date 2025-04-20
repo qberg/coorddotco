@@ -89,18 +89,20 @@ const CoordPhil: React.FC<CoordPhilProps> = ({ scrollYProgress }) => {
 
   const imageScale = useTransform(
     scrollYProgress,
-    [0.12, 0.21, 0.23, 0.32, 0.37, 0.43],
-    [0.9, 0.98, 1, 1, 0.97, 0.94],
+    [0.12, 0.21, 0.23, 0.32, 0.34, 0.36, 0.38, 0.43],
+    [0.9, 0.98, 1, 1, 0.98, 0.96, 0.95, 0.94],
   )
+
   const imageOneY = useTransform(
     scrollYProgress,
-    [0.12, 0.21, 0.23, 0.32, 0.34, 0.36, 0.38, 0.41],
-    [-225, -25, 0, 0, -100, -150, -175, -200],
+
+    [0.12, 0.21, 0.23, 0.32, 0.335, 0.345, 0.355, 0.37, 0.39, 0.41],
+    [-225, -25, 0, 0, -50, -110, -160, -180, -190, -200],
   )
   const imageTwoY = useTransform(
     scrollYProgress,
-    [0.12, 0.21, 0.23, 0.32, 0.34, 0.36, 0.38, 0.41],
-    [-225, -25, 0, 0, -100, -150, -175, -200],
+    [0.12, 0.21, 0.23, 0.32, 0.335, 0.345, 0.355, 0.37, 0.39, 0.41],
+    [-225, -25, 0, 0, -50, -110, -160, -180, -190, -200],
   )
 
   const springImageOneY = useSpring(imageOneY, {
@@ -118,7 +120,7 @@ const CoordPhil: React.FC<CoordPhilProps> = ({ scrollYProgress }) => {
   })
 
   const springImageScale = useSpring(imageScale, {
-    stiffness: 200,
+    stiffness: 300,
     damping: 45,
     mass: 1.1,
     restDelta: 0.001,

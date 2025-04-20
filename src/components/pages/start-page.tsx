@@ -27,15 +27,18 @@ const StartPage = () => {
   return (
     <>
       <Header />
-      <main ref={mainContainerRef} className="relative md:h-[850vh]">
+      <main ref={mainContainerRef} className="relative md:h-[1200vh]">
         <MainHero scrollYProgress={scrollYProgress} isMobile={isMobile} />
         <CoordPhil scrollYProgress={scrollYProgress} isMobile={isMobile} />
         <div className="hidden md:block h-[100vh]" />
         <Library scrollYProgress={scrollYProgress} isMobile={isMobile} />
-        <div className="hidden md:block h-[50vh]" />
-        <Services />
+        <div className="hidden md:block h-[100vh]" />
         <FabLab />
+        <div className="hidden md:block h-[100vh]" />
+        <Services />
+        <div className="hidden md:block h-[100vh]" />
         <DiscoverArtisans />
+        <div className="hidden md:block h-[100vh]" />
         <CoordCommunity />
       </main>
       <Footer />

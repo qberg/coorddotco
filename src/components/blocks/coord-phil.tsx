@@ -22,20 +22,20 @@ interface CoordPhilProps {
 const CoordPhil: React.FC<CoordPhilProps> = ({ scrollYProgress, isMobile }) => {
   const scale = useTransform(
     scrollYProgress,
-    [0.1, 0.13, 0.16, 0.19, 0.3, 0.41, 0.43],
-    [0.8, 0.87, 0.94, 1, 1, 0.85, 0.8],
+    [0.07, 0.09, 0.11, 0.13, 0.22, 0.23, 0.26, 0.28],
+    [0.8, 0.87, 0.94, 1, 1, 0.94, 0.87, 0.8],
   )
 
   const opacity = useTransform(
     scrollYProgress,
-    [0.39, 0.41, 0.43, 0.45, 0.46],
+    [0.23, 0.25, 0.27, 0.28, 0.3],
     [1, 0.75, 0.6, 0.5, 0],
   )
 
   const y = useTransform(
     scrollYProgress,
-    [0.32, 0.41, 0.42, 0.43, 0.45],
-    [0, -105, -115, -125, -130],
+    [0.22, 0.24, 0.25, 0.26, 0.27, 0.28, 0.29, 0.3],
+    [0, -105, -145, -175, -195, -205, -210, -212.5],
   )
 
   const springScale = useSpring(scale, {
@@ -45,10 +45,10 @@ const CoordPhil: React.FC<CoordPhilProps> = ({ scrollYProgress, isMobile }) => {
     restDelta: 0.01,
   })
 
-  const headerY = useTransform(scrollYProgress, [0.16, 0.19, 0.21], [100, 25, 0])
+  const headerY = useTransform(scrollYProgress, [0.1, 0.13, 0.15], [100, 25, 0])
   const headerClipPath = useTransform(
     scrollYProgress,
-    [0.14, 0.22],
+    [0.09, 0.16],
     ['inset(0 0 100% 0)', 'inset(0 0 0% 0)'], // Clip-path animation from top to bottom
   )
 
@@ -61,18 +61,18 @@ const CoordPhil: React.FC<CoordPhilProps> = ({ scrollYProgress, isMobile }) => {
 
   const paraOneClipPath = useTransform(
     scrollYProgress,
-    [0.18, 0.23], // Starts after header begins, finishes a bit after header
+    [0.13, 0.18], // Starts after header begins, finishes a bit after header
     ['inset(0 0 100% 0)', 'inset(0 0 0% 0)'],
   )
 
   const paraTwoClipPath = useTransform(
     scrollYProgress,
-    [0.19, 0.24], // Starts slightly after first paragraph, creating a cascade effect
+    [0.13, 0.19], // Starts slightly after first paragraph, creating a cascade effect
     ['inset(0 0 100% 0)', 'inset(0 0 0% 0)'],
   )
 
-  const paraOneY = useTransform(scrollYProgress, [0.18, 0.23], [30, 0])
-  const paraTwoY = useTransform(scrollYProgress, [0.19, 0.24], [30, 0])
+  const paraOneY = useTransform(scrollYProgress, [0.13, 0.16], [30, 0])
+  const paraTwoY = useTransform(scrollYProgress, [0.14, 0.17], [30, 0])
 
   const springParaOneY = useSpring(paraOneY, {
     stiffness: 250,
@@ -90,20 +90,20 @@ const CoordPhil: React.FC<CoordPhilProps> = ({ scrollYProgress, isMobile }) => {
 
   const imageScale = useTransform(
     scrollYProgress,
-    [0.12, 0.21, 0.23, 0.32, 0.34, 0.36, 0.38, 0.43],
+    [0.08, 0.13, 0.23, 0.32, 0.34, 0.36, 0.38, 0.43],
     [0.9, 0.98, 1, 1, 0.98, 0.96, 0.95, 0.94],
   )
 
   const imageOneY = useTransform(
     scrollYProgress,
 
-    [0.12, 0.21, 0.23, 0.32, 0.335, 0.345, 0.355, 0.37, 0.39, 0.41],
-    [-225, -25, 0, 0, -50, -110, -160, -180, -190, -200],
+    [0.08, 0.12, 0.13, 0.14, 0.32, 0.335, 0.345, 0.355, 0.37, 0.39, 0.41],
+    [-300, -100, -50, 0, 0, -50, -110, -160, -180, -190, -200],
   )
   const imageTwoY = useTransform(
     scrollYProgress,
-    [0.12, 0.21, 0.23, 0.32, 0.335, 0.345, 0.355, 0.37, 0.39, 0.41],
-    [-225, -25, 0, 0, -50, -110, -160, -180, -190, -200],
+    [0.08, 0.12, 0.13, 0.14, 0.32, 0.335, 0.345, 0.355, 0.37, 0.39, 0.41],
+    [-300, -100, -50, 0, 0, -50, -110, -160, -180, -190, -200],
   )
 
   const springImageOneY = useSpring(imageOneY, {

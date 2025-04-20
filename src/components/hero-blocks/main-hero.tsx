@@ -10,15 +10,15 @@ interface MainHeroProps {
 }
 
 const MainHero: React.FC<MainHeroProps> = ({ scrollYProgress, isMobile }) => {
-  const scale = useTransform(scrollYProgress, [0.091, 0.22], [0.99, 0.8])
+  const scale = useTransform(scrollYProgress, [0.064, 0.17], [0.99, 0.8])
   const opacity = useTransform(
     scrollYProgress,
-    [0.15, 0.2, 0.22, 0.24, 0.26],
+    [0.106, 0.141, 0.155, 0.16, 0.18],
     [1, 0.75, 0.6, 0.5, 0],
   )
   const y = useTransform(
     scrollYProgress,
-    [0.13, 0.22, 0.23, 0.24, 0.25],
+    [0.11, 0.14, 0.15, 0.165, 0.18],
     [0, -105, -115, -125, -130],
   )
 

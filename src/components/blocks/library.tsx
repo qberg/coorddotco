@@ -65,7 +65,7 @@ const Library: React.FC<LibraryProps> = ({ scrollYProgress, isMobile }) => {
   const containerRef = useRef<HTMLDivElement>(null)
 
   // Base scaling animations
-  const scale = useTransform(scrollYProgress, [0.34, 0.37, 0.39, 0.4], [0.8, 0.87, 0.94, 1])
+  const scale = useTransform(scrollYProgress, [0.22, 0.25, 0.27, 0.29], [0.8, 0.87, 0.94, 1])
   const springScale = useSpring(scale, {
     stiffness: 200,
     damping: 50,
@@ -73,7 +73,7 @@ const Library: React.FC<LibraryProps> = ({ scrollYProgress, isMobile }) => {
     restDelta: 0.01,
   })
 
-  const bgScale = useTransform(scrollYProgress, [0.34, 0.44, 0.45], [1.3, 1.05, 1])
+  const bgScale = useTransform(scrollYProgress, [0.22, 0.28, 0.29], [1.4, 1.05, 1])
   const springBgScale = useSpring(bgScale, {
     stiffness: 300,
     damping: 45,
@@ -82,10 +82,10 @@ const Library: React.FC<LibraryProps> = ({ scrollYProgress, isMobile }) => {
   })
 
   // Header animations
-  const headerY = useTransform(scrollYProgress, [0.38, 0.42, 0.43], [100, 25, 0])
+  const headerY = useTransform(scrollYProgress, [0.25, 0.27, 0.29], [100, 25, 0])
   const headerClipPath = useTransform(
     scrollYProgress,
-    [0.34, 0.42],
+    [0.24, 0.28],
     ['inset(0 0 100% 0)', 'inset(0 0 0% 0)'],
   )
   const springHeaderY = useSpring(headerY, {
@@ -96,20 +96,20 @@ const Library: React.FC<LibraryProps> = ({ scrollYProgress, isMobile }) => {
   })
 
   // Thumbnail animations
-  const thumbnailX = useTransform(scrollYProgress, [0.39, 0.43], [-150, 0])
+  const thumbnailX = useTransform(scrollYProgress, [0.29, 0.31], [-150, 0])
   const springThumbnailX = useSpring(thumbnailX, {
     stiffness: 100,
-    damping: 25,
+    damping: 20,
     mass: 0.5,
     restDelta: 0.01,
   })
 
   // Enhanced card animations with staggered timing and parallax
-  const cardOneY = useTransform(scrollYProgress, [0.35, 0.41, 0.43], [250, 70, 0])
-  const cardTwoY = useTransform(scrollYProgress, [0.35, 0.41, 0.44], [180, 60, 0])
+  const cardOneY = useTransform(scrollYProgress, [0.25, 0.29, 0.3], [250, 70, 0])
+  const cardTwoY = useTransform(scrollYProgress, [0.25, 0.29, 0.31], [180, 60, 0])
 
-  const cardOneX = useTransform(scrollYProgress, [0.35, 0.43], [-30, 0])
-  const cardTwoX = useTransform(scrollYProgress, [0.35, 0.43], [30, 0])
+  const cardOneX = useTransform(scrollYProgress, [0.25, 0.31], [-30, 0])
+  const cardTwoX = useTransform(scrollYProgress, [0.25, 0.31], [30, 0])
 
   // Spring animations for smoother transitions
   const springCardOneY = useSpring(cardOneY, {
@@ -141,8 +141,8 @@ const Library: React.FC<LibraryProps> = ({ scrollYProgress, isMobile }) => {
   })
 
   // Parallax effect for card content
-  const cardOneContentY = useTransform(scrollYProgress, [0.36, 0.44], [20, 0])
-  const cardTwoContentY = useTransform(scrollYProgress, [0.36, 0.44], [25, 0])
+  const cardOneContentY = useTransform(scrollYProgress, [0.26, 0.32], [20, 0])
+  const cardTwoContentY = useTransform(scrollYProgress, [0.26, 0.32], [25, 0])
 
   const springCardOneContentY = useSpring(cardOneContentY, {
     stiffness: 220,

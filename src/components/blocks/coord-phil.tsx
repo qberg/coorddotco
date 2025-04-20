@@ -1,4 +1,5 @@
 'use client'
+import HorseBg from '@/components/horse-bg'
 import { motion, MotionValue, useSpring, useTransform } from 'motion/react'
 import Image from 'next/image'
 import React from 'react'
@@ -18,7 +19,23 @@ interface CoordPhilProps {
 }
 
 const CoordPhil: React.FC<CoordPhilProps> = ({ scrollYProgress }) => {
-  const scale = useTransform(scrollYProgress, [0.1, 0.15, 0.2, 0.22], [0.8, 0.87, 0.94, 1])
+  const scale = useTransform(
+    scrollYProgress,
+    [0.1, 0.15, 0.2, 0.22, 0.3, 0.41, 0.43],
+    [0.8, 0.87, 0.94, 1, 1, 0.85, 0.8],
+  )
+
+  const opacity = useTransform(
+    scrollYProgress,
+    [0.39, 0.41, 0.43, 0.45, 0.46],
+    [1, 0.75, 0.6, 0.5, 0],
+  )
+
+  const y = useTransform(
+    scrollYProgress,
+    [0.32, 0.41, 0.42, 0.43, 0.45],
+    [0, -105, -115, -125, -130],
+  )
 
   const springScale = useSpring(scale, {
     stiffness: 200,
@@ -27,23 +44,127 @@ const CoordPhil: React.FC<CoordPhilProps> = ({ scrollYProgress }) => {
     restDelta: 0.01,
   })
 
+  const headerY = useTransform(scrollYProgress, [0.18, 0.21, 0.23], [100, 25, 0])
+  const headerClipPath = useTransform(
+    scrollYProgress,
+    [0.16, 0.22],
+    ['inset(0 0 100% 0)', 'inset(0 0 0% 0)'], // Clip-path animation from top to bottom
+  )
+
+  const springHeaderY = useSpring(headerY, {
+    stiffness: 300,
+    damping: 50,
+    mass: 1,
+    restDelta: 0.001,
+  })
+
+  const paraOneClipPath = useTransform(
+    scrollYProgress,
+    [0.18, 0.23], // Starts after header begins, finishes a bit after header
+    ['inset(0 0 100% 0)', 'inset(0 0 0% 0)'],
+  )
+
+  const paraTwoClipPath = useTransform(
+    scrollYProgress,
+    [0.19, 0.24], // Starts slightly after first paragraph, creating a cascade effect
+    ['inset(0 0 100% 0)', 'inset(0 0 0% 0)'],
+  )
+
+  const paraOneY = useTransform(scrollYProgress, [0.18, 0.23], [30, 0])
+  const paraTwoY = useTransform(scrollYProgress, [0.19, 0.24], [30, 0])
+
+  const springParaOneY = useSpring(paraOneY, {
+    stiffness: 250,
+    damping: 45,
+    mass: 1,
+    restDelta: 0.001,
+  })
+
+  const springParaTwoY = useSpring(paraTwoY, {
+    stiffness: 220,
+    damping: 42,
+    mass: 1,
+    restDelta: 0.001,
+  })
+
+  const imageScale = useTransform(
+    scrollYProgress,
+    [0.12, 0.21, 0.23, 0.32, 0.37, 0.43],
+    [0.9, 0.98, 1, 1, 0.97, 0.94],
+  )
+  const imageOneY = useTransform(
+    scrollYProgress,
+    [0.12, 0.21, 0.23, 0.32, 0.34, 0.36, 0.38, 0.41],
+    [-225, -25, 0, 0, -100, -150, -175, -200],
+  )
+  const imageTwoY = useTransform(
+    scrollYProgress,
+    [0.12, 0.21, 0.23, 0.32, 0.34, 0.36, 0.38, 0.41],
+    [-225, -25, 0, 0, -100, -150, -175, -200],
+  )
+
+  const springImageOneY = useSpring(imageOneY, {
+    stiffness: 240,
+    damping: 40,
+    mass: 1.2,
+    restDelta: 0.001,
+  })
+
+  const springImageTwoY = useSpring(imageTwoY, {
+    stiffness: 220,
+    damping: 38,
+    mass: 1.3,
+    restDelta: 0.001,
+  })
+
+  const springImageScale = useSpring(imageScale, {
+    stiffness: 200,
+    damping: 45,
+    mass: 1.1,
+    restDelta: 0.001,
+  })
   return (
     <motion.section
       className="sticky top-0 bg-mist-background min-h-screen md:h-screen p-4 md:p-10 3xl:p-14 md:overflow-hidden"
-      style={{ scale: springScale, transformOrigin: 'top' }}
+      style={{ scale: springScale, opacity: opacity, y: y, transformOrigin: 'top' }}
     >
-      <div className="flex flex-col md:flex-row gap-16">
-        <div className="flex items-start justify-between w-full gap-8 xl:gap-8 2xl:gap-36  4xl:gap-64">
-          <h2 className="whitespace-nowrap">Coord Philosophy</h2>
+      <HorseBg />
+
+      <motion.div className="flex flex-col md:flex-row gap-16">
+        <div className="flex items-start justify-between w-full gap-8 xl:gap-24 2xl:gap-36  4xl:gap-64">
+          <motion.h2
+            className="whitespace-nowrap"
+            style={{
+              y: springHeaderY,
+              clipPath: headerClipPath,
+              transformOrigin: 'left top',
+            }}
+          >
+            Coord Philosophy
+          </motion.h2>
 
           <div className="hidden md:flex gap-4 xl:gap-10 2xl:gap-12 3xl:gap-16">
-            <div className="w-1/2">
-              <Paragraphs paragraphs={parasOne} className="paragraph" />
-            </div>
+            <motion.div
+              className="w-1/2 overflow-hidden"
+              style={{
+                y: springParaOneY,
+              }}
+            >
+              <motion.div style={{ clipPath: paraOneClipPath }}>
+                <Paragraphs paragraphs={parasOne} className="paragraph" />
+              </motion.div>
+            </motion.div>
 
-            <div className="w-1/2">
-              <Paragraphs paragraphs={parasTwo} className="paragraph" />
-            </div>
+            <motion.div
+              className="w-1/2 overflow-hidden"
+              style={{
+                y: springParaTwoY,
+              }}
+            >
+              <motion.div style={{ clipPath: paraTwoClipPath }}>
+                <Paragraphs paragraphs={parasTwo} className="paragraph" />
+              </motion.div>
+            </motion.div>
           </div>
         </div>
 
@@ -51,10 +172,13 @@ const CoordPhil: React.FC<CoordPhilProps> = ({ scrollYProgress }) => {
           <Paragraphs paragraphs={parasOne} className="paragraph" />
           <Paragraphs paragraphs={parasTwo} className="paragraph" />
         </div>
-      </div>
+      </motion.div>
 
       <div className="md:absolute bottom-0 left-0 p-4 md:p-10 3xl:p-14 flex flex-row gap-5 xl:gap-8 2xl:gap-11 w-full">
-        <div className="bg-mist-background/10 aspect-[0.76/1] w-1/2 md:max-w-[15%] 2xl:max-w-[20%] relative">
+        <motion.div
+          className="bg-mist-background/10 aspect-[0.76/1] w-1/2 md:max-w-[15%] 2xl:max-w-[20%] relative"
+          style={{ y: springImageOneY, scale: springImageScale, transformOrigin: 'bottom' }}
+        >
           <Image
             src="/coord-phil/image1.png"
             alt="Artisan craftwork showcase"
@@ -63,9 +187,12 @@ const CoordPhil: React.FC<CoordPhilProps> = ({ scrollYProgress }) => {
             className="object-cover"
             loading="eager"
           />
-        </div>
+        </motion.div>
 
-        <div className="bg-mist-background/10 aspect-[0.76/1] w-1/2 md:max-w-[15%] 2xl:max-w-[20%] relative">
+        <motion.div
+          className="bg-mist-background/10 aspect-[0.76/1] w-1/2 md:max-w-[15%] 2xl:max-w-[20%] relative"
+          style={{ y: springImageTwoY, scale: springImageScale, transformOrigin: 'bottom' }}
+        >
           <Image
             src="/coord-phil/image2.png"
             alt="Artisan craftwork showcase"
@@ -74,7 +201,7 @@ const CoordPhil: React.FC<CoordPhilProps> = ({ scrollYProgress }) => {
             className="object-cover"
             loading="eager"
           />
-        </div>
+        </motion.div>
       </div>
     </motion.section>
   )

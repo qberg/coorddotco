@@ -64,7 +64,7 @@ const Library: React.FC<LibraryProps> = ({ scrollYProgress }) => {
   const [previousSlideIndex, setPreviousSlideIndex] = useState<number | null>(null)
   const isMobile = useIsMobile()
 
-  const scale = useTransform(scrollYProgress, [0.24, 0.29, 0.34, 0.35], [0.8, 0.87, 0.94, 1])
+  const scale = useTransform(scrollYProgress, [0.32, 0.37, 0.42, 0.44], [0.8, 0.87, 0.94, 1])
   const springScale = useSpring(scale, {
     stiffness: 200,
     damping: 50,

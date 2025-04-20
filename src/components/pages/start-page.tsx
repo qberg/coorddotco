@@ -22,9 +22,10 @@ const StartPage = () => {
   return (
     <>
       <Header />
-      <main ref={mainContainerRef} className="relative h-[700vh]">
+      <main ref={mainContainerRef} className="relative h-[800vh]">
         <MainHero scrollYProgress={scrollYProgress} />
         <CoordPhil scrollYProgress={scrollYProgress} />
+        <div className="h-[100vh]" />
         <Library scrollYProgress={scrollYProgress} />
         <Services />
         <FabLab />

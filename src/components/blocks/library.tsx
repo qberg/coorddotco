@@ -87,6 +87,7 @@ const Library: React.FC<LibraryProps> = ({ scrollYProgress }) => {
       className="sticky top-0 py-4 2xl:py-8 px-4 md:px-10 4xl:px-14 h-screen overflow-hidden"
       style={{
         scale: springScale,
+        transformOrigin: 'right top',
       }}
     >
       {/* Background Image */}

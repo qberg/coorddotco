@@ -5,22 +5,23 @@ import { motion, MotionValue, useSpring, useTransform } from 'motion/react'
 import React from 'react'
 
 interface MainHeroProps {
-  scrollYProgress: MotionValue<number> | null
+  scrollYProgress: MotionValue<number>
+  isMobile: boolean
 }
 
-const MainHero: React.FC<MainHeroProps> = ({ scrollYProgress }) => {
-  // Create a default MotionValue for mobile that stays at 0
-  const defaultMotionValue = React.useMemo(() => new MotionValue(0), [])
+const MainHero: React.FC<MainHeroProps> = ({ scrollYProgress, isMobile }) => {
+  const scale = useTransform(scrollYProgress, [0.091, 0.22], [1, 0.8])
+  const opacity = useTransform(
+    scrollYProgress,
+    [0.15, 0.2, 0.22, 0.24, 0.26],
+    [1, 0.75, 0.6, 0.5, 0],
+  )
+  const y = useTransform(
+    scrollYProgress,
+    [0.13, 0.22, 0.23, 0.24, 0.25],
+    [0, -105, -115, -125, -130],
+  )
 
-  // Use the provided scrollYProgress or the default one that doesn't change
-  const progress = scrollYProgress || defaultMotionValue
-
-  // Now we can safely use hooks with the guaranteed MotionValue
-  const scale = useTransform(progress, [0.091, 0.22], [1, 0.8])
-  const opacity = useTransform(progress, [0.15, 0.2, 0.22, 0.24, 0.26], [1, 0.75, 0.6, 0.5, 0])
-  const y = useTransform(progress, [0.13, 0.22, 0.23, 0.24, 0.25], [0, -105, -115, -125, -130])
-
-  // Spring animation
   const springScale = useSpring(scale, {
     stiffness: 300,
     damping: 50,
@@ -30,13 +31,17 @@ const MainHero: React.FC<MainHeroProps> = ({ scrollYProgress }) => {
 
   return (
     <motion.section
-      className="sticky top-[var(--navbar-height)] flex flex-col px-4 md:px-10 4xl:px-14 min-h-[calc(100svh-var(--navbar-height))]"
-      style={{
-        scale: springScale,
-        opacity: opacity,
-        y: y,
-        transformOrigin: 'top',
-      }}
+      className="sticky top-[var(--navbar-height)] flex flex-col  px-4 md:px-10 4xl:px-14 min-h-[calc(100svh-var(--navbar-height))]"
+      style={
+        !isMobile
+          ? {
+              scale: springScale,
+              opacity: opacity,
+              y: y,
+              transformOrigin: 'top',
+            }
+          : { scale: 1, opacity: 1 }
+      }
     >
       <div className="flex justify-center sm:mt-6 mt-2 z-10">
         <CoordLogo />

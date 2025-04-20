@@ -56,21 +56,15 @@ const cardTwo = {
 }
 
 interface LibraryProps {
-  scrollYProgress: MotionValue<number> | null
+  scrollYProgress: MotionValue<number>
+  isMobile: boolean
 }
 
-const Library: React.FC<LibraryProps> = ({ scrollYProgress }) => {
+const Library: React.FC<LibraryProps> = ({ scrollYProgress, isMobile }) => {
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0)
   const [previousSlideIndex, setPreviousSlideIndex] = useState<number | null>(null)
-  const isMobile = useIsMobile()
 
-  // Create a default MotionValue for mobile that stays at 0
-  const defaultMotionValue = React.useMemo(() => new MotionValue(0), [])
-
-  // Use the provided scrollYProgress or the default one that doesn't change
-  const progress = scrollYProgress || defaultMotionValue
-
-  const scale = useTransform(progress, [0.32, 0.37, 0.42, 0.44], [0.8, 0.87, 0.94, 1])
+  const scale = useTransform(scrollYProgress, [0.32, 0.37, 0.42, 0.44], [0.8, 0.87, 0.94, 1])
   const springScale = useSpring(scale, {
     stiffness: 200,
     damping: 50,
@@ -91,10 +85,14 @@ const Library: React.FC<LibraryProps> = ({ scrollYProgress }) => {
   return (
     <motion.section
       className="sticky top-0 py-4 2xl:py-8 px-4 md:px-10 4xl:px-14 h-screen overflow-hidden"
-      style={{
-        scale: springScale,
-        transformOrigin: 'right top',
-      }}
+      style={
+        !isMobile
+          ? {
+              scale: springScale,
+              transformOrigin: 'right top',
+            }
+          : { scale: 1 }
+      }
     >
       {/* Background Image */}
       <div className="absolute inset-0 h-full w-full overflow-hidden">

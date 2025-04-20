@@ -14,44 +14,27 @@ import useIsMobile from '@/hooks/useIsMobile'
 
 const StartPage = () => {
   const mainContainerRef = useRef(null)
+  const isMobile = useIsMobile()
+
   const { scrollYProgress } = useScroll({
     target: mainContainerRef,
     offset: ['start end', 'end start'],
   })
-  const isMobile = useIsMobile()
 
   return (
     <>
-      {isMobile ? (
-        <>
-          <Header />
-          <main ref={mainContainerRef} className="relative">
-            <MainHero scrollYProgress={scrollYProgress} />
-            <CoordPhil scrollYProgress={scrollYProgress} />
-            <Library scrollYProgress={scrollYProgress} />
-            <Services />
-            <FabLab />
-            <DiscoverArtisans />
-            <CoordCommunity />
-          </main>
-          <Footer />
-        </>
-      ) : (
-        <>
-          <Header />
-          <main ref={mainContainerRef} className="relative h-[800vh]">
-            <MainHero scrollYProgress={scrollYProgress} />
-            <CoordPhil scrollYProgress={scrollYProgress} />
-            <div className="h-[100vh]" />
-            <Library scrollYProgress={scrollYProgress} />
-            <Services />
-            <FabLab />
-            <DiscoverArtisans />
-            <CoordCommunity />
-          </main>
-          <Footer />
-        </>
-      )}
+      <Header />
+      <main ref={mainContainerRef} className="relative md:h-[800vh]">
+        <MainHero scrollYProgress={scrollYProgress} isMobile={isMobile} />
+        <CoordPhil scrollYProgress={scrollYProgress} isMobile={isMobile} />
+        <div className="hidden md:block h-[100vh]" />
+        <Library scrollYProgress={scrollYProgress} isMobile={isMobile} />
+        <Services />
+        <FabLab />
+        <DiscoverArtisans />
+        <CoordCommunity />
+      </main>
+      <Footer />
     </>
   )
 }

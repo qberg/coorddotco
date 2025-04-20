@@ -1,6 +1,6 @@
 const FabLab = () => {
   return (
-    <section className="min-h-screen bg-orange-background">
+    <section className="sticky top-0 h-screen bg-orange-background">
       <h2>Fablab</h2>
     </section>
   )

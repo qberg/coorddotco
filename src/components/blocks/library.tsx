@@ -4,7 +4,6 @@ import { motion, AnimatePresence, MotionValue, useTransform, useSpring } from 'm
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useState, useCallback } from 'react'
-import useIsMobile from '@/hooks/useIsMobile'
 
 const cardStyle = {
   width: 'clamp(14.25rem, 10.9402rem + 13.4749vw, 32.5rem)',
@@ -64,11 +63,49 @@ const Library: React.FC<LibraryProps> = ({ scrollYProgress, isMobile }) => {
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0)
   const [previousSlideIndex, setPreviousSlideIndex] = useState<number | null>(null)
 
-  const scale = useTransform(scrollYProgress, [0.32, 0.37, 0.42, 0.44], [0.8, 0.87, 0.94, 1])
+  const scale = useTransform(scrollYProgress, [0.34, 0.37, 0.39, 0.4], [0.8, 0.87, 0.94, 1])
   const springScale = useSpring(scale, {
     stiffness: 200,
     damping: 50,
     mass: 1.5,
+    restDelta: 0.01,
+  })
+
+  const bgScale = useTransform(scrollYProgress, [0.34, 0.44, 0.45], [1.3, 1.05, 1])
+  const springBgScale = useSpring(bgScale, {
+    stiffness: 300,
+    damping: 45,
+    mass: 1,
+    restDelta: 0.01,
+  })
+
+  const headerY = useTransform(scrollYProgress, [0.38, 0.42, 0.43], [100, 25, 0])
+  const headerClipPath = useTransform(
+    scrollYProgress,
+    [0.34, 0.42],
+    ['inset(0 0 100% 0)', 'inset(0 0 0% 0)'], // Clip-path animation from top to bottom
+  )
+
+  const springHeaderY = useSpring(headerY, {
+    stiffness: 300,
+    damping: 50,
+    mass: 1,
+    restDelta: 0.001,
+  })
+
+  // Fix: Type the clip-path correctly for React's style property
+  const cardClipPath = useTransform(
+    scrollYProgress,
+    [0.38, 0.44],
+    ['inset(100% 0 0 0)', 'inset(0% 0 0 0)'],
+  )
+
+  const thumbnailX = useTransform(scrollYProgress, [0.39, 0.43], [-150, 0])
+
+  const springThumbnailX = useSpring(thumbnailX, {
+    stiffness: 100,
+    damping: 25,
+    mass: 0.5,
     restDelta: 0.01,
   })
 
@@ -89,13 +126,22 @@ const Library: React.FC<LibraryProps> = ({ scrollYProgress, isMobile }) => {
         !isMobile
           ? {
               scale: springScale,
-              transformOrigin: 'right top',
+              transformOrigin: 'top',
             }
           : { scale: 1 }
       }
     >
       {/* Background Image */}
-      <div className="absolute inset-0 h-full w-full overflow-hidden">
+      <motion.div
+        className="absolute inset-0 h-full w-full overflow-hidden"
+        style={
+          !isMobile
+            ? {
+                scale: springBgScale,
+              }
+            : {}
+        }
+      >
         <AnimatePresence mode="sync">
           {previousSlideIndex !== null && (
             <motion.div
@@ -137,10 +183,23 @@ const Library: React.FC<LibraryProps> = ({ scrollYProgress, isMobile }) => {
             />
           </motion.div>
         </AnimatePresence>
-      </div>
+      </motion.div>
 
       <div className="relative flex flex-col h-full gap-28 md:gap-24 2xl:gap-28 3xl:gap-32 pb-8 md:pb-0">
-        <h2 className="">Library</h2>
+        <motion.h2
+          className=""
+          style={
+            !isMobile
+              ? {
+                  clipPath: headerClipPath, // Fix: Use type assertion for clipPath
+                  transformOrigin: 'left top',
+                  y: springHeaderY,
+                }
+              : {}
+          }
+        >
+          Library
+        </motion.h2>
 
         <div className="block md:hidden absolute top-0 right-0">
           <Thumbnails
@@ -151,21 +210,34 @@ const Library: React.FC<LibraryProps> = ({ scrollYProgress, isMobile }) => {
         </div>
 
         <div className="flex-1 flex flex-col gap-3 justify-between md:flex-row md:justify-end md:items-stretch relative md:gap-14 3xl:gap-20 xl:mr-16 2xl:mr-24">
-          <div className="hidden md:block absolute top-0 left-0">
+          <motion.div
+            className="hidden md:block absolute top-0 left-0"
+            style={{ x: springThumbnailX }}
+          >
             <Thumbnails
               slides={slides}
               activeIndex={currentSlideIndex}
               onThumbnailClick={handleThumbnailClick}
             />
-          </div>
+          </motion.div>
 
-          <div className="">
+          <motion.div
+            className=""
+            style={{
+              clipPath: cardClipPath,
+            }}
+          >
             <LibCard {...cardOne} />
-          </div>
+          </motion.div>
 
-          <div className="flex justify-end md:items-end 2xl:pb-4 3xl:pb-16">
+          <motion.div
+            className="flex justify-end md:items-end 2xl:pb-4 3xl:pb-16"
+            style={{
+              clipPath: cardClipPath,
+            }}
+          >
             <LibCard {...cardTwo} />
-          </div>
+          </motion.div>
         </div>
       </div>
     </motion.section>

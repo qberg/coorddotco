@@ -32,7 +32,7 @@ const thumbnails = [
 
 const CoordCommunity = () => {
   return (
-    <section className="px-4 md:px-10 4xl:px-14 min-h-screen relative overflow-hidden">
+    <section className="sticky top-0 bg-mist-background px-4 md:px-10 4xl:px-14 min-h-screen overflow-hidden">
       <HorseBg />
 
       <div className="flex justify-between gap-2 items-stretch">

@@ -22,7 +22,7 @@ interface CoordPhilProps {
 const CoordPhil: React.FC<CoordPhilProps> = ({ scrollYProgress, isMobile }) => {
   const scale = useTransform(
     scrollYProgress,
-    [0.1, 0.15, 0.2, 0.22, 0.3, 0.41, 0.43],
+    [0.1, 0.13, 0.16, 0.19, 0.3, 0.41, 0.43],
     [0.8, 0.87, 0.94, 1, 1, 0.85, 0.8],
   )
 
@@ -45,10 +45,10 @@ const CoordPhil: React.FC<CoordPhilProps> = ({ scrollYProgress, isMobile }) => {
     restDelta: 0.01,
   })
 
-  const headerY = useTransform(scrollYProgress, [0.18, 0.21, 0.23], [100, 25, 0])
+  const headerY = useTransform(scrollYProgress, [0.16, 0.19, 0.21], [100, 25, 0])
   const headerClipPath = useTransform(
     scrollYProgress,
-    [0.16, 0.22],
+    [0.14, 0.22],
     ['inset(0 0 100% 0)', 'inset(0 0 0% 0)'], // Clip-path animation from top to bottom
   )
 
@@ -130,7 +130,7 @@ const CoordPhil: React.FC<CoordPhilProps> = ({ scrollYProgress, isMobile }) => {
     <motion.section
       className="sticky top-0 bg-mist-background min-h-screen md:h-screen p-4 md:p-10 3xl:p-14 md:overflow-hidden"
       style={
-        !isMobile ? { scale: springScale, opacity: opacity, y: y, transformOrigin: 'left top' } : {}
+        !isMobile ? { scale: springScale, opacity: opacity, y: y, transformOrigin: 'top' } : {}
       }
     >
       <HorseBg />

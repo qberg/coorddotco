@@ -11,6 +11,7 @@ import Header from '@/components/header'
 import { useRef } from 'react'
 import { useScroll } from 'motion/react'
 import useIsMobile from '@/hooks/useIsMobile'
+import useScrollLogger from '@/hooks/useScrollLogger'
 
 const StartPage = () => {
   const mainContainerRef = useRef(null)
@@ -21,14 +22,17 @@ const StartPage = () => {
     offset: ['start end', 'end start'],
   })
 
+  useScrollLogger(scrollYProgress, 'Main Container Scroll', 100)
+
   return (
     <>
       <Header />
-      <main ref={mainContainerRef} className="relative md:h-[800vh]">
+      <main ref={mainContainerRef} className="relative md:h-[850vh]">
         <MainHero scrollYProgress={scrollYProgress} isMobile={isMobile} />
         <CoordPhil scrollYProgress={scrollYProgress} isMobile={isMobile} />
         <div className="hidden md:block h-[100vh]" />
         <Library scrollYProgress={scrollYProgress} isMobile={isMobile} />
+        <div className="hidden md:block h-[50vh]" />
         <Services />
         <FabLab />
         <DiscoverArtisans />

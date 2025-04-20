@@ -56,7 +56,7 @@ const cardTwo = {
 }
 
 interface LibraryProps {
-  scrollYProgress: MotionValue<number>
+  scrollYProgress: MotionValue<number> | null
 }
 
 const Library: React.FC<LibraryProps> = ({ scrollYProgress }) => {
@@ -64,7 +64,13 @@ const Library: React.FC<LibraryProps> = ({ scrollYProgress }) => {
   const [previousSlideIndex, setPreviousSlideIndex] = useState<number | null>(null)
   const isMobile = useIsMobile()
 
-  const scale = useTransform(scrollYProgress, [0.32, 0.37, 0.42, 0.44], [0.8, 0.87, 0.94, 1])
+  // Create a default MotionValue for mobile that stays at 0
+  const defaultMotionValue = React.useMemo(() => new MotionValue(0), [])
+
+  // Use the provided scrollYProgress or the default one that doesn't change
+  const progress = scrollYProgress || defaultMotionValue
+
+  const scale = useTransform(progress, [0.32, 0.37, 0.42, 0.44], [0.8, 0.87, 0.94, 1])
   const springScale = useSpring(scale, {
     stiffness: 200,
     damping: 50,

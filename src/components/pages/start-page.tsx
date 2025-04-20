@@ -10,29 +10,48 @@ import Footer from '@/components/footer'
 import Header from '@/components/header'
 import { useRef } from 'react'
 import { useScroll } from 'motion/react'
+import useIsMobile from '@/hooks/useIsMobile'
 
 const StartPage = () => {
-  const mainContainerRef = useRef<HTMLDivElement>(null)
-
+  const mainContainerRef = useRef(null)
   const { scrollYProgress } = useScroll({
     target: mainContainerRef,
     offset: ['start end', 'end start'],
   })
+  const isMobile = useIsMobile()
 
   return (
     <>
-      <Header />
-      <main ref={mainContainerRef} className="relative h-[800vh]">
-        <MainHero scrollYProgress={scrollYProgress} />
-        <CoordPhil scrollYProgress={scrollYProgress} />
-        <div className="h-[100vh]" />
-        <Library scrollYProgress={scrollYProgress} />
-        <Services />
-        <FabLab />
-        <DiscoverArtisans />
-        <CoordCommunity />
-      </main>
-      <Footer />
+      {isMobile ? (
+        <>
+          <Header />
+          <main ref={mainContainerRef} className="relative">
+            <MainHero scrollYProgress={scrollYProgress} />
+            <CoordPhil scrollYProgress={scrollYProgress} />
+            <Library scrollYProgress={scrollYProgress} />
+            <Services />
+            <FabLab />
+            <DiscoverArtisans />
+            <CoordCommunity />
+          </main>
+          <Footer />
+        </>
+      ) : (
+        <>
+          <Header />
+          <main ref={mainContainerRef} className="relative h-[800vh]">
+            <MainHero scrollYProgress={scrollYProgress} />
+            <CoordPhil scrollYProgress={scrollYProgress} />
+            <div className="h-[100vh]" />
+            <Library scrollYProgress={scrollYProgress} />
+            <Services />
+            <FabLab />
+            <DiscoverArtisans />
+            <CoordCommunity />
+          </main>
+          <Footer />
+        </>
+      )}
     </>
   )
 }

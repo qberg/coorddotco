@@ -3,7 +3,7 @@
 import { motion, AnimatePresence, MotionValue, useTransform, useSpring } from 'motion/react'
 import Image from 'next/image'
 import Link from 'next/link'
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useRef } from 'react'
 
 const cardStyle = {
   width: 'clamp(14.25rem, 10.9402rem + 13.4749vw, 32.5rem)',
@@ -62,7 +62,9 @@ interface LibraryProps {
 const Library: React.FC<LibraryProps> = ({ scrollYProgress, isMobile }) => {
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0)
   const [previousSlideIndex, setPreviousSlideIndex] = useState<number | null>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
 
+  // Base scaling animations
   const scale = useTransform(scrollYProgress, [0.34, 0.37, 0.39, 0.4], [0.8, 0.87, 0.94, 1])
   const springScale = useSpring(scale, {
     stiffness: 200,
@@ -79,13 +81,13 @@ const Library: React.FC<LibraryProps> = ({ scrollYProgress, isMobile }) => {
     restDelta: 0.01,
   })
 
+  // Header animations
   const headerY = useTransform(scrollYProgress, [0.38, 0.42, 0.43], [100, 25, 0])
   const headerClipPath = useTransform(
     scrollYProgress,
     [0.34, 0.42],
-    ['inset(0 0 100% 0)', 'inset(0 0 0% 0)'], // Clip-path animation from top to bottom
+    ['inset(0 0 100% 0)', 'inset(0 0 0% 0)'],
   )
-
   const springHeaderY = useSpring(headerY, {
     stiffness: 300,
     damping: 50,
@@ -93,19 +95,66 @@ const Library: React.FC<LibraryProps> = ({ scrollYProgress, isMobile }) => {
     restDelta: 0.001,
   })
 
-  // Fix: Type the clip-path correctly for React's style property
-  const cardClipPath = useTransform(
-    scrollYProgress,
-    [0.38, 0.44],
-    ['inset(100% 0 0 0)', 'inset(0% 0 0 0)'],
-  )
-
+  // Thumbnail animations
   const thumbnailX = useTransform(scrollYProgress, [0.39, 0.43], [-150, 0])
-
   const springThumbnailX = useSpring(thumbnailX, {
     stiffness: 100,
     damping: 25,
     mass: 0.5,
+    restDelta: 0.01,
+  })
+
+  // Enhanced card animations with staggered timing and parallax
+  const cardOneY = useTransform(scrollYProgress, [0.35, 0.41, 0.43], [250, 70, 0])
+  const cardTwoY = useTransform(scrollYProgress, [0.35, 0.41, 0.44], [180, 60, 0])
+
+  const cardOneX = useTransform(scrollYProgress, [0.35, 0.43], [-30, 0])
+  const cardTwoX = useTransform(scrollYProgress, [0.35, 0.43], [30, 0])
+
+  // Spring animations for smoother transitions
+  const springCardOneY = useSpring(cardOneY, {
+    stiffness: 180,
+    damping: 60,
+    mass: 1,
+    restDelta: 0.01,
+  })
+
+  const springCardTwoY = useSpring(cardTwoY, {
+    stiffness: 160,
+    damping: 55,
+    mass: 1,
+    restDelta: 0.01,
+  })
+
+  const springCardOneX = useSpring(cardOneX, {
+    stiffness: 200,
+    damping: 65,
+    mass: 1,
+    restDelta: 0.01,
+  })
+
+  const springCardTwoX = useSpring(cardTwoX, {
+    stiffness: 190,
+    damping: 60,
+    mass: 1,
+    restDelta: 0.01,
+  })
+
+  // Parallax effect for card content
+  const cardOneContentY = useTransform(scrollYProgress, [0.36, 0.44], [20, 0])
+  const cardTwoContentY = useTransform(scrollYProgress, [0.36, 0.44], [25, 0])
+
+  const springCardOneContentY = useSpring(cardOneContentY, {
+    stiffness: 220,
+    damping: 70,
+    mass: 0.8,
+    restDelta: 0.01,
+  })
+
+  const springCardTwoContentY = useSpring(cardTwoContentY, {
+    stiffness: 210,
+    damping: 65,
+    mass: 0.8,
     restDelta: 0.01,
   })
 
@@ -119,8 +168,11 @@ const Library: React.FC<LibraryProps> = ({ scrollYProgress, isMobile }) => {
     [currentSlideIndex],
   )
 
+  // Removed mouse-based parallax effect
+
   return (
     <motion.section
+      ref={containerRef}
       className="sticky top-0 py-4 2xl:py-8 px-4 md:px-10 4xl:px-14 h-screen overflow-hidden"
       style={
         !isMobile
@@ -131,7 +183,7 @@ const Library: React.FC<LibraryProps> = ({ scrollYProgress, isMobile }) => {
           : { scale: 1 }
       }
     >
-      {/* Background Image */}
+      {/* Background Image with enhanced transitions */}
       <motion.div
         className="absolute inset-0 h-full w-full overflow-hidden"
         style={
@@ -191,7 +243,7 @@ const Library: React.FC<LibraryProps> = ({ scrollYProgress, isMobile }) => {
           style={
             !isMobile
               ? {
-                  clipPath: headerClipPath, // Fix: Use type assertion for clipPath
+                  clipPath: headerClipPath,
                   transformOrigin: 'left top',
                   y: springHeaderY,
                 }
@@ -221,22 +273,34 @@ const Library: React.FC<LibraryProps> = ({ scrollYProgress, isMobile }) => {
             />
           </motion.div>
 
+          {/* Enhanced Card One with parallax and hover effects */}
           <motion.div
             className=""
-            style={{
-              clipPath: cardClipPath,
-            }}
+            style={
+              !isMobile
+                ? {
+                    y: springCardOneY,
+                    x: springCardOneX,
+                  }
+                : {}
+            }
           >
-            <LibCard {...cardOne} />
+            <LibCard {...cardOne} contentYTransform={springCardOneContentY} />
           </motion.div>
 
+          {/* Enhanced Card Two with parallax and hover effects */}
           <motion.div
             className="flex justify-end md:items-end 2xl:pb-4 3xl:pb-16"
-            style={{
-              clipPath: cardClipPath,
-            }}
+            style={
+              !isMobile
+                ? {
+                    y: springCardTwoY,
+                    x: springCardTwoX,
+                  }
+                : {}
+            }
           >
-            <LibCard {...cardTwo} />
+            <LibCard {...cardTwo} contentYTransform={springCardTwoContentY} />
           </motion.div>
         </div>
       </div>
@@ -259,7 +323,7 @@ const Thumbnails: React.FC<ThumbnailsProps> = ({ slides, activeIndex, onThumbnai
           type="button"
           initial={{ opacity: 0.7, y: 10 }}
           animate={{
-            opacity: activeIndex === index ? 1 : 1,
+            opacity: activeIndex === index ? 1 : 0.8,
             y: 0,
             scale: activeIndex === index ? 1.05 : 1,
           }}
@@ -317,23 +381,30 @@ interface LibCardProps {
   title: string
   href: string
   desc: string
+  contentYTransform?: MotionValue<number>
 }
 
-const LibCard: React.FC<LibCardProps> = ({ title, href, desc }) => {
+const LibCard: React.FC<LibCardProps> = ({ title, href, desc, contentYTransform }) => {
   return (
     <Link
       href={href}
-      className="bg-blue-background relative p-5 flex flex-col justify-between items-start gap-14 aspect-[7/8] md:aspect-[69/100] md:max-h-[60vh]"
+      className="bg-blue-background relative p-5 flex flex-col justify-between items-start gap-14 aspect-[7/8] md:aspect-[69/100] md:max-h-[60vh] overflow-hidden"
       style={cardStyle}
     >
-      <h3 className="text-white">{title}</h3>
-
-      <div
-        className="text-mist-background font-hanken font-extralight leading-[1.2]"
-        style={fontStyle}
+      {/* Card content with parallax effect */}
+      <motion.div
+        className="relative z-10 flex flex-col justify-between h-full w-full"
+        style={contentYTransform ? { y: contentYTransform } : {}}
       >
-        {desc}
-      </div>
+        <h3 className="text-white">{title}</h3>
+
+        <div
+          className="text-mist-background font-hanken font-extralight leading-[1.2]"
+          style={fontStyle}
+        >
+          {desc}
+        </div>
+      </motion.div>
     </Link>
   )
 }

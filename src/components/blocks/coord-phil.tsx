@@ -2,7 +2,7 @@
 import HorseBg from '@/components/horse-bg'
 import { motion, MotionValue, useSpring, useTransform } from 'motion/react'
 import Image from 'next/image'
-import React, { use } from 'react'
+import React from 'react'
 
 const parasOne = [
   "COORD is more than a platform; it's a movement to ensure that no craft dies unseen, no artisan works in isolation, and no story goes untold.",
@@ -22,70 +22,34 @@ interface CoordPhilProps {
 const CoordPhil: React.FC<CoordPhilProps> = ({ scrollYProgress, isMobile }) => {
   const scale = useTransform(
     scrollYProgress,
-    [0.1, 0.15, 0.2, 0.22, 0.3, 0.34, 0.38, 0.41, 0.43],
-    [0.8, 0.87, 0.94, 1, 1, 0.99, 0.97, 0.85, 0.8],
+    [0.1, 0.15, 0.2, 0.22, 0.3, 0.41, 0.43],
+    [0.8, 0.87, 0.94, 1, 1, 0.85, 0.8],
   )
 
-  // Enhanced opacity transition with slight fluctuation for paper-like quality
   const opacity = useTransform(
     scrollYProgress,
-    [0.38, 0.39, 0.41, 0.43, 0.45, 0.46],
-    [1, 0.98, 0.75, 0.6, 0.5, 0],
+    [0.39, 0.41, 0.43, 0.45, 0.46],
+    [1, 0.75, 0.6, 0.5, 0],
   )
 
-  // Add subtle skew/perspective distortion for paper-like bending
-  const rotateX = useTransform(
-    scrollYProgress,
-    [0.1, 0.15, 0.2, 0.3, 0.34, 0.38, 0.41],
-    [2, 1, 0, 0, 2, 4, 6],
-  )
-
-  // Paper-like wave effect with subtle distortion
   const y = useTransform(
     scrollYProgress,
-    [0.32, 0.33, 0.34, 0.36, 0.38, 0.4, 0.42, 0.44, 0.46],
-    [0, -20, -45, -80, -105, -115, -120, -125, -130],
+    [0.32, 0.41, 0.42, 0.43, 0.45],
+    [0, -105, -115, -125, -130],
   )
 
-  // Add subtle side movements for paper waviness
-  const x = useTransform(
-    scrollYProgress,
-    [0.32, 0.34, 0.36, 0.38, 0.4, 0.42, 0.44],
-    [0, 2, -1, 3, -2, 1, 0],
-  )
-
-  // Paper-like flexibility with spring physics
   const springScale = useSpring(scale, {
-    stiffness: 300, // Lower stiffness for more paper-like flexibility
-    damping: 50, // Lower damping for more natural oscillation
-    mass: 1, // Slightly higher mass for paper-like inertia
-    restDelta: 0.005,
+    stiffness: 200,
+    damping: 50,
+    mass: 1.5,
+    restDelta: 0.01,
   })
 
-  const springRotateX = useSpring(rotateX, {
-    stiffness: 300,
-    damping: 55,
-    mass: 1,
-  })
-
-  const springY = useSpring(y, {
-    stiffness: 300,
-    damping: 55,
-    mass: 1.3,
-  })
-
-  const springX = useSpring(x, {
-    stiffness: 300,
-    damping: 55,
-    mass: 1.0,
-  })
-
-  // Header animations with more fluidity
   const headerY = useTransform(scrollYProgress, [0.18, 0.21, 0.23], [100, 25, 0])
   const headerClipPath = useTransform(
     scrollYProgress,
     [0.16, 0.22],
-    ['inset(0 0 100% 0)', 'inset(0 0 0% 0)'],
+    ['inset(0 0 100% 0)', 'inset(0 0 0% 0)'], // Clip-path animation from top to bottom
   )
 
   const springHeaderY = useSpring(headerY, {
@@ -95,47 +59,20 @@ const CoordPhil: React.FC<CoordPhilProps> = ({ scrollYProgress, isMobile }) => {
     restDelta: 0.001,
   })
 
-  // Add subtle header movement for paper effect
-  const headerX = useTransform(
-    scrollYProgress,
-    [0.32, 0.34, 0.36, 0.38, 0.4, 0.42],
-    [0, 1, -1, 2, -1, 0],
-  )
-
-  const springHeaderX = useSpring(headerX, {
-    stiffness: 70,
-    damping: 15,
-    mass: 0.7,
-  })
-
-  // Paragraph animations
   const paraOneClipPath = useTransform(
     scrollYProgress,
-    [0.18, 0.23],
+    [0.18, 0.23], // Starts after header begins, finishes a bit after header
     ['inset(0 0 100% 0)', 'inset(0 0 0% 0)'],
   )
 
   const paraTwoClipPath = useTransform(
     scrollYProgress,
-    [0.19, 0.24],
+    [0.19, 0.24], // Starts slightly after first paragraph, creating a cascade effect
     ['inset(0 0 100% 0)', 'inset(0 0 0% 0)'],
   )
 
   const paraOneY = useTransform(scrollYProgress, [0.18, 0.23], [30, 0])
   const paraTwoY = useTransform(scrollYProgress, [0.19, 0.24], [30, 0])
-
-  // Add subtle paragraph movement for paper effect
-  const paraOneX = useTransform(
-    scrollYProgress,
-    [0.32, 0.34, 0.36, 0.38, 0.4, 0.42],
-    [0, 2, -1, 3, -2, 0],
-  )
-
-  const paraTwoX = useTransform(
-    scrollYProgress,
-    [0.32, 0.34, 0.36, 0.38, 0.4, 0.42],
-    [0, 1, -2, 2, -3, 0],
-  )
 
   const springParaOneY = useSpring(paraOneY, {
     stiffness: 250,
@@ -151,146 +88,65 @@ const CoordPhil: React.FC<CoordPhilProps> = ({ scrollYProgress, isMobile }) => {
     restDelta: 0.001,
   })
 
-  const springParaOneX = useSpring(paraOneX, {
-    stiffness: 60,
-    damping: 15,
-    mass: 0.7,
-  })
-
-  const springParaTwoX = useSpring(paraTwoX, {
-    stiffness: 65,
-    damping: 17,
-    mass: 0.75,
-  })
-
-  // Image animations with enhanced physical interactions
-  // More flexible paper-like effects for images
   const imageScale = useTransform(
     scrollYProgress,
     [0.12, 0.21, 0.23, 0.32, 0.34, 0.36, 0.38, 0.43],
     [0.9, 0.98, 1, 1, 0.98, 0.96, 0.95, 0.94],
   )
 
-  // Enhanced physical movement for images
   const imageOneY = useTransform(
     scrollYProgress,
-    [0.12, 0.21, 0.23, 0.32, 0.34, 0.35, 0.36, 0.38, 0.4, 0.42],
+
+    [0.12, 0.21, 0.23, 0.32, 0.335, 0.345, 0.355, 0.37, 0.39, 0.41],
     [-225, -25, 0, 0, -50, -110, -160, -180, -190, -200],
   )
-
-  // Second image with slight delay for more natural movement
   const imageTwoY = useTransform(
     scrollYProgress,
     [0.12, 0.21, 0.23, 0.32, 0.335, 0.345, 0.355, 0.37, 0.39, 0.41],
-    [-225, -25, 0, 0, -30, -90, -140, -170, -190, -200],
+    [-225, -25, 0, 0, -50, -110, -160, -180, -190, -200],
   )
 
-  // Add slight horizontal sway for paper-like movement
-  const imageOneX = useTransform(
-    scrollYProgress,
-    [0.32, 0.34, 0.36, 0.38, 0.4, 0.42],
-    [0, 3, -1, 4, -2, 0],
-  )
-
-  const imageTwoX = useTransform(
-    scrollYProgress,
-    [0.32, 0.34, 0.36, 0.38, 0.4, 0.42],
-    [0, -2, 3, -3, 1, 0],
-  )
-
-  const shadowOpacity = useTransform(scrollYProgress, [0.32, 0.34, 0.38], [0, 0.3, 0.2])
-
-  // Spring physics tuned for more paper-like movement
   const springImageOneY = useSpring(imageOneY, {
-    stiffness: 360,
-    damping: 50,
-    mass: 1.1,
+    stiffness: 240,
+    damping: 40,
+    mass: 1.2,
     restDelta: 0.001,
   })
 
   const springImageTwoY = useSpring(imageTwoY, {
-    stiffness: 340,
-    damping: 45,
-    mass: 1.1,
+    stiffness: 220,
+    damping: 38,
+    mass: 1.3,
     restDelta: 0.001,
-  })
-
-  const springImageOneX = useSpring(imageOneX, {
-    stiffness: 350,
-    damping: 50,
-    mass: 1,
-  })
-
-  const springImageTwoX = useSpring(imageTwoX, {
-    stiffness: 330,
-    damping: 45,
-    mass: 1,
   })
 
   const springImageScale = useSpring(imageScale, {
     stiffness: 300,
-    damping: 50,
-    mass: 1,
+    damping: 45,
+    mass: 1.1,
     restDelta: 0.001,
   })
-
-  // Add slight rotation to enhance paper-like effect
-  const imageOneRotate = useTransform(
-    scrollYProgress,
-    [0.32, 0.34, 0.36, 0.38, 0.4],
-    [0, -1, -2, -1.5, -1],
-  )
-
-  const imageTwoRotate = useTransform(
-    scrollYProgress,
-    [0.32, 0.335, 0.355, 0.37, 0.39],
-    [0, -0.5, -1.5, -1, -0.5],
-  )
-
-  const springImageOneRotate = useSpring(imageOneRotate, {
-    stiffness: 300,
-    damping: 50,
-    mass: 1,
-  })
-
-  const springImageTwoRotate = useSpring(imageTwoRotate, {
-    stiffness: 300,
-    damping: 45,
-    mass: 1,
-  })
-
   return (
     <motion.section
       className="sticky top-0 bg-mist-background min-h-screen md:h-screen p-4 md:p-10 3xl:p-14 md:overflow-hidden"
       style={
-        !isMobile
-          ? {
-              scale: springScale,
-              opacity: opacity,
-              y: springY,
-              x: springX,
-              rotateX: springRotateX,
-              transformOrigin: 'left top',
-              transformPerspective: '5000px',
-            }
-          : {}
+        !isMobile ? { scale: springScale, opacity: opacity, y: y, transformOrigin: 'left top' } : {}
       }
     >
       <HorseBg />
 
       <motion.div className="flex flex-col md:flex-row gap-16">
-        <div className="flex items-start justify-between w-full gap-8 xl:gap-24 2xl:gap-36 4xl:gap-64">
+        <div className="flex items-start justify-between w-full gap-8 xl:gap-24 2xl:gap-36  4xl:gap-64">
           <motion.h2
             className="whitespace-nowrap"
             style={
               !isMobile
                 ? {
                     y: springHeaderY,
-                    x: springHeaderX,
                     clipPath: headerClipPath,
                     transformOrigin: 'left top',
                   }
-                : { y: 0, x: 0, clipPath: headerClipPath }
+                : { y: 0, clipPath: headerClipPath }
             }
           >
             Coord Philosophy
@@ -299,14 +155,9 @@ const CoordPhil: React.FC<CoordPhilProps> = ({ scrollYProgress, isMobile }) => {
           <div className="hidden md:flex gap-4 xl:gap-10 2xl:gap-12 3xl:gap-16">
             <motion.div
               className="w-1/2 overflow-hidden"
-              style={
-                !isMobile
-                  ? {
-                      y: springParaOneY,
-                      x: springParaOneX,
-                    }
-                  : {}
-              }
+              style={{
+                y: springParaOneY,
+              }}
             >
               <motion.div style={{ clipPath: paraOneClipPath }}>
                 <Paragraphs paragraphs={parasOne} className="paragraph" />
@@ -315,14 +166,9 @@ const CoordPhil: React.FC<CoordPhilProps> = ({ scrollYProgress, isMobile }) => {
 
             <motion.div
               className="w-1/2 overflow-hidden"
-              style={
-                !isMobile
-                  ? {
-                      y: springParaTwoY,
-                      x: springParaTwoX,
-                    }
-                  : {}
-              }
+              style={{
+                y: springParaTwoY,
+              }}
             >
               <motion.div style={{ clipPath: paraTwoClipPath }}>
                 <Paragraphs paragraphs={parasTwo} className="paragraph" />
@@ -342,14 +188,7 @@ const CoordPhil: React.FC<CoordPhilProps> = ({ scrollYProgress, isMobile }) => {
           className="bg-mist-background/10 aspect-[0.76/1] w-1/2 md:max-w-[15%] 2xl:max-w-[20%] relative"
           style={
             !isMobile
-              ? {
-                  y: springImageOneY,
-                  x: springImageOneX,
-                  scale: springImageScale,
-                  rotate: springImageOneRotate,
-                  transformOrigin: 'bottom center',
-                  zIndex: 10,
-                }
+              ? { y: springImageOneY, scale: springImageScale, transformOrigin: 'bottom' }
               : {}
           }
         >
@@ -361,32 +200,13 @@ const CoordPhil: React.FC<CoordPhilProps> = ({ scrollYProgress, isMobile }) => {
             className="object-cover"
             loading="eager"
           />
-
-          {/* Add subtle shadow for depth when pushed up */}
-          <motion.div
-            className="absolute inset-0 pointer-events-none shadow-lg"
-            style={
-              !isMobile
-                ? {
-                    opacity: shadowOpacity,
-                  }
-                : {}
-            }
-          />
         </motion.div>
 
         <motion.div
           className="bg-mist-background/10 aspect-[0.76/1] w-1/2 md:max-w-[15%] 2xl:max-w-[20%] relative"
           style={
             !isMobile
-              ? {
-                  y: springImageTwoY,
-                  x: springImageTwoX,
-                  scale: springImageScale,
-                  rotate: springImageTwoRotate,
-                  transformOrigin: 'bottom center',
-                  zIndex: 10,
-                }
+              ? { y: springImageTwoY, scale: springImageScale, transformOrigin: 'bottom' }
               : {}
           }
         >
@@ -397,18 +217,6 @@ const CoordPhil: React.FC<CoordPhilProps> = ({ scrollYProgress, isMobile }) => {
             priority
             className="object-cover"
             loading="eager"
-          />
-
-          {/* Add subtle shadow for depth when pushed up */}
-          <motion.div
-            className="absolute inset-0 pointer-events-none shadow-lg"
-            style={
-              !isMobile
-                ? {
-                    opacity: shadowOpacity,
-                  }
-                : {}
-            }
           />
         </motion.div>
       </div>

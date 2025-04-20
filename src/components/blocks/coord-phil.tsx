@@ -56,28 +56,28 @@ const CoordPhil: React.FC<CoordPhilProps> = ({ scrollYProgress, isMobile }) => {
 
   // Paper-like flexibility with spring physics
   const springScale = useSpring(scale, {
-    stiffness: 120, // Lower stiffness for more paper-like flexibility
-    damping: 30, // Lower damping for more natural oscillation
-    mass: 1.2, // Slightly higher mass for paper-like inertia
+    stiffness: 300, // Lower stiffness for more paper-like flexibility
+    damping: 50, // Lower damping for more natural oscillation
+    mass: 1, // Slightly higher mass for paper-like inertia
     restDelta: 0.005,
   })
 
   const springRotateX = useSpring(rotateX, {
-    stiffness: 90,
-    damping: 20,
+    stiffness: 300,
+    damping: 55,
     mass: 1,
   })
 
   const springY = useSpring(y, {
-    stiffness: 110,
-    damping: 25,
+    stiffness: 300,
+    damping: 55,
     mass: 1.3,
   })
 
   const springX = useSpring(x, {
-    stiffness: 80,
-    damping: 20,
-    mass: 0.8,
+    stiffness: 300,
+    damping: 55,
+    mass: 1.0,
   })
 
   // Header animations with more fluidity
@@ -202,34 +202,34 @@ const CoordPhil: React.FC<CoordPhilProps> = ({ scrollYProgress, isMobile }) => {
 
   // Spring physics tuned for more paper-like movement
   const springImageOneY = useSpring(imageOneY, {
-    stiffness: 160,
-    damping: 25,
+    stiffness: 360,
+    damping: 50,
     mass: 1.1,
     restDelta: 0.001,
   })
 
   const springImageTwoY = useSpring(imageTwoY, {
-    stiffness: 140,
-    damping: 23,
-    mass: 1.2,
+    stiffness: 340,
+    damping: 45,
+    mass: 1.1,
     restDelta: 0.001,
   })
 
   const springImageOneX = useSpring(imageOneX, {
-    stiffness: 50,
-    damping: 15,
-    mass: 0.6,
+    stiffness: 350,
+    damping: 50,
+    mass: 1,
   })
 
   const springImageTwoX = useSpring(imageTwoX, {
-    stiffness: 55,
-    damping: 17,
-    mass: 0.65,
+    stiffness: 330,
+    damping: 45,
+    mass: 1,
   })
 
   const springImageScale = useSpring(imageScale, {
-    stiffness: 200,
-    damping: 35,
+    stiffness: 300,
+    damping: 50,
     mass: 1,
     restDelta: 0.001,
   })
@@ -248,15 +248,15 @@ const CoordPhil: React.FC<CoordPhilProps> = ({ scrollYProgress, isMobile }) => {
   )
 
   const springImageOneRotate = useSpring(imageOneRotate, {
-    stiffness: 100,
-    damping: 20,
-    mass: 0.8,
+    stiffness: 300,
+    damping: 50,
+    mass: 1,
   })
 
   const springImageTwoRotate = useSpring(imageTwoRotate, {
-    stiffness: 90,
-    damping: 18,
-    mass: 0.85,
+    stiffness: 300,
+    damping: 45,
+    mass: 1,
   })
 
   return (

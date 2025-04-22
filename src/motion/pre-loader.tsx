@@ -17,12 +17,12 @@ const PreLoader: React.FC<PreLoaderProps> = ({ setIsLoading }) => {
         animate={{ width: '95vw', height: '95vh' }}
         transition={{ duration: 1 }}
         exit={{
-          width: '90vw',
-          height: '42vh',
+          width: '95vw',
+          height: '44vh',
           y: '22vh',
           transition: {
             duration: 1,
-            delay: 1,
+            delay: 0,
           },
           transformOrigin: 'top',
         }}

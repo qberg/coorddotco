@@ -32,13 +32,23 @@ const PreLoader: React.FC<PreLoaderProps> = ({ setIsLoading }) => {
       >
         <div className="w-full h-full bg-green-50">
           <Image
-            src="/main-hero/bg-big-4896x1664.png"
+            src="/main-hero/bg-922x1200.png"
             alt="Loading image"
             fill
             priority
-            className="object-cover"
+            className="object-cover block lg:hidden"
             sizes="100vw"
           />
+
+          <Image
+            src="/main-hero/bg-big-4896x1664.png"
+            alt="Hero backround image"
+            fill
+            priority
+            className="object-cover hidden lg:block"
+          />
+
+          <div className="absolute inset-0 bg-black/15"></div>
         </div>
       </motion.div>
     </div>

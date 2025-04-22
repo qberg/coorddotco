@@ -35,6 +35,10 @@ interface HorseBgProps {
 
 const HorseBg: React.FC<HorseBgProps> = ({ variant }) => {
   const variantSettings = (variant && bgVariants[variant]) || bgVariants.mist
+
+  const mobOpacity = (variant && bgVariants[variant].mobileOpacity) || 100
+  const deskOpacity = (variant && bgVariants[variant].desktopOpcaity) || 100
+
   return (
     <div className={`absolute inset-0 w-screen h-full -z-100 ${variantSettings.className}`}>
       <Image
@@ -44,7 +48,7 @@ const HorseBg: React.FC<HorseBgProps> = ({ variant }) => {
         sizes="100vw"
         priority
         quality={85}
-        className={`object-cover hidden md:block opacity-${variantSettings.desktopOpcaity}`}
+        className={`object-cover hidden md:block opacity-${deskOpacity}`}
       />
 
       <Image
@@ -54,7 +58,7 @@ const HorseBg: React.FC<HorseBgProps> = ({ variant }) => {
         sizes="100vw"
         priority
         quality={85}
-        className={`object-cover block md:hidden opacity-${variantSettings.mobileOpacity}`}
+        className={`object-cover block md:hidden opacity-${mobOpacity}`}
       />
     </div>
   )

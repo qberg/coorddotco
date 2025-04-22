@@ -8,10 +8,11 @@ import Services from '@/components/blocks/services'
 import MainHero from '@/components/hero-blocks/main-hero'
 import Footer from '@/components/footer'
 import Header from '@/components/header'
-import { useRef } from 'react'
+import React, { useRef } from 'react'
 import { useScroll } from 'motion/react'
 import useIsMobile from '@/hooks/useIsMobile'
 import useScrollLogger from '@/hooks/useScrollLogger'
+import { motion } from 'motion/react'
 
 const StartPage = () => {
   const mainContainerRef = useRef(null)
@@ -26,14 +27,20 @@ const StartPage = () => {
 
   return (
     <>
-      <Header />
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 2 }}
+      >
+        <Header />
+      </motion.div>
       <main ref={mainContainerRef} className="relative md:h-[1200vh]">
         <MainHero scrollYProgress={scrollYProgress} isMobile={isMobile} />
         <CoordPhil scrollYProgress={scrollYProgress} isMobile={isMobile} />
         <div className="hidden md:block h-[100vh]" />
         <Library scrollYProgress={scrollYProgress} isMobile={isMobile} />
         <div className="hidden md:block h-[100vh]" />
-        <FabLab />
+        <FabLab scrollYProgress={scrollYProgress} isMobile={isMobile} />
         <div className="hidden md:block h-[100vh]" />
         <Services />
         <div className="hidden md:block h-[100vh]" />

@@ -1,4 +1,6 @@
+'use client'
 import { motion } from 'motion/react'
+import Image from 'next/image'
 import React from 'react'
 
 interface PreLoaderProps {
@@ -7,40 +9,39 @@ interface PreLoaderProps {
 
 const PreLoader: React.FC<PreLoaderProps> = ({ setIsLoading }) => {
   return (
-    <motion.div
-      key="loader"
-      className="flex flex-col bg-orange-background items-center justify-center h-screen"
-      initial={{ opacity: 1 }}
-      exit={{
-        opacity: 0.5,
-        y: '-100%',
-        transition: { duration: 1.0 },
-      }}
-    >
+    <div className="inset-0 h-screen flex items-center justify-center bg-white overflow-hidden">
       <motion.div
-        className="w-24 h-24 border-t-4 border-white rounded-full"
-        animate={{
-          rotate: 360,
+        layoutId="hero-image-container"
+        className="relative overflow-hidden"
+        initial={{ width: '600px', height: '350px' }}
+        animate={{ width: '95vw', height: '95vh' }}
+        transition={{ duration: 1 }}
+        exit={{
+          width: '90vw',
+          height: '42vh',
+          y: '22vh',
+          transition: {
+            duration: 1,
+            delay: 1,
+          },
+          transformOrigin: 'top',
         }}
-        transition={{
-          duration: 1.5,
-          repeat: 2, // Limited repeats so it can complete
-          ease: 'linear',
+        onAnimationComplete={() => {
+          setIsLoading(false)
         }}
-      />
-      <motion.h1
-        className="mt-8 font-bold text-white"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{
-          opacity: 1,
-          y: 0,
-          transition: { delay: 0.3, duration: 0.5 },
-        }}
-        onAnimationComplete={() => setIsLoading(false)}
       >
-        COORD
-      </motion.h1>
-    </motion.div>
+        <div className="w-full h-full bg-green-50">
+          <Image
+            src="/main-hero/bg-big-4896x1664.png"
+            alt="Loading image"
+            fill
+            priority
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
+      </motion.div>
+    </div>
   )
 }
 

@@ -111,7 +111,6 @@ const Library: React.FC<LibraryProps> = ({ scrollYProgress, isMobile }) => {
   const cardOneX = useTransform(scrollYProgress, [0.25, 0.31], [-30, 0])
   const cardTwoX = useTransform(scrollYProgress, [0.25, 0.31], [30, 0])
 
-  // Spring animations for smoother transitions
   const springCardOneY = useSpring(cardOneY, {
     stiffness: 180,
     damping: 60,

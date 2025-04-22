@@ -43,31 +43,50 @@ const MainHero: React.FC<MainHeroProps> = ({ scrollYProgress, isMobile }) => {
           : { scale: 1, opacity: 1 }
       }
     >
-      <div className="flex justify-center sm:mt-6 mt-2 z-10">
+      <motion.div
+        className="flex justify-center sm:mt-6 mt-2 z-10"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 1.5 }}
+      >
         <CoordLogo />
-      </div>
-      <div
+      </motion.div>
+
+      <motion.div
         className="flex-1 relative overflow-hidden"
+        layoutId="hero-image-container"
         style={{
           marginTop: 'calc(-1 * clamp(2rem, 0.1578rem + 7.5576vw, 12.25rem))',
         }}
+        transition={{ duration: 1, delay: 0.5 }}
       >
-        <Image
-          src="/main-hero/bg-922x1200.png"
-          alt="Hero backround image"
-          fill
-          priority
-          className="object-cover block lg:hidden"
-        />
-        <Image
-          src="/main-hero/bg-big-4896x1664.png"
-          alt="Hero backround image"
-          fill
-          priority
-          className="object-cover hidden lg:block"
-        />
-        <div className="absolute inset-0 bg-black/15"></div>
-        <div className="absolute inset-0 flex flex-col h-full w-full z-10">
+        <div className="w-full h-full">
+          <Image
+            src="/main-hero/bg-922x1200.png"
+            alt="Hero backround image"
+            fill
+            priority
+            className="object-cover block lg:hidden"
+          />
+          <Image
+            src="/main-hero/bg-big-4896x1664.png"
+            alt="Hero backround image"
+            fill
+            priority
+            className="object-cover hidden lg:block"
+          />
+          <div className="absolute inset-0 bg-black/15"></div>
+        </div>
+
+        <motion.div
+          className="absolute inset-0 flex flex-col h-full w-full z-10"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 0.5,
+            delay: 2.5,
+          }}
+        >
           <div className="flex justify-start md:justify-end items-start mt-14 sm:mt-14 md:mt-14 lg:mt-20 xl:mt-24 3xl:mt-28 4xl:mt-36 pl-[50%] md:pr-[10%]">
             <div className="text-left">
               <p className="mb-4 text-white cta-text">Start a Craft Story With Us</p>
@@ -86,8 +105,8 @@ const MainHero: React.FC<MainHeroProps> = ({ scrollYProgress, isMobile }) => {
               A Collective for Innovation in Craft
             </h1>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </motion.section>
   )
 }

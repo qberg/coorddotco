@@ -34,8 +34,8 @@ const CoordPhil: React.FC<CoordPhilProps> = ({ scrollYProgress, isMobile }) => {
 
   const y = useTransform(
     scrollYProgress,
-    [0.22, 0.24, 0.25, 0.26, 0.27, 0.28, 0.29, 0.3],
-    [0, -105, -145, -175, -195, -205, -210, -212.5],
+    [0.22, 0.24, 0.25, 0.26, 0.27, 0.28, 0.29],
+    [0, -105, -145, -175, -195, -205, -215],
   )
 
   const springScale = useSpring(scale, {
@@ -61,13 +61,13 @@ const CoordPhil: React.FC<CoordPhilProps> = ({ scrollYProgress, isMobile }) => {
 
   const paraOneClipPath = useTransform(
     scrollYProgress,
-    [0.13, 0.18], // Starts after header begins, finishes a bit after header
+    [0.13, 0.14], // Starts after header begins, finishes a bit after header
     ['inset(0 0 100% 0)', 'inset(0 0 0% 0)'],
   )
 
   const paraTwoClipPath = useTransform(
     scrollYProgress,
-    [0.13, 0.19], // Starts slightly after first paragraph, creating a cascade effect
+    [0.13, 0.15], // Starts slightly after first paragraph, creating a cascade effect
     ['inset(0 0 100% 0)', 'inset(0 0 0% 0)'],
   )
 
@@ -128,13 +128,12 @@ const CoordPhil: React.FC<CoordPhilProps> = ({ scrollYProgress, isMobile }) => {
   })
   return (
     <motion.section
-      className="sticky top-0 bg-mist-background min-h-screen md:h-screen p-4 md:p-10 3xl:p-14 md:overflow-hidden"
+      className="sticky top-0 bg-white min-h-screen md:h-screen p-4 md:p-10 3xl:p-14 md:overflow-hidden"
       style={
         !isMobile ? { scale: springScale, opacity: opacity, y: y, transformOrigin: 'top' } : {}
       }
     >
       <HorseBg />
-
       <motion.div className="flex flex-col md:flex-row gap-16">
         <div className="flex items-start justify-between w-full gap-8 xl:gap-24 2xl:gap-36  4xl:gap-64">
           <motion.h2

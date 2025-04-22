@@ -60,7 +60,7 @@ const MainHero: React.FC<MainHeroProps> = ({ scrollYProgress, isMobile }) => {
         }}
         transition={{ duration: 1, delay: 0.5 }}
       >
-        <div className="w-full h-full">
+        <motion.div className="w-full h-full">
           <Image
             src="/main-hero/bg-922x1200.png"
             alt="Hero backround image"
@@ -76,7 +76,7 @@ const MainHero: React.FC<MainHeroProps> = ({ scrollYProgress, isMobile }) => {
             className="object-cover hidden lg:block"
           />
           <div className="absolute inset-0 bg-black/15"></div>
-        </div>
+        </motion.div>
 
         <motion.div
           className="absolute inset-0 flex flex-col h-full w-full z-10"

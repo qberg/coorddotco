@@ -33,7 +33,7 @@ const thumbnails = [
 const CoordCommunity = () => {
   return (
     <section className="sticky top-0 bg-mist-background px-4 md:px-10 4xl:px-14 min-h-screen overflow-hidden">
-      <HorseBg />
+      <HorseBg variant="mist" />
 
       <div className="flex justify-between gap-2 items-stretch">
         <div className="flex flex-col justify-between items-start gap-28">

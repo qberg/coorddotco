@@ -43,8 +43,12 @@ const FabLab: React.FC<FabLabProps> = ({ scrollYProgress, isMobile }) => {
         </motion.div>
       </div>
 
-      <div className="absolute left-0 top-28 md:top-10 md:left-8 2xl:left-20 3xl:left-32 -z-10">
-        <motion.div className="relative aspect-square w-[210px] md:w-[285px] 2xl:w-[400px] 3xl:w-[600px]">
+      <motion.div
+        className="absolute left-0 top-28 md:top-10 md:left-8 2xl:left-20 3xl:left-32 -z-10"
+        animate={{ x: '-30%', y: -10 }}
+        transition={{ type: 'spring', duration: 2, stiffness: 200, damping: 40, restDelta: 0.01 }}
+      >
+        <div className="relative aspect-square w-[210px] md:w-[285px] 2xl:w-[400px] 3xl:w-[600px]">
           <Image
             src="/fablab/tl.png"
             alt="Some deco for fablab"
@@ -52,8 +56,8 @@ const FabLab: React.FC<FabLabProps> = ({ scrollYProgress, isMobile }) => {
             priority
             className="object-cover block"
           />
-        </motion.div>
-      </div>
+        </div>
+      </motion.div>
 
       <div className="hidden md:block absolute bottom-0 right-10 2xl:right-10 3xl:right-10 -z-10">
         <motion.div className="relative aspect-[1.5/1] w-[225px] 2xl:w-[360px] 3xl:w-[580px]">

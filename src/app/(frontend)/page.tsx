@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'motion/react'
 import PreLoader from '@/motion/pre-loader'
 
 export default function HomePage() {
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
 
   return (
     <AnimatePresence mode="wait">

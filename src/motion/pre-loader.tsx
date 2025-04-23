@@ -68,7 +68,7 @@ const PreLoader: React.FC<PreLoaderProps> = ({ setIsLoading }) => {
         animate={{ width: '97%', height: '90vh' }}
         transition={{ duration: 2, ease: [0.6, 0.01, -0.05, 0.9] }}
         exit={{
-          y: '26vh',
+          y: '25.5vh',
           height: '47vh',
           transition: {
             duration: 2,

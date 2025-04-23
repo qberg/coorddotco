@@ -59,17 +59,27 @@ const CoordPhil: React.FC<CoordPhilProps> = ({ scrollYProgress, isMobile }) => {
     restDelta: 0.001,
   })
 
-  const paraOneClipPath = useTransform(
+  {
+    /*const paraOneClipPath = useTransform(
     scrollYProgress,
     [0.13, 0.14], // Starts after header begins, finishes a bit after header
     ['inset(0 0 100% 0)', 'inset(0 0 0% 0)'],
   )
+  */
+  }
+  const paraOneOpacity = useTransform(scrollYProgress, [0.13, 0.135], [0, 1])
 
+  const paraTwoOpacity = useTransform(scrollYProgress, [0.13, 0.14], [0, 1])
+
+  {
+    /*
   const paraTwoClipPath = useTransform(
     scrollYProgress,
     [0.13, 0.15], // Starts slightly after first paragraph, creating a cascade effect
     ['inset(0 0 100% 0)', 'inset(0 0 0% 0)'],
   )
+  */
+  }
 
   const paraOneY = useTransform(scrollYProgress, [0.13, 0.16], [30, 0])
   const paraTwoY = useTransform(scrollYProgress, [0.14, 0.17], [30, 0])
@@ -158,7 +168,7 @@ const CoordPhil: React.FC<CoordPhilProps> = ({ scrollYProgress, isMobile }) => {
                 y: springParaOneY,
               }}
             >
-              <motion.div style={{ clipPath: paraOneClipPath }}>
+              <motion.div style={{ opacity: paraOneOpacity }}>
                 <Paragraphs paragraphs={parasOne} className="paragraph" />
               </motion.div>
             </motion.div>
@@ -169,7 +179,7 @@ const CoordPhil: React.FC<CoordPhilProps> = ({ scrollYProgress, isMobile }) => {
                 y: springParaTwoY,
               }}
             >
-              <motion.div style={{ clipPath: paraTwoClipPath }}>
+              <motion.div style={{ opacity: paraTwoOpacity }}>
                 <Paragraphs paragraphs={parasTwo} className="paragraph" />
               </motion.div>
             </motion.div>

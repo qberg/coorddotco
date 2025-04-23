@@ -64,9 +64,17 @@ const PreLoader: React.FC<PreLoaderProps> = ({ setIsLoading }) => {
       <motion.div
         layoutId="hero-image-container"
         className="relative overflow-hidden"
-        initial={{ width: '600px', height: '350px' }}
-        animate={{ width: '90vw', height: '85vh' }}
+        initial={{ width: '613px', height: '345px' }}
+        animate={{ width: '97%', height: '90vh' }}
         transition={{ duration: 2, ease: [0.6, 0.01, -0.05, 0.9] }}
+        exit={{
+          y: '26vh',
+          height: '47vh',
+          transition: {
+            duration: 2,
+            delay: 1,
+          },
+        }}
         onAnimationComplete={() => {
           setTimeout(() => {
             setIsLoading(false)
@@ -85,7 +93,7 @@ const PreLoader: React.FC<PreLoaderProps> = ({ setIsLoading }) => {
               layoutId="image"
               src="/pre-loader/im.png"
               alt="Hero background image"
-              className="absolute top-0 left-0 w-full h-full object-contain hidden lg:block"
+              className="absolute top-0 left-0 w-full h-full object-cover hidden lg:block"
               loading="eager"
             />
           </picture>

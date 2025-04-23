@@ -70,13 +70,18 @@ const MainHero: React.FC<MainHeroProps> = ({ scrollYProgress, isMobile }) => {
             />
             <motion.img
               layoutId="image"
-              src="/main-hero/bg-big-4896x1664.png"
+              transition={{ duration: 0.5, delay: 0.5 }}
+              src="/pre-loader/im.png"
               alt="Hero background image"
               className="absolute top-0 left-0 w-full h-full object-cover hidden lg:block"
               loading="eager"
             />
 
-            <motion.div layoutId="overlay" className="absolute inset-0 bg-black/15"></motion.div>
+            <motion.div
+              layoutId="overlay"
+              className="absolute inset-0 bg-black/15"
+              transition={{ duration: 0.5, delay: 0.5 }}
+            ></motion.div>
           </picture>
         </motion.div>
 

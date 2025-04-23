@@ -58,7 +58,7 @@ const MainHero: React.FC<MainHeroProps> = ({ scrollYProgress, isMobile }) => {
         style={{
           marginTop: 'calc(-1 * clamp(2rem, 0.1578rem + 7.5576vw, 12.25rem))',
         }}
-        transition={{ duration: 1, delay: 0.5 }}
+        transition={{ duration: 0.5, delay: 0.5 }}
       >
         <motion.div className="w-full h-full">
           <picture>

@@ -67,22 +67,13 @@ const PreLoader: React.FC<PreLoaderProps> = ({ setIsLoading }) => {
         initial={{ width: '600px', height: '350px' }}
         animate={{ width: '90vw', height: '85vh' }}
         transition={{ duration: 2, ease: [0.6, 0.01, -0.05, 0.9] }}
-        exit={{
-          y: '22vh',
-          height: '42vh',
-          transition: {
-            duration: 1,
-            delay: 0.5,
-          },
-          transformOrigin: 'bottom',
-        }}
         onAnimationComplete={() => {
           setTimeout(() => {
             setIsLoading(false)
           }, 500)
         }}
       >
-        <motion.div className="w-full h-full">
+        <motion.div className="w-full h-full bg-red-100">
           <picture>
             <img
               src="/main-hero/bg-922x1200.png"
@@ -92,12 +83,11 @@ const PreLoader: React.FC<PreLoaderProps> = ({ setIsLoading }) => {
             />
             <motion.img
               layoutId="image"
-              src="/main-hero/bg-big-4896x1664.png"
+              src="/pre-loader/im.png"
               alt="Hero background image"
-              className="absolute top-0 left-0 w-full h-full object-cover hidden lg:block"
+              className="absolute top-0 left-0 w-full h-full object-contain hidden lg:block"
               loading="eager"
             />
-            <motion.div layoutId="overlay" className="absolute inset-0 bg-black/15"></motion.div>
           </picture>
         </motion.div>
       </motion.div>

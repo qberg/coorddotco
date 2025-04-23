@@ -143,7 +143,7 @@ const CoordPhil: React.FC<CoordPhilProps> = ({ scrollYProgress, isMobile }) => {
         !isMobile ? { scale: springScale, opacity: opacity, y: y, transformOrigin: 'top' } : {}
       }
     >
-      <HorseBg />
+      <HorseBg variant="mist" />
       <motion.div className="flex flex-col md:flex-row gap-16">
         <div className="flex items-start justify-between w-full gap-8 xl:gap-24 2xl:gap-36  4xl:gap-64">
           <motion.h2

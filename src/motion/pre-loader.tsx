@@ -73,7 +73,7 @@ const PreLoader: React.FC<PreLoaderProps> = ({ setIsLoading }) => {
           }, 500)
         }}
       >
-        <motion.div className="w-full h-full bg-red-100">
+        <motion.div className="w-full h-full">
           <picture>
             <img
               src="/main-hero/bg-922x1200.png"

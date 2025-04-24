@@ -64,6 +64,8 @@ const Library: React.FC<LibraryProps> = ({ scrollYProgress, isMobile }) => {
   const [previousSlideIndex, setPreviousSlideIndex] = useState<number | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
+  const opacity = useTransform(scrollYProgress, [0.44, 0.48], [1, 0])
+
   // Base scaling animations
   const scale = useTransform(scrollYProgress, [0.22, 0.25, 0.27, 0.29], [0.8, 0.87, 0.94, 1])
   const springScale = useSpring(scale, {
@@ -178,6 +180,7 @@ const Library: React.FC<LibraryProps> = ({ scrollYProgress, isMobile }) => {
           ? {
               scale: springScale,
               transformOrigin: 'top',
+              opacity,
             }
           : { scale: 1 }
       }

@@ -10,7 +10,7 @@ interface ServiceImageProps {
 }
 
 const ServiceImage: React.FC<ServiceImageProps> = ({ imageSrc, className }) => (
-  <div className={`${className} relative w-full aspect-[1.42/1]`} style={IMAGE_STYLE}>
+  <div className={`${className} relative w-[190px] 2xl:w-[280px] 3xl:w-[380px] aspect-[1.42/1] `}>
     <Image
       src={imageSrc}
       alt="Service section decorative image"

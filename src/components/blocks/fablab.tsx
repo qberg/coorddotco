@@ -96,13 +96,26 @@ const DecoImageComponent: React.FC<{ image: DecoImage }> = ({ image }) => (
 )
 
 const FabLab: React.FC<FabLabProps> = ({ scrollYProgress, isMobile }) => {
-  const scale = useTransform(scrollYProgress, [0.37, 0.4, 0.42, 0.44], [0.8, 0.87, 0.94, 1])
+  const scale = useTransform(
+    scrollYProgress,
+    [0.37, 0.4, 0.42, 0.44, 0.52, 0.55, 0.58],
+    [0.8, 0.87, 0.94, 1, 1, 0.95, 0.9],
+  )
+
+  const opacity = useTransform(
+    scrollYProgress,
+    [0.37, 0.4, 0.52, 0.58, 0.59, 0.65],
+    [0, 1, 1, 1, 0.8, 0],
+  )
+
+  const y = useTransform(scrollYProgress, [0.55, 0.58], [0, 100])
 
   return (
     <motion.section
       className="sticky top-0 h-screen overflow-hidden flex flex-col items-center justify-center"
       style={{
-        ...(isMobile ? {} : { scale }),
+        ...(isMobile ? {} : { scale, opacity, y }),
+        transformOrigin: 'center center',
       }}
     >
       <HorseBg variant="orange" opacity={10} />

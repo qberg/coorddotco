@@ -1,101 +1,125 @@
-'use client'
-import { motion, MotionValue, useSpring, useTransform } from 'motion/react'
-import Image from 'next/image'
+import CoordButton from '@/components/ui/coord-button'
+import ServiceImage from '@/components/ui/service-image'
+import { ArrowRight } from 'lucide-react'
+import { motion, MotionValue, useTransform } from 'motion/react'
 import React from 'react'
 
-const parasOne = [
-  "COORD is more than a platform; it's a movement to ensure that no craft dies unseen, no artisan works in isolation, and no story goes untold.",
-  'Rooted in deep respect for heritage, we provide artisans with the tools, visibility, and opportunities to connect with a global audience while ensuring their craft continues to evolve. ',
-]
-
-const parasTwo = [
-  'Our journey began with a simple yet profound realization: traditional craftsmanship is not just an art form but a way of life, deeply interwoven with culture, identity, and community. Yet, countless artisans face the risk of losing their craft due to a lack of access, opportunities, and fair compensation. Many go unrecognized as their work is often overlooked in contemporary design aesthetics. COORD exists to change this narrative.',
-  'By bridging tradition with contemporary design, we create an ecosystem where craftsmanship is not just preserved but thrives—where artisans are recognized as creators, not just producers. We foster collaborations that are ethical, transparent, and mutually enriching, ensuring that every craft has a future and every artisan has a voice.',
-]
-
-interface CoordPhilProps {
-  scrollYProgress: MotionValue<number>
+interface ServiceCard {
+  superTitle: string
+  title: string
+  desc: string
+  features: string[]
 }
 
-const CoordPhil: React.FC<CoordPhilProps> = ({ scrollYProgress }) => {
-  const scale = useTransform(scrollYProgress, [0.1, 0.15, 0.2, 0.22], [0.8, 0.87, 0.94, 1])
+interface ServicesData {
+  desc: string
+  cards: ServiceCard[]
+}
 
-  const springScale = useSpring(scale, {
-    stiffness: 200,
-    damping: 50,
-    mass: 1.5,
-    restDelta: 0.01,
-  })
+const servicesData: ServicesData = {
+  desc: "At COORD, we bring the rich diversity of India's regional crafts directly to your projects. Whether you're an individual, interior designer, architect, business, art enthusiast, or curator, we provide access to unique, handcrafted art pieces.",
+  cards: [
+    {
+      superTitle: 'Individuals, Art Enthusiasts & Collectors',
+      title: 'For Seekers of Craft',
+      desc: "You believe objects hold stories. We help you find the hands that tell them. Whether you're a collector of meaning, a lover of process, or simply someone looking to add soul to your space — COORD connects you to timeless craft and the makers behind it.",
+      features: [
+        'Explore our library of artisans and crafted objects.',
+        'Fall in love with a technique, region, or material.',
+        'Reach out, and we’ll help you source available pieces — or commission one made just for you.',
+        'We’ll coordinate the making, care, and delivery — along with the story behind it.',
+      ],
+    },
+    {
+      superTitle: 'Individuals, Art Enthusiasts & Collectors',
+      title: 'For Seekers of Craft',
+      desc: "You believe objects hold stories. We help you find the hands that tell them. Whether you're a collector of meaning, a lover of process, or simply someone looking to add soul to your space — COORD connects you to timeless craft and the makers behind it.",
+      features: [
+        'Explore our library of artisans and crafted objects.',
+        'Fall in love with a technique, region, or material.',
+        'Reach out, and we’ll help you source available pieces — or commission one made just for you.',
+        'We’ll coordinate the making, care, and delivery — along with the story behind it.',
+      ],
+    },
+    {
+      superTitle: 'Individuals, Art Enthusiasts & Collectors',
+      title: 'For Seekers of Craft',
+      desc: "You believe objects hold stories. We help you find the hands that tell them. Whether you're a collector of meaning, a lover of process, or simply someone looking to add soul to your space — COORD connects you to timeless craft and the makers behind it.",
+      features: [
+        'Explore our library of artisans and crafted objects.',
+        'Fall in love with a technique, region, or material.',
+        'Reach out, and we’ll help you source available pieces — or commission one made just for you.',
+        'We’ll coordinate the making, care, and delivery — along with the story behind it.',
+      ],
+    },
+  ],
+}
+
+interface ServicesProps {
+  scrollYProgress: MotionValue<number>
+  isMobile: boolean
+}
+
+const Services: React.FC<ServicesProps> = ({ scrollYProgress, isMobile }) => {
+  const scale = useTransform(scrollYProgress, [0.52, 0.58], [1, 1])
 
   return (
     <motion.section
-      className="sticky top-0 bg-mist-background flex flex-col min-h-screen py-8 px-4 md:px-10 4xl:px-14 overflow-hidden"
-      style={{ scale: springScale, transformOrigin: 'top' }}
+      className="sticky top-0 bg-white flex flex-col py-8  px-4 md:px-10 4xl:px-14 min-h-screen"
+      style={{
+        ...(isMobile ? {} : { scale }),
+        transformOrigin: 'center center',
+      }}
     >
-      <div className="flex flex-col h-full">
-        <div className="flex items-start justify-between gap-4 lg:gap-9 2xl:gap-40 4xl:gap-64">
-          <motion.h2 className="whitespace-nowrap">Coord Philosophy</motion.h2>
-
-          <div className="hidden ml-auto md:flex gap-2 lg:gap-4 xl:gap-10 2xl:gap-14 4xl:gap-16">
-            <div className="flex-1">
-              <Paragraphs paragraphs={parasOne} className="paragraph" />
-            </div>
-            <div className="flex-1">
-              <Paragraphs paragraphs={parasTwo} className="paragraph" />
-            </div>
-          </div>
+      <h2>Services</h2>
+      <div className="flex flex-col md:flex-row md:justify-between md:items-center">
+        <div className="w-full md:max-w-[33%]">
+          <p className="my-5 md:my-10">{servicesData.desc}</p>
+          <CoordButton variant="yellow">Know More</CoordButton>
         </div>
 
-        <motion.div className="flex flex-col gap-4 md:hidden mt-16 pl-[35%]">
-          <Paragraphs paragraphs={parasOne} className="paragraph" />
-          <Paragraphs paragraphs={parasTwo} className="paragraph" />
-        </motion.div>
+        <ServiceImage imageSrc="/services/image1.png" className="hidden md:block" />
 
-        <div className="mt-16 md:mt-auto flex gap-4 md:gap-8 4xl:gap-12 w-full">
-          <motion.div className="relative w-full md:max-w-[20%] aspect-[3/4] overflow-hidden">
-            <Image
-              src="/coord-phil/image1.png"
-              alt="Artisan craftwork showcase"
-              fill
-              priority
-              className="object-cover"
-              loading="eager"
-            />
-          </motion.div>
+        <div className="flex md:hidden justify-end">
+          <ServiceImage imageSrc="/services/image1.png" />
+        </div>
+      </div>
 
-          <motion.div className="relative w-full md:max-w-[20%] aspect-[3/4] overflow-hidden">
-            <Image
-              src="/coord-phil/image2.png"
-              alt="Artisan craftwork showcase"
-              fill
-              priority
-              className="object-cover"
-              loading="eager"
-            />
-          </motion.div>
+      <div className="mt-auto flex flex-col md:flex-row md:justify-between w-full">
+        <div className="hidden md:flex flex-col justify-end w-[20%]">
+          <ServiceImage imageSrc="/services/image2.png" className="" />
+        </div>
+        <div className="font-playfair font-medium text-m italic">
+          Cards-need content confirmation
         </div>
       </div>
     </motion.section>
   )
 }
 
-interface ParagraphsProps {
-  paragraphs: string[]
-  className?: string
+interface ServiceCardProps {
+  superTitle: string
+  title: string
+  desc: string
+  features: string[]
 }
 
-const Paragraphs = React.memo(({ paragraphs, className }: ParagraphsProps) => {
-  return (
-    <div className="flex flex-col gap-4">
-      {paragraphs.map((para, index) => (
-        <motion.p key={index} className={className}>
-          {para}
-        </motion.p>
+const ServiceCard: React.FC<ServiceCardProps> = ({ superTitle, title, desc, features }) => (
+  <div className="w-full md:max-w-[24%] bg-service-background flex flex-col gap-2 p-2 lg:p-4 2xl:p-8 3xl:p-16">
+    <div className="text-m font-playfair-display font-medium italic">{superTitle}</div>
+    <h3 className="text-highlight">{title}</h3>
+
+    <p>{desc}</p>
+
+    <ul className="flex flex-col gap-5">
+      {features.map((feature, index) => (
+        <li key={index} className="flex items-start">
+          <ArrowRight className="text-service-secondary" size={16} />
+          <span className="ml-3 text-sm font-hanken font-light">{feature}</span>
+        </li>
       ))}
-    </div>
-  )
-})
+    </ul>
+  </div>
+)
 
-Paragraphs.displayName = 'Paragraphs'
-
-export default CoordPhil
+export default Services

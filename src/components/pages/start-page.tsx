@@ -42,7 +42,7 @@ const StartPage = () => {
         <div className="hidden md:block h-[100vh]" />
         <FabLab scrollYProgress={scrollYProgress} isMobile={isMobile} />
         <div className="hidden md:block h-[100vh]" />
-        <Services />
+        <Services scrollYProgress={scrollYProgress} isMobile={isMobile} />
         <div className="hidden md:block h-[100vh]" />
         <DiscoverArtisans />
         <div className="hidden md:block h-[100vh]" />

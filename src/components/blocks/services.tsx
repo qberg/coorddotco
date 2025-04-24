@@ -1,6 +1,7 @@
 import CoordButton from '@/components/ui/coord-button'
 import ServiceImage from '@/components/ui/service-image'
 import { ArrowRight } from 'lucide-react'
+import { motion, MotionValue, useTransform } from 'motion/react'
 import React from 'react'
 
 interface ServiceCard {
@@ -54,14 +55,29 @@ const servicesData: ServicesData = {
   ],
 }
 
-const Services = () => {
+interface ServicesProps {
+  scrollYProgress: MotionValue<number>
+  isMobile: boolean
+}
+
+const Services: React.FC<ServicesProps> = ({ scrollYProgress, isMobile }) => {
+  const scale = useTransform(scrollYProgress, [0.52, 0.58], [1, 1])
+
   return (
-    <section className="sticky top-0 bg-white flex flex-col py-8  px-4 md:px-10 4xl:px-14 min-h-screen">
-      <h2>Services</h2>
-      <div className="flex flex-col md:flex-row md:justify-between md:items-center">
-        <div className="w-full md:max-w-[33%]">
-          <p className="my-5 md:my-10">{servicesData.desc}</p>
-          <CoordButton variant="yellow">Know More</CoordButton>
+    <motion.section
+      className="sticky top-0 bg-white flex flex-col py-8  px-4 md:px-10 4xl:px-14 min-h-screen"
+      style={{
+        ...(isMobile ? {} : { scale }),
+        transformOrigin: 'center center',
+      }}
+    >
+      <h2 className="mb-4">Services</h2>
+      <div className="flex flex-col md:flex-row md:justify-between md:items-start">
+        <div className="w-full flex flex-col gap-4 md:max-w-[45%]">
+          <p className="">{servicesData.desc}</p>
+          <div>
+            <CoordButton variant="yellow">Know More</CoordButton>
+          </div>
         </div>
 
         <ServiceImage imageSrc="/services/image1.png" className="hidden md:block" />
@@ -71,15 +87,15 @@ const Services = () => {
         </div>
       </div>
 
-      <div className="mt-auto flex flex-col md:flex-row md:justify-between w-full">
+      <div className="mt-7 md:mt-auto flex flex-col gap-4 2xl:gap-8 3xl:gap-16 md:flex-row md:justify-between w-full">
         <div className="hidden md:flex flex-col justify-end w-[20%]">
           <ServiceImage imageSrc="/services/image2.png" className="" />
         </div>
-        <div className="font-playfair font-medium text-m italic">
-          Cards-need content confirmation
-        </div>
+        {servicesData.cards.map((card, index) => (
+          <ServiceCard key={index} {...card} />
+        ))}
       </div>
-    </section>
+    </motion.section>
   )
 }
 
@@ -91,20 +107,30 @@ interface ServiceCardProps {
 }
 
 const ServiceCard: React.FC<ServiceCardProps> = ({ superTitle, title, desc, features }) => (
-  <div className="w-full md:max-w-[24%] bg-service-background flex flex-col gap-2 p-2 lg:p-4 2xl:p-8 3xl:p-16">
-    <div className="text-m font-playfair-display font-medium italic">{superTitle}</div>
-    <h3 className="text-highlight">{title}</h3>
+  <div className="flex flex-col border p-3 2xl:p-4 3xl:p-6 gap-4 3xl:gap-12 bg-mist-background">
+    <div className="font-playfair text-[0.875rem] md:text-[1rem] 2xl:text-[1.5rem] 3xl:text-[2.25rem] font-medium italic md:max-w-[25ch]">
+      {superTitle}
+    </div>
+    <h3 className="text-highlight text-[1.5rem] md:text-[1.75rem] 2xl:text-[2.25rem] 3xl:text-[2.75rem]">
+      {title}
+    </h3>
 
-    <p>{desc}</p>
+    <p className="hidden 2xl:block max-w-[40ch] text-[1.125rem] 3xl:text-[1.5rem]">{desc}</p>
 
-    <ul className="flex flex-col gap-5">
+    <div className="flex flex-col">
       {features.map((feature, index) => (
-        <li key={index} className="flex items-start">
-          <ArrowRight className="text-service-secondary" size={16} />
-          <span className="ml-3 text-sm font-hanken font-light">{feature}</span>
-        </li>
+        <div key={index} className="flex gap-1">
+          <span>
+            <ArrowRight className="text-accent-primary w-4 2xl:w-8 3xl:w-12" />
+          </span>
+          <span className="md:max-w-[30ch] 2xl:max-w-[40ch] text-[0.75rem] md:text-[0.875rem] 2xl:text-[1.125rem] 3xl:text-[1.5rem]">
+            {feature}
+          </span>
+        </div>
       ))}
-    </ul>
+    </div>
+
+    <ul className="flex flex-col gap-5"></ul>
   </div>
 )
 

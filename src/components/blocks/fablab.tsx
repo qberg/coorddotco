@@ -105,7 +105,7 @@ const FabLab: React.FC<FabLabProps> = ({ scrollYProgress, isMobile }) => {
         ...(isMobile ? {} : { scale }),
       }}
     >
-      <HorseBg variant="orange" opacity="10" />
+      <HorseBg variant="orange" opacity={10} />
 
       {decorativeImages.map((image, index) => (
         <DecoImageComponent key={index} image={image} />

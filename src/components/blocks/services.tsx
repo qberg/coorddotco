@@ -107,7 +107,7 @@ interface ServiceCardProps {
 }
 
 const ServiceCard: React.FC<ServiceCardProps> = ({ superTitle, title, desc, features }) => (
-  <div className="flex flex-col border p-3 2xl:p-4 3xl:p-6 gap-4 3xl:gap-12 bg-mist-background">
+  <div className="flex flex-col border p-3 2xl:p-4 3xl:p-6 gap-4 md:gap-3 2xl:gap-4 3xl:gap-12 bg-mist-background">
     <div className="font-playfair text-[0.875rem] md:text-[1rem] 2xl:text-[1.5rem] 3xl:text-[2.25rem] font-medium italic md:max-w-[25ch]">
       {superTitle}
     </div>

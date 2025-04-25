@@ -87,8 +87,8 @@ const Services: React.FC<ServicesProps> = ({ scrollYProgress, isMobile }) => {
         </div>
       </div>
 
-      <div className="mt-7 md:mt-auto flex flex-col gap-4 3xl:gap-16 md:flex-row md:justify-between w-full">
-        <div className="hidden md:flex flex-col justify-end w-[20%]">
+      <div className="mt-7 md:mt-auto sxl:mb-auto flex flex-col gap-4 3xl:gap-16 md:flex-row md:justify-between w-full sxl:w-[80%] sxl:ml-auto">
+        <div className="hidden sxl:hidden md:flex flex-col justify-end w-[20%]">
           <ServiceImage imageSrc="/services/image2.png" className="" />
         </div>
         {servicesData.cards.map((card, index) => (
@@ -96,6 +96,10 @@ const Services: React.FC<ServicesProps> = ({ scrollYProgress, isMobile }) => {
             <ServiceCard {...card} />
           </div>
         ))}
+      </div>
+
+      <div className="hidden sxl:block absolute w-[20%] bottom-8">
+        <ServiceImage imageSrc="/services/image2.png" className="" />
       </div>
     </motion.section>
   )

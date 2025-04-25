@@ -1,9 +1,5 @@
 import Image from 'next/image'
 
-const IMAGE_STYLE = {
-  maxWidth: 'clamp(11.9375rem, 10.994rem + 3.871vw, 17.1875rem)',
-}
-
 interface ServiceImageProps {
   imageSrc: string
   className?: string

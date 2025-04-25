@@ -18,7 +18,7 @@ const springTransition = {
   restDelta: 0.01,
 }
 
-const defaultViewport = { once: true, amount: 0.7 }
+const defaultViewport = { once: true, amount: 0.6 }
 
 interface DecoImage {
   src: string
@@ -141,7 +141,7 @@ const FabLab: React.FC<FabLabProps> = ({ scrollYProgress, isMobile }) => {
 
         <motion.div
           className="w-full flex md:justify-end px-3 md:px-0"
-          initial={{ y: 200 }}
+          initial={{ y: 100 }}
           whileInView={{ y: 0 }}
           transition={springTransition}
           viewport={defaultViewport}

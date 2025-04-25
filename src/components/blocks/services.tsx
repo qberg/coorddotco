@@ -31,25 +31,25 @@ const servicesData: ServicesData = {
       ],
     },
     {
-      superTitle: 'Individuals, Art Enthusiasts & Collectors',
-      title: 'For Seekers of Craft',
+      superTitle: 'Architects, Interior Designers & Artists',
+      title: 'For Creative Collaborators',
       desc: "You believe objects hold stories. We help you find the hands that tell them. Whether you're a collector of meaning, a lover of process, or simply someone looking to add soul to your space — COORD connects you to timeless craft and the makers behind it.",
       features: [
-        'Explore our library of artisans and crafted objects.',
-        'Fall in love with a technique, region, or material.',
-        'Reach out, and we’ll help you source available pieces — or commission one made just for you.',
-        'We’ll coordinate the making, care, and delivery — along with the story behind it.',
+        'Browse our maker profiles and material legacies.',
+        'Found a form or process you’d like to build on?',
+        'Let’s co-develop something unique with the artisans.',
+        'From prototyping to production, we ensure transparency.',
       ],
     },
     {
-      superTitle: 'Individuals, Art Enthusiasts & Collectors',
-      title: 'For Seekers of Craft',
+      superTitle: 'Brands, Cultural Organizations & Businesses',
+      title: 'For Purpose-Led Institutions',
       desc: "You believe objects hold stories. We help you find the hands that tell them. Whether you're a collector of meaning, a lover of process, or simply someone looking to add soul to your space — COORD connects you to timeless craft and the makers behind it.",
       features: [
-        'Explore our library of artisans and crafted objects.',
-        'Fall in love with a technique, region, or material.',
-        'Reach out, and we’ll help you source available pieces — or commission one made just for you.',
-        'We’ll coordinate the making, care, and delivery — along with the story behind it.',
+        'Explore the works and materials available through COORD.',
+        'Let&apos; understand your need -- from gifting to space-making.',
+        'We co-create with the artisan.',
+        'Our team handles everything from sample to scale.',
       ],
     },
   ],
@@ -65,7 +65,7 @@ const Services: React.FC<ServicesProps> = ({ scrollYProgress, isMobile }) => {
 
   return (
     <motion.section
-      className="sticky top-0 bg-white flex flex-col py-8  px-4 md:px-10 4xl:px-14 min-h-screen"
+      className="sticky top-0 bg-white flex flex-col py-8 md:py-4 2xl:py-8  px-4 md:px-10 4xl:px-14 min-h-screen"
       style={{
         ...(isMobile ? {} : { scale }),
         transformOrigin: 'center center',
@@ -73,7 +73,7 @@ const Services: React.FC<ServicesProps> = ({ scrollYProgress, isMobile }) => {
     >
       <h2 className="mb-4">Services</h2>
       <div className="flex flex-col md:flex-row md:justify-between md:items-start">
-        <div className="w-full flex flex-col gap-4 md:max-w-[45%]">
+        <div className="w-full flex flex-col gap-4 md:max-w-[60%] 2xl:max-w-[45%]">
           <p className="">{servicesData.desc}</p>
           <div>
             <CoordButton variant="yellow">Know More</CoordButton>
@@ -92,7 +92,9 @@ const Services: React.FC<ServicesProps> = ({ scrollYProgress, isMobile }) => {
           <ServiceImage imageSrc="/services/image2.png" className="" />
         </div>
         {servicesData.cards.map((card, index) => (
-          <ServiceCard key={index} {...card} />
+          <div key={index} className="w-full md:w-1/3">
+            <ServiceCard {...card} />
+          </div>
         ))}
       </div>
     </motion.section>
@@ -107,11 +109,11 @@ interface ServiceCardProps {
 }
 
 const ServiceCard: React.FC<ServiceCardProps> = ({ superTitle, title, desc, features }) => (
-  <div className="flex flex-col border p-3 2xl:p-4 3xl:p-6 gap-4 md:gap-3 2xl:gap-4 3xl:gap-12 bg-mist-background">
+  <div className="flex flex-col border p-3 2xl:p-4 3xl:p-6 gap-4 md:gap-3 2xl:gap-4 3xl:gap-12 bg-mist-background h-full">
     <div className="font-playfair text-[0.875rem] md:text-[1rem] 2xl:text-[1.5rem] 3xl:text-[2.25rem] font-medium italic md:max-w-[25ch]">
       {superTitle}
     </div>
-    <h3 className="text-highlight text-[1.5rem] md:text-[1.75rem] 2xl:text-[2.25rem] 3xl:text-[2.75rem]">
+    <h3 className="text-highlight text-[1.5rem] md:text-[1.7rem] 2xl:text-[2.25rem] 3xl:text-[2.75rem]">
       {title}
     </h3>
 
@@ -123,7 +125,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ superTitle, title, desc, feat
           <span>
             <ArrowRight className="text-accent-primary w-4 2xl:w-8 3xl:w-12" />
           </span>
-          <span className="md:max-w-[30ch] 2xl:max-w-[40ch] text-[0.75rem] md:text-[0.875rem] 2xl:text-[1.125rem] 3xl:text-[1.5rem]">
+          <span className="md:max-w-[30ch] 2xl:max-w-[40ch] text-[0.75rem] md:text-[0.87rem] 2xl:text-[1.125rem] 3xl:text-[1.5rem]">
             {feature}
           </span>
         </div>

@@ -3,14 +3,6 @@ import CoordButton from '@/components/ui/coord-button'
 import { Calendar, ChevronDown, ChevronUp, Clock } from 'lucide-react'
 import Image from 'next/image'
 
-const imageStyle = {
-  width: 'clamp(10rem, 4.4006rem + 22.7965vw, 40.875rem)',
-}
-
-const thumbnailStyle = {
-  width: 'clamp(4rem, 2.9572rem + 4.2455vw, 9.75rem)',
-}
-
 const playfairStyle = {
   fontSize: 'clamp(0.875rem, 0.705rem + 0.6922vw, 1.8125rem)',
 }
@@ -32,7 +24,7 @@ const thumbnails = [
 
 const CoordCommunity = () => {
   return (
-    <section className="sticky top-0 bg-mist-background px-4 md:px-10 4xl:px-14 min-h-screen overflow-hidden">
+    <section className="sticky top-0 bg-mist-background px-4 md:px-10 4xl:px-14 h-screen overflow-hidden">
       <HorseBg variant="mist" />
 
       <div className="flex justify-between gap-2 items-stretch">
@@ -83,7 +75,10 @@ const EventThumbnail = () => {
       </button>
 
       {thumbnails.map((thumbnail, index) => (
-        <div key={index} className="relative aspect-[64/100]" style={thumbnailStyle}>
+        <div
+          key={index}
+          className="relative aspect-[64/100] w-16 sxl:w-28 2xl:w-32 3xl:w-36 4xl:w-40"
+        >
           <Image src={thumbnail.src} alt={thumbnail.alt} fill priority className="object-cover" />
         </div>
       ))}
@@ -103,8 +98,8 @@ const EventThumbnail = () => {
 
 const EventContent = () => {
   return (
-    <div className="flex flex-col gap-4 w-full" style={imageStyle}>
-      <div className="relative w-full aspect-[3/5] md:aspect-square">
+    <div className="flex flex-col gap-4 w-40 md:w-80 sxl:w-[27.5rem] 2xl:w-[31rem] 3xl:w-[36rem] 4xl:w-[40rem]">
+      <div className="relative aspect-[3/5] md:aspect-[4/3] sxl:aspect-square w-full">
         <Image
           src="/coord-community/im1.png"
           alt="Coord Community Event"

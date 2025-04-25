@@ -10,7 +10,7 @@ const DiscoverArtisans = () => {
   }
 
   return (
-    <section className="sticky top-0 bg-white flex flex-col lg:flex-row py-8  px-4 md:px-10 4xl:px-14 min-h-screen lg:justify-between">
+    <section className="sticky top-0 bg-white flex flex-col md:flex-row md:gap-10 sxl:gap-16 py-8 md:py-4 sxl:py-8 3xl:py-14  px-4 md:px-10 4xl:px-14 min-h-screen lg:justify-between">
       <div className="w-full md:max-w-[70%] xl:max-w-[50%] 2xl:max-w-[45%]">
         <h2 className="mb-4 lg:mb-8 2xl:mb-14 3xl:mb-16">
           Connecting you to the Roots of Craftsmanship.
@@ -23,7 +23,7 @@ const DiscoverArtisans = () => {
         </p>
       </div>
 
-      <div className="flex justify-between lg:gap-6 2xl:gap-12 3xl:gap-16 mt-auto lg:mt-24">
+      <div className="flex justify-between lg:gap-6 2xl:gap-12 3xl:gap-16 mt-auto sxl:mt-44 3xl:mt-56">
         <div className="flex flex-col justify-end items-start" style={imageOneStyle}>
           <div className="font-playfair font-medium italic" style={playfair}>
             Hands Behind Heritage

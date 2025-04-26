@@ -25,7 +25,7 @@
   --text-4xl: clamp(2.0625rem, 1.4618rem + 2.4458vw, 5.375rem);
   --text-5xl: clamp(2.25rem, 1.5086rem + 3.0415vw, 6.375rem);
 
-  --breakpoint-sxl: 80rem;
+  --breakpoint-sxl: 85rem;
   --breakpoint-3xl: 120rem;
   --breakpoint-4xl: 135rem;
   --breakpoint-5xl: 160rem;

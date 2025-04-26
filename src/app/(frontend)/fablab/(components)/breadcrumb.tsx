@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 const BreadCrumb = () => {
   return (
-    <div className="px-6 md:px-12 flex items-center justify-start gap-2">
+    <div className="px-4 md:px-10 4xl:px-14 flex items-center justify-start gap-2">
       <p className="font-light">
         <Link href="/">Home</Link>
       </p>

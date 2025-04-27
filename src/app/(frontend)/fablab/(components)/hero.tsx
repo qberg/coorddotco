@@ -1,10 +1,9 @@
 'use client'
-import { motion, useScroll, useTransform } from 'motion/react'
+import { motion, useScroll, useSpring, useTransform } from 'motion/react'
 import CoordButton from '@/components/ui/coord-button'
 import Image from 'next/image'
 import { clipPathRevealTB } from '@/motion/variants'
 import { useRef } from 'react'
-import { type } from 'os'
 
 const fadeUpVariant = (duration: number, delay: number) => ({
   hidden: { y: 30, opacity: 0 },
@@ -52,8 +51,17 @@ const Hero = () => {
     offset: ['start end', 'end start'],
   })
 
-  const coverY = useTransform(coverScrollProgress, [0, 1], ['0%', '-10%'])
-  const decoY = useTransform(decoScrollProgress, [0, 1], ['0%', '-10%'])
+  const coverScale = useTransform(coverScrollProgress, [0, 1], [1.1, 1])
+  const decoScale = useTransform(decoScrollProgress, [0, 1], [1.15, 1])
+
+  const smoothCoverScale = useSpring(coverScale, {
+    stiffness: 100,
+    damping: 20,
+  })
+  const smoothDecoScale = useSpring(decoScale, {
+    stiffness: 100,
+    damping: 20,
+  })
 
   return (
     <section className="relative py-2 md:py-2 sxl:py-4 px-4 md:px-10 4xl:px-14 h-full">
@@ -90,7 +98,7 @@ const Hero = () => {
             initial="hidden"
             animate="visible"
           >
-            <motion.div className="absolute inset-0" style={{ y: coverY }}>
+            <motion.div className="absolute inset-0" style={{ scale: smoothCoverScale }}>
               <Image
                 src="/fablab/hero-cover.png"
                 alt="Fablab hero cover image"
@@ -136,7 +144,7 @@ const Hero = () => {
           initial="hidden"
           animate="visible"
         >
-          <motion.div className="absolute inset-0" style={{ y: decoY }}>
+          <motion.div className="absolute inset-0" style={{ scale: smoothDecoScale }}>
             <Image
               src="/fablab/hero-deco.png"
               alt="Fablab Hero Deco"

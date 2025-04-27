@@ -23,7 +23,7 @@ const Info = () => {
   */
   }
 
-  const imageScale = useTransform(coverScrollProgress, [0, 1], [1.1, 1.0])
+  const imageScale = useTransform(coverScrollProgress, [0, 1], [1.15, 1.0])
   const smoothImageScale = useSpring(imageScale, {
     stiffness: 100,
     damping: 20,

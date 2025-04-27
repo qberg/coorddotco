@@ -5,6 +5,7 @@ import Hero from '@/app/(frontend)/fablab/(components)/hero'
 import Header from '@/components/header'
 import Footer from '@/components/footer'
 import Info from '@/app/(frontend)/fablab/(components)/info'
+import Community from '@/app/(frontend)/fablab/(components)/community'
 
 const Page = () => {
   const [headerRef, headerBounds] = useMeasure()
@@ -24,6 +25,7 @@ const Page = () => {
         <Hero />
       </div>
       <Info />
+      <Community />
 
       <Footer />
     </>

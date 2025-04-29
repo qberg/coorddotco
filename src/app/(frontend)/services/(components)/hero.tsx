@@ -13,10 +13,6 @@ const imageOneStyle = {
   width: 'clamp(7.5rem, 3.8571rem + 7.5893vw, 16rem)',
 }
 
-const coverImgStyle = {
-  width: 'clamp(20rem, 1.7857rem + 37.9464vw, 62.5rem)',
-}
-
 interface Service {
   name: string
   desc: string
@@ -40,18 +36,18 @@ const servicesList: Service[] = [
 const ServicesHero = () => {
   const isMobile = useIsMobile()
   return (
-    <section className="min-h-[calc(100svh-var(--navbar-height))] pb-2 flex flex-col xl:gap-4 2xl:gap-8 3xl:gap-12">
+    <section className="h-full py-2 flex flex-col xl:gap-4 2xl:gap-8 3xl:gap-12 mb-4">
       <div className="pl-4 md:pl-16 2xl:pl-24 3xl:pl-32 relative">
         <h1 className="text-highlight" style={headerStyles}>
           Service
         </h1>
 
-        <div className="hidden md:block absolute top-4 right-10">
+        <div className="hidden md:block absolute top-4 md:right-4 sxl:right-8">
           <HeroDeco isMobile={isMobile} />
         </div>
       </div>
 
-      <div className="flex flex-col justify-between xl:flex-row xl:justify-start gap-12 px-4 md:px-0 xl:gap-8 2xl:gap-14 3xl:gap-20 pb-4 xl:pb-8">
+      <div className="flex flex-col justify-between md:flex-row md:justify-start gap-12 px-4 md:px-0 xl:gap-8 2xl:gap-14 3xl:gap-20 pb-4 xl:pb-8">
         <div>
           <HeroCover isMobile={isMobile} />
         </div>
@@ -74,10 +70,7 @@ interface HeroCoverProps {
 
 const HeroCover: React.FC<HeroCoverProps> = ({ isMobile }) => {
   return (
-    <div
-      className="relative w-full aspect-[1.65/1] md:aspect-[1.65/1] xl:aspect-[1.77] 2xl:aspect-[1.25/1]"
-      style={!isMobile ? coverImgStyle : {}}
-    >
+    <div className="relative w-full md:w-md sxl:w-2xl 2xl:w-3xl 3xl:w-5xl aspect-[1.63/1] md:aspect-[1.8/1] sxl:aspect-[1.5/1]">
       <Image
         src={isMobile ? '/services/hero/cover-sm.png' : '/services/hero/cover-md.png'}
         alt="Services Hero Cover Image"
@@ -91,7 +84,7 @@ const HeroCover: React.FC<HeroCoverProps> = ({ isMobile }) => {
 
 const HeroListicles = () => {
   return (
-    <div className="flex h-full md:pl-[40%] xl:pl-0 xl:gap-8 2xl:gap-14 3xl:gap-20">
+    <div className="flex h-full md:gap-8 2xl:gap-14 3xl:gap-20">
       <div className="hidden md:block relative w-20 h-20 3xl:w-32 3xl:h-32">
         <Image
           src="/services/hero/thumb.png"
@@ -102,11 +95,11 @@ const HeroListicles = () => {
         />
       </div>
 
-      <div className="flex flex-col gap-4 2xl:gap-16 md:px-4 xl:px-0 md:mt-6 xl:mt-4 2xl:mt-9">
+      <div className="flex flex-col gap-4 md:gap-2 sxl:gap-14 2xl:gap-16 md:pr-2 sxl:mt-6 2xl:mt-9">
         {servicesList.map((service, index) => (
           <div key={index} className="flex flex-col gap-2">
             <h4 className="services-title">{service.name}</h4>
-            <p className="xl:max-w-[25ch] ">{service.desc}</p>
+            <p className="md:max-w-[30ch] sxl:max-w-[30ch] ">{service.desc}</p>
           </div>
         ))}
       </div>
@@ -134,7 +127,7 @@ const HeroDeco: React.FC<HeroDecoProps> = ({ isMobile }) => {
       </div>
 
       <div className="flex">
-        <h5 className="max-w-[20ch] md:max-w-[22ch] xl:max-w-[22ch] 2xl:max-w-[22ch]">
+        <h5 className="max-w-[20ch] md:max-w-[18ch] sxl:max-w-[22ch] 2xl:max-w-[22ch]">
           Open to anyone who wants handcrafted art and traditional crafts
         </h5>
       </div>

@@ -31,7 +31,7 @@ const MainHero: React.FC<MainHeroProps> = ({ scrollYProgress, isMobile }) => {
 
   return (
     <motion.section
-      className="sticky top-[var(--navbar-height)] flex flex-col  px-4 md:px-10 4xl:px-14 min-h-[calc(100svh-var(--navbar-height))]"
+      className="sticky top-[var(--navbar-height)] flex flex-col  px-4 md:px-10 4xl:px-14 min-h-[calc(100svh-var(--navbar-height))] bg-white"
       style={
         !isMobile
           ? {

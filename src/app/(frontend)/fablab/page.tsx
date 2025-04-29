@@ -7,6 +7,7 @@ import Footer from '@/components/footer'
 import Info from '@/app/(frontend)/fablab/(components)/info'
 import Community from '@/app/(frontend)/fablab/(components)/community'
 import Locations from '@/app/(frontend)/fablab/(components)/locations'
+import Connect from '@/app/(frontend)/fablab/(components)/connect'
 
 const Page = () => {
   const [headerRef, headerBounds] = useMeasure()
@@ -28,6 +29,7 @@ const Page = () => {
       <Info />
       <Community />
       <Locations />
+      <Connect />
 
       <Footer />
     </>

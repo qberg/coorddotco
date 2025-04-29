@@ -17,7 +17,7 @@ const Locations = () => {
     offset: ['start end', 'end start'],
   })
 
-  const mapScale = useTransform(mapScrollProgress, [0, 1], [1.1, 1])
+  const mapScale = useTransform(mapScrollProgress, [0, 1], [1, 1.1])
   const smoothMapScale = useSpring(mapScale, {
     stiffness: 100,
     damping: 20,

@@ -33,7 +33,7 @@ const CoordButton = React.forwardRef<HTMLButtonElement, CoordButtonProps>(
     },
     ref,
   ) => {
-    const baseStyles = 'cta-text flex items-center justify-center'
+    const baseStyles = 'cta-text flex items-center justify-center hover:cursor-pointer'
 
     const buttonClasses = twMerge(
       baseStyles,

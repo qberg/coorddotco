@@ -30,7 +30,7 @@ const Header = () => {
   return (
     <>
       <motion.header
-        className="top-0 px-4 md:px-10 z-100"
+        className="bg-white top-0 px-4 md:px-10 z-100"
         style={{
           height: 'var(--navbar-height)',
           paddingBlock: 'clamp(1rem, 0.6406rem + 1.4747vw, 3rem)',

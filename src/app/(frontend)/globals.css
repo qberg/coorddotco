@@ -34,6 +34,7 @@
 @theme inline {
   --color-accent-primary: var(--sunlit-gold);
   --color-highlight: var(--clay-orange);
+  --color-blue-highlight: var(--river-blue);
   /* Backgrounds */
   --color-orange-background: var(--clay-orange);
   --color-blue-background: var(--river-blue);
@@ -92,6 +93,21 @@
     font-size: var(--text-st);
     font-weight: 400;
     font-family: var(--font-roc);
+    line-height: 120%;
+    letter-spacing: -0.02em;
+  }
+  .connect-label {
+    font-size: var(--text-xl);
+    font-weight: 400;
+    font-family: var(--font-roc);
+    color: var(--river-blue);
+    line-height: 120%;
+    letter-spacing: -0.02em;
+  }
+  .connect-placeholder {
+    font-size: var(--text-base);
+    font-weight: 200;
+    font-family: var(--font-hanken);
     line-height: 120%;
     letter-spacing: -0.02em;
   }

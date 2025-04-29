@@ -51,8 +51,8 @@ const Hero = () => {
     offset: ['start end', 'end start'],
   })
 
-  const coverScale = useTransform(coverScrollProgress, [0, 1], [1.1, 1])
-  const decoScale = useTransform(decoScrollProgress, [0, 1], [1.15, 1])
+  const coverScale = useTransform(coverScrollProgress, [0, 1], [1, 1.1])
+  const decoScale = useTransform(decoScrollProgress, [0, 1], [1, 1.1])
 
   const smoothCoverScale = useSpring(coverScale, {
     stiffness: 100,

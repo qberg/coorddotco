@@ -9,7 +9,7 @@ const Page = () => {
   const [headerRef, headerBounds] = useMeasure()
   const [breadCrumbRef, breadCrumbBounds] = useMeasure()
 
-  const remainingHeight = `calc(100svh - ${headerBounds.height}px - ${breadCrumbBounds.height}px)`
+  const remainingHeight = `calc(100vh - ${headerBounds.height}px - ${breadCrumbBounds.height}px)`
   return (
     <>
       <div ref={headerRef}>

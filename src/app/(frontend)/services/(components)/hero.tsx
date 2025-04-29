@@ -36,7 +36,7 @@ const servicesList: Service[] = [
 const ServicesHero = () => {
   const isMobile = useIsMobile()
   return (
-    <section className="h-full py-2 flex flex-col xl:gap-4 2xl:gap-8 3xl:gap-12 mb-4">
+    <section className="relative h-full py-2 flex flex-col xl:gap-4 2xl:gap-8 3xl:gap-12 mb-4 overflow-hidden">
       <div className="pl-4 md:pl-16 2xl:pl-24 3xl:pl-32 relative">
         <h1 className="text-highlight" style={headerStyles}>
           Service
@@ -47,7 +47,7 @@ const ServicesHero = () => {
         </div>
       </div>
 
-      <div className="flex flex-col justify-between md:flex-row md:justify-start gap-12 px-4 md:px-0 xl:gap-8 2xl:gap-14 3xl:gap-20 pb-4 xl:pb-8">
+      <div className="flex flex-col justify-between md:flex-row md:justify-start gap-12 px-4 md:px-0 xl:gap-8 2xl:gap-14 3xl:gap-20 pb-4 xl:pb-8 overflow-hidden">
         <div>
           <HeroCover isMobile={isMobile} />
         </div>

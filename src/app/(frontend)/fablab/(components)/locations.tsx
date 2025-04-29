@@ -3,14 +3,16 @@ import Image from 'next/image'
 import { motion, useScroll, useSpring, useTransform } from 'motion/react'
 import { clipPathRevealTB, fadeUpVariant } from '@/motion/variants'
 import { useRef } from 'react'
+import useIsMobile from '@/hooks/useIsMobile'
 
 const defaultViewport = {
   once: true,
-  amount: 0.1,
+  amount: 0.01,
 }
 
 const Locations = () => {
   const mapRef = useRef(null)
+  const isMobile = useIsMobile()
 
   const { scrollYProgress: mapScrollProgress } = useScroll({
     target: mapRef,
@@ -45,19 +47,13 @@ const Locations = () => {
       >
         <motion.div className="absolute inset-0" style={{ scale: smoothMapScale }}>
           <Image
-            src="/fablab/location.png"
+            src={isMobile ? '/fablab/location.png' : '/fablab/location-desktop.png'}
             alt="Fablab Locations"
             fill
             priority
-            className="object-cover block md:hidden"
-          />
-
-          <Image
-            src="/fablab/location-desktop.png"
-            alt="Fablab Locations"
-            fill
-            priority
-            className="object-cover hidden md:block"
+            quality={85}
+            sizes="100vw"
+            className="object-cover"
           />
         </motion.div>
       </motion.div>

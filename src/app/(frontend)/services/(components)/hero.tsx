@@ -1,6 +1,7 @@
 'use client'
 
 import useIsMobile from '@/hooks/useIsMobile'
+import AppearTitle from '@/motion/appear-title'
 import Image from 'next/image'
 import React from 'react'
 
@@ -39,7 +40,9 @@ const ServicesHero = () => {
     <section className="relative h-full py-2 flex flex-col xl:gap-4 2xl:gap-8 3xl:gap-12 mb-4 overflow-hidden">
       <div className="pl-4 md:pl-16 2xl:pl-24 3xl:pl-32 relative">
         <h1 className="text-highlight" style={headerStyles}>
-          Service
+          <AppearTitle duration={1.2} delay={0}>
+            Service
+          </AppearTitle>
         </h1>
 
         <div className="hidden md:block absolute top-4 md:right-4 sxl:right-8">

@@ -4,6 +4,7 @@ import CoordButton from '@/components/ui/coord-button'
 import Image from 'next/image'
 import { clipPathRevealTB } from '@/motion/variants'
 import { useRef } from 'react'
+import AppearTitle from '@/motion/appear-title'
 
 const fadeUpVariant = (duration: number, delay: number) => ({
   hidden: { y: 30, opacity: 0 },
@@ -39,26 +40,15 @@ const headerStyles = {
 
 const Hero = () => {
   const coverRef = useRef(null)
-  const decoRef = useRef(null)
 
   const { scrollYProgress: coverScrollProgress } = useScroll({
     target: coverRef,
     offset: ['start end', 'end start'],
   })
 
-  const { scrollYProgress: decoScrollProgress } = useScroll({
-    target: decoRef,
-    offset: ['start end', 'end start'],
-  })
-
   const coverScale = useTransform(coverScrollProgress, [0, 1], [1, 1.1])
-  const decoScale = useTransform(decoScrollProgress, [0, 1], [1, 1.1])
 
   const smoothCoverScale = useSpring(coverScale, {
-    stiffness: 100,
-    damping: 20,
-  })
-  const smoothDecoScale = useSpring(decoScale, {
     stiffness: 100,
     damping: 20,
   })
@@ -67,20 +57,11 @@ const Hero = () => {
     <section className="relative py-2 md:py-2 sxl:py-4 px-4 md:px-10 4xl:px-14 h-full">
       <div className="flex flex-col gap-8 md:flex-row md:justify-between w-full">
         <div className="relative w-fit h-fit">
-          <motion.h1
-            className="text-highlight leading-[93%]"
-            style={headerStyles}
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 1.5,
-              type: 'spring',
-              stiffness: 75,
-              damping: 20,
-            }}
-          >
-            Fablab
-          </motion.h1>
+          <h1 className="text-highlight leading-[93%]" style={headerStyles}>
+            <AppearTitle duration={1.2} delay={0}>
+              Fablab
+            </AppearTitle>
+          </h1>
 
           <motion.div
             className="absolute bg-white inset-0 z-10"
@@ -134,38 +115,64 @@ const Hero = () => {
             </CoordButton>
           </motion.div>
         </div>
+
+        <div className="block md:hidden">
+          <HeroDeco />
+        </div>
       </div>
 
-      <div className="absolute bottom-0 flex gap-8 md:gap-10 sxl:gap-20 2xl:gap-28 3xl:gap-32 4xl:gap-36 py-4">
-        <motion.div
-          ref={decoRef}
-          className="relative aspect-[0.79/1] w-[11rem] md:w-[12rem] sxl:w-[16rem] 2xl:w-[20rem] 3xl:w-[24rem] 4xl:w-[28rem]"
-          variants={clipPathRevealTB(0.5)}
-          initial="hidden"
-          animate="visible"
-        >
-          <motion.div className="absolute inset-0" style={{ scale: smoothDecoScale }}>
-            <Image
-              src="/fablab/hero-deco.png"
-              alt="Fablab Hero Deco"
-              fill
-              priority
-              className="object-cover"
-            />
-          </motion.div>
-        </motion.div>
-
-        <motion.h5
-          className="w-2/5 bg-white flex md:items-center md:justify-center md:max-w-[45ch]"
-          variants={fadeUpVariant(0.3, 0.5)}
-          initial="hidden"
-          animate="visible"
-        >
-          A Fab Lab, or digital fabrication laboratory, is a place to play, to create, to mentor and
-          to invent
-        </motion.h5>
+      <div className="absolute bottom-0 hidden md:block">
+        <HeroDeco />
       </div>
     </section>
+  )
+}
+
+const HeroDeco = () => {
+  const decoRef = useRef(null)
+
+  const { scrollYProgress: decoScrollProgress } = useScroll({
+    target: decoRef,
+    offset: ['start end', 'end start'],
+  })
+
+  const decoScale = useTransform(decoScrollProgress, [0, 1], [1, 1.1])
+
+  const smoothDecoScale = useSpring(decoScale, {
+    stiffness: 100,
+    damping: 20,
+  })
+
+  return (
+    <div className="flex gap-8 md:gap-10 sxl:gap-20 2xl:gap-28 3xl:gap-32 4xl:gap-36 py-4">
+      <motion.div
+        ref={decoRef}
+        className="relative aspect-[0.79/1] w-[11rem] md:w-[12rem] sxl:w-[16rem] 2xl:w-[20rem] 3xl:w-[24rem] 4xl:w-[28rem]"
+        variants={clipPathRevealTB(0.5)}
+        initial="hidden"
+        animate="visible"
+      >
+        <motion.div className="absolute inset-0" style={{ scale: smoothDecoScale }}>
+          <Image
+            src="/fablab/hero-deco.png"
+            alt="Fablab Hero Deco"
+            fill
+            priority
+            className="object-cover"
+          />
+        </motion.div>
+      </motion.div>
+
+      <motion.h5
+        className="w-2/5 bg-white flex md:items-center md:justify-center md:max-w-[45ch]"
+        variants={fadeUpVariant(0.3, 0.5)}
+        initial="hidden"
+        animate="visible"
+      >
+        A Fab Lab, or digital fabrication laboratory, is a place to play, to create, to mentor and
+        to invent
+      </motion.h5>
+    </div>
   )
 }
 

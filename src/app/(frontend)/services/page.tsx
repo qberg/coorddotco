@@ -24,6 +24,8 @@ const Page = () => {
       <div>
         <ServiceInfo />
       </div>
+
+      <div className="h-screen" />
     </>
   )
 }

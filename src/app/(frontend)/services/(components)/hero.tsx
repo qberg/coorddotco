@@ -37,7 +37,7 @@ const servicesList: Service[] = [
 const ServicesHero = () => {
   const isMobile = useIsMobile()
   return (
-    <section className="relative h-full py-2 flex flex-col xl:gap-4 2xl:gap-8 3xl:gap-12 mb-4 overflow-hidden">
+    <section className="relative h-full py-2 flex flex-col xl:gap-4 2xl:gap-8 3xl:gap-12 mb-4">
       <div className="pl-4 md:pl-16 2xl:pl-24 3xl:pl-32 relative">
         <h1 className="text-highlight" style={headerStyles}>
           <AppearTitle duration={1.2} delay={0}>
@@ -91,7 +91,7 @@ const HeroListicles = () => {
       <div className="hidden md:block relative w-20 h-20 3xl:w-32 3xl:h-32">
         <Image
           src="/services/hero/thumb.png"
-          alt="Services Thumbnaim Image"
+          alt="Services Thumbnail Image"
           fill
           priority
           className="object-cover"

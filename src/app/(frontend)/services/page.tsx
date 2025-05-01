@@ -4,10 +4,12 @@ import ServicesHero from '@/app/(frontend)/services/(components)/hero'
 import ServiceInfo from '@/app/(frontend)/services/(components)/service-info'
 import Header from '@/components/header'
 import BreadCrumb from '@/app/(frontend)/services/(components)/breadcrumb'
+import useIsMobile from '@/hooks/useIsMobile'
 
 const Page = () => {
   const [headerRef, headerBounds] = useMeasure()
   const [breadCrumbRef, breadCrumbBounds] = useMeasure()
+  const isMobile = useIsMobile()
 
   const remainingHeight = `calc(100vh - ${headerBounds.height}px - ${breadCrumbBounds.height}px)`
   return (
@@ -18,7 +20,7 @@ const Page = () => {
       <div ref={breadCrumbRef}>
         <BreadCrumb />
       </div>
-      <div style={{ height: remainingHeight }}>
+      <div style={!isMobile ? { height: remainingHeight } : {}}>
         <ServicesHero />
       </div>
       <div>

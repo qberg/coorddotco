@@ -12,27 +12,28 @@ gsap.registerPlugin(ScrollTrigger)
 
 const ServiceInfo = () => {
   const sectionRef = useRef<HTMLDivElement>(null)
-  const slidesRef = useRef<HTMLDivElement>(null)
+  const cardsWrapperRef = useRef<HTMLDivElement>(null)
+  const cardsRef = useRef<HTMLDivElement>(null)
   const isMobile = useIsMobile()
 
   useEffect(() => {
-    if (isMobile || !sectionRef.current || !slidesRef.current) return
+    if (isMobile || !sectionRef.current || !cardsWrapperRef.current || !cardsRef.current) return
 
-    const totalScroll = slidesRef.current.scrollWidth - window.innerWidth
+    const totalScroll = cardsRef.current.scrollWidth - cardsWrapperRef.current.offsetWidth + 256
 
     const ctx = gsap.context(() => {
       ScrollTrigger.create({
         trigger: sectionRef.current,
         start: 'top top',
         end: `+=${totalScroll}`,
-        markers: true,
         scrub: 1,
         pin: true,
         anticipatePin: 1,
       })
 
-      gsap.to(slidesRef.current, {
+      gsap.to(cardsRef.current, {
         x: -totalScroll,
+        stagger: 0.033,
         ease: 'none',
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -46,7 +47,7 @@ const ServiceInfo = () => {
     return () => ctx.revert()
   }, [isMobile])
 
-  if (!isMobile === null) return null
+  if (isMobile === null) return null
 
   return (
     <section
@@ -56,19 +57,21 @@ const ServiceInfo = () => {
       <HorseBg variant="orange" />
       <Header />
 
-      <div
-        ref={slidesRef}
-        className={`${
-          !isMobile
-            ? 'flex gap-8  mt-20 md:mt-12 sxl:mt-28 2xl:mt-44 3xl:mt-56 w-fit will-change-transform'
-            : 'flex-col gap-8 py-12'
-        } flex`}
-      >
-        {cards.map((card, i) => (
-          <div key={i} className="shrink-0 w-full md:w-auto">
-            {card}
-          </div>
-        ))}
+      <div ref={cardsWrapperRef} className=" w-full">
+        <div
+          ref={cardsRef}
+          className={`${
+            !isMobile
+              ? 'flex gap-8  mt-20 md:mt-12 sxl:mt-28 2xl:mt-44 3xl:mt-56 w-fit will-change-transform'
+              : 'flex-col gap-8 py-12'
+          } flex`}
+        >
+          {cards.map((card, i) => (
+            <div key={i} className="shrink-0 w-full md:w-auto">
+              {card}
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   )

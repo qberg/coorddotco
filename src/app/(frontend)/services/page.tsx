@@ -147,7 +147,7 @@ const Page = () => {
         className="absolute left-0 w-full pointer-events-none"
         style={{
           top: '1000vh',
-          height: '400vh',
+          height: '200vh',
         }}
       />
 

@@ -41,7 +41,7 @@ const ServiceInfo = () => {
       setContainerWidth(containerW)
       setScrollWidth(scrollW)
 
-      const totalScrollDistance = scrollW - containerW + 128
+      const totalScrollDistance = scrollW - containerW
       setScrollHeight(window.innerHeight + totalScrollDistance)
     }
 
@@ -60,14 +60,14 @@ const ServiceInfo = () => {
 
   useEffect(() => {
     const unsubscribe = scrollYProgress.on('change', (value) => {
-      console.log('scrollYProgress:', value)
+      console.log('Info scrollYProgress:', value)
     })
 
     return () => unsubscribe()
   }, [scrollYProgress])
 
-  const x = useTransform(scrollYProgress, [0.3, 1], [0, -(scrollWidth - containerWidth + 256)])
-  const scale = useTransform(scrollYProgress, [0, 0.15], [0.8, 1])
+  const x = useTransform(scrollYProgress, [0.3, 1], [0, -(scrollWidth - containerWidth + 900)])
+  const scale = useTransform(scrollYProgress, [0, 0.15, 0.75, 1], [0.8, 1, 1, 0.8])
   const y = useTransform(scrollYProgress, [0, 0.15], [-10, 0])
 
   if (isMobile === null) return null
@@ -146,7 +146,7 @@ const StaggeredCard: React.FC<StaggeredCardProps> = ({ children, index }) => {
       initial={{
         opacity: 0,
         y: 20,
-        x: 100,
+        x: 75,
         scale: 0.95,
       }}
       animate={
@@ -160,7 +160,7 @@ const StaggeredCard: React.FC<StaggeredCardProps> = ({ children, index }) => {
           : {
               opacity: 0,
               y: 20,
-              x: 100,
+              x: 75,
               scale: 0.95,
             }
       }

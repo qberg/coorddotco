@@ -52,7 +52,7 @@ const ServicesHero = () => {
   return (
     <motion.section
       ref={sectionRef}
-      className="relative h-full py-2 flex flex-col xl:gap-4 2xl:gap-8 3xl:gap-12 mb-4"
+      className="relative h-full py-2 flex flex-col xl:gap-4 2xl:gap-8 3xl:gap-12 mb-4 bg-white"
       style={{
         y: y,
         scale: scale,

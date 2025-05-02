@@ -1,10 +1,10 @@
 'use client'
 import useMeasure from 'react-use-measure'
 import ServicesHero from '@/app/(frontend)/services/(components)/hero'
-import ServiceInfo from '@/app/(frontend)/services/(components)/service-info'
 import Header from '@/components/header'
 import BreadCrumb from '@/app/(frontend)/services/(components)/breadcrumb'
 import useIsMobile from '@/hooks/useIsMobile'
+import ServiceInfoM from '@/app/(frontend)/services/(components)/service-info-motion'
 
 const Page = () => {
   const [headerRef, headerBounds] = useMeasure()
@@ -23,8 +23,9 @@ const Page = () => {
       <div style={!isMobile ? { height: remainingHeight } : {}}>
         <ServicesHero />
       </div>
-      <div>
-        <ServiceInfo />
+
+      <div className="">
+        <ServiceInfoM />
       </div>
 
       <div className="h-screen" />

@@ -11,7 +11,6 @@ import Header from '@/components/header'
 import React, { useRef } from 'react'
 import { useScroll } from 'motion/react'
 import useIsMobile from '@/hooks/useIsMobile'
-import useScrollLogger from '@/hooks/useScrollLogger'
 import { motion } from 'motion/react'
 
 const StartPage = () => {
@@ -22,8 +21,6 @@ const StartPage = () => {
     target: mainContainerRef,
     offset: ['start end', 'end start'],
   })
-
-  useScrollLogger(scrollYProgress, 'Main Container Scroll', 100)
 
   return (
     <>

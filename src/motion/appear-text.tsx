@@ -1,9 +1,7 @@
 'use client'
-
 import { motion, useAnimation, useInView } from 'motion/react'
 import { useEffect, useRef } from 'react'
-
-interface AppearTitleProps {
+interface AppearTextProps {
   children: React.ReactNode
   visible?: boolean
   className?: string
@@ -11,7 +9,7 @@ interface AppearTitleProps {
   duration?: number
 }
 
-const AppearTitle: React.FC<AppearTitleProps> = ({
+const AppearText: React.FC<AppearTextProps> = ({
   children,
   visible = true,
   className = '',
@@ -19,11 +17,10 @@ const AppearTitle: React.FC<AppearTitleProps> = ({
   duration = 1,
 }) => {
   const controls = useAnimation()
-  const titleRef = useRef(null)
-
-  const isInView = useInView(titleRef, {
-    once: false,
-    amount: 0.01,
+  const textRef = useRef(null)
+  const isInView = useInView(textRef, {
+    once: true,
+    amount: 0.1,
   })
 
   useEffect(() => {
@@ -34,9 +31,13 @@ const AppearTitle: React.FC<AppearTitleProps> = ({
     }
   }, [controls, isInView, visible])
 
-  const titleVariants = {
-    hidden: { y: '95%' },
+  const textVariants = {
+    hidden: {
+      opacity: 0,
+      y: 10,
+    },
     visible: {
+      opacity: 1,
       y: 0,
       transition: {
         duration: duration,
@@ -50,18 +51,16 @@ const AppearTitle: React.FC<AppearTitleProps> = ({
   }
 
   return (
-    <div className={`overflow-hidden inline-block ${className}`}>
-      <motion.div
-        ref={titleRef}
-        initial="hidden"
-        animate={controls}
-        variants={titleVariants}
-        style={{ display: 'inline-block' }}
-      >
-        {children}
-      </motion.div>
-    </div>
+    <motion.div
+      ref={textRef}
+      initial="hidden"
+      animate={controls}
+      variants={textVariants}
+      className={className}
+    >
+      {children}
+    </motion.div>
   )
 }
 
-export default AppearTitle
+export default AppearText

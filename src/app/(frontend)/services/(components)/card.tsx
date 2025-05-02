@@ -5,11 +5,14 @@ interface CardProps {
   imgSrc: string
   title: string
   desc: string
+  textColorClass: string
 }
 
-const Card: React.FC<CardProps> = ({ id, imgSrc, title, desc }) => {
+const Card: React.FC<CardProps> = ({ id, imgSrc, title, desc, textColorClass }) => {
   return (
-    <div className="w-full md:w-md sxl:w-xl 2xl:w-2xl 3xl:w-3xl 4xl:w-4xl justify-between flex text-white">
+    <div
+      className={`w-full md:w-md sxl:w-xl 2xl:w-2xl 3xl:w-3xl 4xl:w-4xl justify-between flex ${textColorClass}`}
+    >
       <div className="relative w-1/2 aspect-[0.77/1]">
         <Image
           src={imgSrc}

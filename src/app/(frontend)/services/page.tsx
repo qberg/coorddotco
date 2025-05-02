@@ -9,6 +9,7 @@ import ServiceInfoM from '@/app/(frontend)/services/(components)/service-info-mo
 import Image from 'next/image'
 import { useRef } from 'react'
 import Footer from '@/components/footer'
+import { servicesData } from '@/data/services-data'
 
 const Page = () => {
   const [headerRef, headerBounds] = useMeasure()
@@ -46,18 +47,18 @@ const Page = () => {
 
   // Transform properties for the second background (Custom Crafts)
   const bg2Opacity = useTransform(ccDetectorScrollProgress, [0.15, 0.25, 0.95, 1], [0, 1, 1, 0])
-  const bg2Scale = useTransform(ccDetectorScrollProgress, [0, 0.85], [1.25, 1])
-  const bg2Y = useTransform(ccDetectorScrollProgress, [0, 0.85], ['0%', '-5%'])
+  const bg2Scale = useTransform(ccDetectorScrollProgress, [0, 0.85], [1.35, 1.1])
+  const bg2Y = useTransform(ccDetectorScrollProgress, [0, 0.85], ['0%', '-3%'])
 
   // Transform properties for the third background (Bulk Ordering)
-  const bg3Opacity = useTransform(boDetectorScrollProgress, [0.15, 0.25, 0.95, 1], [0, 1, 1, 0])
-  const bg3Scale = useTransform(boDetectorScrollProgress, [0, 0.85], [1.25, 1])
-  const bg3Y = useTransform(boDetectorScrollProgress, [0, 0.85], ['0%', '-5%'])
+  const bg3Opacity = useTransform(boDetectorScrollProgress, [0.15, 0.25, 0.99, 1], [0, 1, 1, 1])
+  const bg3Scale = useTransform(boDetectorScrollProgress, [0, 0.85], [1.35, 1.1])
+  const bg3Y = useTransform(boDetectorScrollProgress, [0, 0.85], ['0%', '-3%'])
 
   return (
     <main ref={pageRef} className="relative">
       <motion.div
-        className="fixed inset-0 w-full h-full -z-10"
+        className="fixed inset-0 w-full h-full -z-500"
         style={{ opacity: bg1Opacity, scale: bg1Scale, y: bg1Y }}
       >
         <Image
@@ -70,7 +71,7 @@ const Page = () => {
       </motion.div>
 
       <motion.div
-        className="fixed inset-0 w-full h-full -z-10"
+        className="fixed inset-0 w-full h-full -z-500"
         style={{ opacity: bg2Opacity, scale: bg2Scale, y: bg2Y }}
       >
         <Image
@@ -83,7 +84,7 @@ const Page = () => {
       </motion.div>
 
       <motion.div
-        className="fixed inset-0 w-full h-full -z-10"
+        className="fixed inset-0 w-full h-full -z-500"
         style={{ opacity: bg3Opacity, scale: bg3Scale, y: bg3Y }}
       >
         <Image
@@ -114,12 +115,12 @@ const Page = () => {
         className="absolute left-0 w-full pointer-events-none"
         style={{
           top: '200vh',
-          height: '300vh',
+          height: '400vh',
         }}
       />
 
       <div className="relative">
-        <ServiceInfoM />
+        <ServiceInfoM {...servicesData.craftSourcing} />
       </div>
 
       <div className="h-screen" />
@@ -129,13 +130,13 @@ const Page = () => {
         ref={ccScrollDetectorRef}
         className="absolute left-0 w-full pointer-events-none"
         style={{
-          top: '500vh',
-          height: '250vh',
+          top: '600vh',
+          height: '400vh',
         }}
       />
 
       <div className="relative">
-        <ServiceInfoM />
+        <ServiceInfoM {...servicesData.customCrafts} />
       </div>
 
       <div className="h-screen" />
@@ -145,13 +146,13 @@ const Page = () => {
         ref={boScrollDetectorRef}
         className="absolute left-0 w-full pointer-events-none"
         style={{
-          top: '750vh',
-          height: '300vh',
+          top: '1000vh',
+          height: '400vh',
         }}
       />
 
       <div className="relative">
-        <ServiceInfoM />
+        <ServiceInfoM {...servicesData.bulkOrdering} />
       </div>
 
       <div className="h-screen" />

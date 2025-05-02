@@ -6,7 +6,7 @@ type VariantConfig = {
   opacity: number
 }
 
-type VariantName = 'blue' | 'orange' | 'mist'
+export type VariantName = 'blue' | 'orange' | 'mist'
 
 const bgVariants: Record<VariantName, VariantConfig> = {
   blue: {

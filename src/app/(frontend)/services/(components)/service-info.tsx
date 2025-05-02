@@ -140,6 +140,7 @@ const cards = [
     title="Browse the Collection"
     desc="Explore our curated collection of regional Indian crafts, browse online or request a catalog tailored to your needs. "
     imgSrc="/services/cards/cs1.png"
+    textColorClass="text-white"
   />,
   <Card
     key="cs2"
@@ -147,6 +148,7 @@ const cards = [
     title="Contact Us"
     desc="If you find a piece you love, reach out to us for more details or a personalized catalog with similar works."
     imgSrc="/services/cards/cs2.png"
+    textColorClass="text-white"
   />,
   <Card
     key="cs3"
@@ -154,6 +156,7 @@ const cards = [
     title="Choose Your Piece"
     desc="After reviewing our catalog, select the artwork that fits your vision."
     imgSrc="/services/cards/cs3.png"
+    textColorClass="text-white"
   />,
   <Card
     key="cs4"
@@ -161,6 +164,7 @@ const cards = [
     title="Craft and Delivery"
     desc="Once your choice is made, we'll coordinate the crafting of the piece and ensure timely delivery to your location."
     imgSrc="/services/cards/cs4.png"
+    textColorClass="text-white"
   />,
 ]
 

@@ -72,4 +72,21 @@ export const clipPathRevealRL = (duration: number, delay: number) => ({
       },
     },
   },
+}
+
+)
+
+
+
+export const fadeUpVariant = (duration: number, delay: number) => ({
+  hidden: { y: 30, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: 'easeInOut',
+      duration: duration,
+      delay: delay,
+    },
+  },
 })

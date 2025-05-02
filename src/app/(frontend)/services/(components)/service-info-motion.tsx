@@ -63,7 +63,6 @@ const ServiceInfo = () => {
       console.log('scrollYProgress:', value)
     })
 
-    // Clean up the subscription when component unmounts
     return () => unsubscribe()
   }, [scrollYProgress])
 

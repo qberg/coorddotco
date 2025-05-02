@@ -3,7 +3,7 @@ import useIsMobile from '@/hooks/useIsMobile'
 import AppearTitle from '@/motion/appear-title'
 import Image from 'next/image'
 import React, { useRef } from 'react'
-import { useInView } from 'motion/react'
+import { motion, useInView, useScroll, useTransform } from 'motion/react'
 import ClipReveal from '@/motion/clip-reveal'
 import AppearText from '@/motion/appear-text'
 
@@ -35,16 +35,28 @@ const servicesList: Service[] = [
 
 const ServicesHero = () => {
   const isMobile = useIsMobile()
-  const sectionRef = useRef(null)
+  const sectionRef = useRef<HTMLElement>(null)
   const isInView = useInView(sectionRef, {
     once: true,
     amount: 0.1,
   })
 
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end start'],
+  })
+
+  const y = useTransform(scrollYProgress, [0, 1], [0, -85])
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.95])
+
   return (
-    <section
+    <motion.section
       ref={sectionRef}
       className="relative h-full py-2 flex flex-col xl:gap-4 2xl:gap-8 3xl:gap-12 mb-4"
+      style={{
+        y: y,
+        scale: scale,
+      }}
     >
       <div className="pl-4 md:pl-16 2xl:pl-24 3xl:pl-32 relative">
         <h1 className="text-highlight" style={headerStyles}>
@@ -67,7 +79,7 @@ const ServicesHero = () => {
           <HeroDeco isMobile={isMobile} isVisible={isInView} />
         </div>
       </div>
-    </section>
+    </motion.section>
   )
 }
 

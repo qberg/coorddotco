@@ -79,7 +79,7 @@ const ServiceInfo = () => {
       style={
         !isMobile
           ? { height: scrollHeight, scale: scale, y: y, transformOrigin: 'center top' }
-          : undefined
+          : { scale: 1, y: 0 }
       }
     >
       <motion.section
@@ -216,7 +216,7 @@ const Header = React.forwardRef<HTMLDivElement, HeaderProps>(({ isVisible }, ref
       </div>
 
       <AppearTitle visible={isVisible} delay={0.3} className="hidden md:block">
-        <h5 className="md:max-w-[25ch] sxl:max-w-[30ch]">
+        <h5 className="md:max-w-[25ch] sxl:max-w-[30ch] hidden md:block">
           Discover a wide range of regional Indian crafts, handpicked for their authenticity and
           artistry.
         </h5>

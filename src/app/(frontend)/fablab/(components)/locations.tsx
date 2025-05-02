@@ -40,7 +40,7 @@ const Locations = () => {
       <motion.div
         ref={mapRef}
         className="relative w-full aspect-[0.5/1] md:aspect-[1.85/1]"
-        variants={clipPathRevealTB(1.5, 0)}
+        variants={clipPathRevealTB(2.0, 0)}
         initial="hidden"
         whileInView="visible"
         viewport={defaultViewport}

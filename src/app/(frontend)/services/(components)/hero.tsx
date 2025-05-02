@@ -100,7 +100,7 @@ const HeroListicles: React.FC<HeroListiclesProps> = ({ isVisible }) => {
   return (
     <div className="flex h-full md:gap-8 2xl:gap-14 3xl:gap-20">
       <div className="hidden md:block relative w-20 h-20 3xl:w-32 3xl:h-32">
-        <ClipReveal visible={isVisible} delay={0.3} duration={1} direction="RL">
+        <ClipReveal visible={isVisible} delay={0.3} duration={0.8} direction="RL">
           <Image
             src="/services/hero/thumb.png"
             alt="Services Thumbnail Image"
@@ -136,7 +136,7 @@ const HeroDeco: React.FC<HeroDecoProps> = ({ isMobile, isVisible }) => {
     <div className="flex flex-row gap-7 md:flex-col md:gap-2 2xl:gap-3 md:items-stretch">
       <div className="flex w-1/2 md:w-full md:justify-end">
         <div className="relative aspect-[3/4] w-full" style={!isMobile ? imageOneStyle : {}}>
-          <ClipReveal visible={isVisible} delay={0.4} duration={1.1} direction="BT">
+          <ClipReveal visible={isVisible} delay={0.4} duration={0.8} direction="BT">
             <Image
               src="/services/hero/deco.png"
               alt="Services Hero Deco Image"

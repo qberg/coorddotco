@@ -71,7 +71,7 @@ const DecoImage: React.FC<DecoImageProps> = ({ imgSrc, imgAlt }) => {
   return (
     <motion.div
       className="relative overflow-hidden aspect-[0.75/1] w-24 md:w-32 sxl:w-44 2xl:w-52 3xl:w-56 4xl:w-64"
-      variants={clipPathRevealTB(0.8, 0)}
+      variants={clipPathRevealTB(1.2, 0)}
       initial="hidden"
       whileInView="visible"
       viewport={defaultViewPort}

@@ -12,7 +12,7 @@ const headerStyles = {
   lineHeight: '0.93',
 }
 const imageOneStyle = {
-  width: 'clamp(7.5rem, 3.8571rem + 7.5893vw, 16rem)',
+  width: ' clamp(5rem, 0.2857rem + 9.8214vw, 16rem) ',
 }
 interface Service {
   name: string
@@ -90,8 +90,8 @@ interface HeroCoverProps {
 
 const HeroCover: React.FC<HeroCoverProps> = ({ isMobile, isVisible }) => {
   return (
-    <div className="relative w-full md:w-md sxl:w-2xl 2xl:w-3xl 3xl:w-5xl aspect-[1.63/1] md:aspect-[1.8/1] sxl:aspect-[1.5/1]">
-      <ClipReveal visible={isVisible} delay={0.2} duration={1.2} direction="TB">
+    <div className="relative w-full md:w-md sxl:w-[38rem] 2xl:w-3xl 3xl:w-5xl aspect-[1.63/1] md:aspect-[1.8/1] sxl:aspect-[1.5/1]">
+      <ClipReveal visible={isVisible} delay={0} duration={1.2} direction="TB">
         <Image
           src={isMobile ? '/services/hero/cover-sm.png' : '/services/hero/cover-md.png'}
           alt="Services Hero Cover Image"

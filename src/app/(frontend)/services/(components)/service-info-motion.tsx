@@ -41,7 +41,7 @@ const ServiceInfo = () => {
       setContainerWidth(containerW)
       setScrollWidth(scrollW)
 
-      const totalScrollDistance = scrollW - containerW + 512
+      const totalScrollDistance = scrollW - containerW + 128
       setScrollHeight(window.innerHeight + totalScrollDistance)
     }
 
@@ -66,7 +66,7 @@ const ServiceInfo = () => {
     return () => unsubscribe()
   }, [scrollYProgress])
 
-  const x = useTransform(scrollYProgress, [0.3, 1], [0, -(scrollWidth - containerWidth + 1024)])
+  const x = useTransform(scrollYProgress, [0.3, 1], [0, -(scrollWidth - containerWidth + 256)])
   const scale = useTransform(scrollYProgress, [0, 0.15], [0.8, 1])
   const y = useTransform(scrollYProgress, [0, 0.15], [-10, 0])
 

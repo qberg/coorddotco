@@ -75,7 +75,7 @@ const Hero = () => {
           <motion.div
             ref={coverRef}
             className="relative aspect-[1.63/1] md:aspect-[1.8/1] sxl:aspect-[1.63/1] w-full"
-            variants={clipPathRevealTB(0.5)}
+            variants={clipPathRevealTB(0.5, 0)}
             initial="hidden"
             animate="visible"
           >
@@ -148,7 +148,7 @@ const HeroDeco = () => {
       <motion.div
         ref={decoRef}
         className="relative aspect-[0.79/1] w-[11rem] md:w-[12rem] sxl:w-[16rem] 2xl:w-[20rem] 3xl:w-[24rem] 4xl:w-[28rem]"
-        variants={clipPathRevealTB(0.5)}
+        variants={clipPathRevealTB(0.5, 0)}
         initial="hidden"
         animate="visible"
       >

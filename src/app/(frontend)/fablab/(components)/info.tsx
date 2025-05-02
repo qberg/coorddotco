@@ -39,7 +39,7 @@ const Info = () => {
         <motion.div
           ref={coverRef}
           className="relative aspect-[0.94/1] w-[20rem] md:w-[32rem] sxl:w-[45rem] 2xl:w-[54rem] 3xl:w-[63rem] 4xl:w-[72rem] flex-shrink-0 -ml-4 md:ml-0 min-h-[21rem] overflow-hidden"
-          variants={clipPathRevealTB(1.5)}
+          variants={clipPathRevealTB(1.5, 0)}
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
         >
@@ -62,7 +62,7 @@ const Info = () => {
             <div className="flex justify-end w-full">
               <motion.div
                 className="relative aspect-square w-24 md:w-28 sxl:w-36 2xl:w-40 3xl:w-48 4xl:w-56 -mr-4 md:mr-0"
-                variants={clipPathRevealTB(0.8)}
+                variants={clipPathRevealTB(0.8, 0)}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.01 }}
